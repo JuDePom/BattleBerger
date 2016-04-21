@@ -1,4 +1,4 @@
-package battleberger.model;
+package battleberger.model.player;
 
 public class Human implements Player {
 

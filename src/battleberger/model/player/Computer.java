@@ -1,12 +1,14 @@
-package battleberger.model;
+package battleberger.model.player;
 
-import java.util.List;
-
+import battleberger.model.World;
 import battleberger.strategy.IStrategy;
 
 public class Computer implements Player {
 	
-	List<IStrategy> strategies;
+	
+	public Computer(IStrategy strat, World w){
+		
+	}
 
 	@Override
 	public void play() {
