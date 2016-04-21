@@ -1,6 +1,6 @@
 package battleberger.strategy;
 
-import battleberger.model.Computer;
+import battleberger.model.player.Computer;
 
 public class StrategyYolo implements IStrategy {
 
