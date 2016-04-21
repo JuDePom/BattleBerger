@@ -3,10 +3,11 @@ package battleberger.model;
 import java.util.Map;
 
 public abstract class AbstractShip extends AbstractAbstractShip{
-	protected boolean[][] shape;
 	public enum Orientation {North,South,East,West};
-	public enum TypeShip{Frigate,Commander,Spy,Kevin,Destroyer,SubMarine,Elisabeth,GrosseBerta,ChuckNoris,ShipDefault}
+	public enum TypeShip{Frigate,Commander,Spy,Kevin,Destroyer,SubMarine,Elisabeth,GrosseBerta,ChuckNoris,ShipDefault,BlackPearl}
 	public enum StatType{Power,Armor,MovSpeed,ReloadSpeed};
+	
+	protected boolean[][] shape;
 	protected Orientation orient;
 	protected String imagepath;
 	protected int[][] lives; 
@@ -23,6 +24,7 @@ public abstract class AbstractShip extends AbstractAbstractShip{
 		statmax.put(StatType.MovSpeed,maxMovSpeed);
 		statmax.put(StatType.ReloadSpeed,maxReloadSpeed);
 	}
+	
 	protected void calculeNbEqiupMax(){
 		int res=0;
 		for(int i=0;i<shape.length;i++){
@@ -32,9 +34,11 @@ public abstract class AbstractShip extends AbstractAbstractShip{
 		}
 		nbEquipementmax=res;
 	}
+	
 	protected void Name(){
 		name=this.getClass().getName();
 	}
+	
 	//savoir si il est vivant ou non sera calculer avec lives 
 	//potentiellement si une case brule ou non => tableau de boolean  
 	// un truc pour avoir une époque qui ne change pas 
