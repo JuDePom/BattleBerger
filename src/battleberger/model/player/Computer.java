@@ -1,19 +1,32 @@
 package battleberger.model.player;
 
 import battleberger.model.World;
-import battleberger.strategy.IStrategy;
+import battleberger.model.player.strategy.IStrategy;
 
-public class Computer implements Player {
+public class Computer extends Player {
 	
+	protected IStrategy strat;
 	
-	public Computer(IStrategy strat, World w){
-		
+	public Computer(IStrategy strat){
+		this.strat = strat;
 	}
 
 	@Override
-	public void play() {
-		// TODO Auto-generated method stub
-		
+	public Shot play(World w) {
+		return strat.fire(this, w);
 	}
+	
+	
+	public void setStrat(IStrategy s){
+		strat = s;
+	}
+	
+	public IStrategy getStrat(){
+		return strat;
+	}
+
+	
+	
+	
 
 }
