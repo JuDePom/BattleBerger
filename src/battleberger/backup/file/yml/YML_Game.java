@@ -27,8 +27,15 @@ public class YML_Game implements DAO<Game> {
 	@Override
 	public Game load(String filepath) {
 		Game game = null;
-		YamlReader reader = new YamlReader(new FileReader(filepath));
-		game = reader.read();
+		YamlReader reader;
+		try {
+			reader = new YamlReader(new FileReader(filepath));
+			game = (Game) reader.read();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (YamlException e) {
+			e.printStackTrace();
+		}
 		return game;
 	}
 	
