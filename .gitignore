@@ -66,3 +66,7 @@ $RECYCLE.BIN/
 *.classpath
 *.project
 *.settings/org.eclipse.jdt.core.prefs
+
+# Library and Plugins
+# ===========================
+!/lib/YamlBeans.jar
