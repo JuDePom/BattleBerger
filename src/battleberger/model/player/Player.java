@@ -3,13 +3,13 @@ package battleberger.model.player;
 import java.util.List;
 
 import battleberger.model.AbstractShip;
-import battleberger.model.World;
+import battleberger.model.Game;
 
 public abstract class Player {
 	
 	private List<AbstractShip> ships;
 	
-	public abstract Shot play(World w);
+	public abstract Shot play(Game g);
 
 	
 	public int nbShips(){
