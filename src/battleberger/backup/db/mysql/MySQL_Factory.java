@@ -7,8 +7,8 @@ import battleberger.model.World;
 public class MySQL_Factory extends AbstractDAOFactory {
 
 	@Override
-	public DAO<World> getWorldDAO() {
-		return MySQL_World.getInstance();
+	public DAO<Game> getGameDAO() {
+		return MySQL_Game.getInstance();
 	}
 	
 }
