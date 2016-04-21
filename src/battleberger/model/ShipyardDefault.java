@@ -12,7 +12,8 @@ public class ShipyardDefault extends AbstractShipyard {
 		case ShipDefault :
 			 sheep =new ShipDefault(Orientation.North,0,0,"battleberger/texture");
 			 break;
-		
+		case Kevin :
+			
 			 default :
 		sheep=null;		 
 		}

@@ -5,7 +5,7 @@ import java.util.Map;
 public abstract class AbstractShip extends AbstractAbstractShip{
 	protected boolean[][] shape;
 	public enum Orientation {North,South,East,West};
-	public enum TypeShip{BattleShip,CommanderShip,SpyShip,KevinShip,Destroyer,SubMarine,ElisabethShip,GrosseBertaShip,ChuckNorisShip,ShipDefault}
+	public enum TypeShip{Frigate,Commander,Spy,Kevin,Destroyer,SubMarine,Elisabeth,GrosseBerta,ChuckNoris,ShipDefault}
 	public enum StatType{Power,Armor,MovSpeed,ReloadSpeed};
 	protected Orientation orient;
 	protected String imagepath;

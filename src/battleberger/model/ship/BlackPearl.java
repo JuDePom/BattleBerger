@@ -13,7 +13,6 @@ public class BlackPearl extends AbstractShip{
 		shape=b;
 		int[][]vie ={{1,2,0,0,},{0,3,2,1},{1,2,0,0}};
 		lives=vie;
-		
 		imagepath=chemin;
 		FireShape.plusShape();
 		 calculeNbEqiupMax();
