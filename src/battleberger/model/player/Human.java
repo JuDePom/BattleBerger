@@ -1,11 +1,15 @@
 package battleberger.model.player;
 
-public class Human implements Player {
+import battleberger.model.Game;
+
+public class Human extends Player {
 
 	@Override
-	public void play() {
-		// TODO Auto-generated method stub
-		
+	public Shot play(Game g) {
+		//TODO
+		return new Shot();
 	}
+
+
 
 }
