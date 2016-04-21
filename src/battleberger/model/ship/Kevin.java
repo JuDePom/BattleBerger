@@ -1,10 +1,10 @@
 package battleberger.model.ship;
 
-import battleberger.model.AbstractShip;
-import battleberger.model.AbstractShip.Orientation;
+import battleberger.model.Ship;
+
 import battleberger.model.FireShape;
 
-public class Kevin extends AbstractShip {
+public class Kevin extends Ship {
 
 	public Kevin(Orientation ori, int x, int y,String chemin){
 		orient=ori;

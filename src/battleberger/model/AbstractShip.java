@@ -2,59 +2,38 @@ package battleberger.model;
 
 import java.util.Map;
 
-public abstract class AbstractShip extends AbstractAbstractShip{
-	public enum Orientation {North,South,East,West};
-	public enum TypeShip{Frigate,Commander,Spy,Kevin,Destroyer,SubMarine,Elisabeth,GrosseBerta,ChuckNoris,ShipDefault,BlackPearl}
-	public enum StatType{Power,Armor,MovSpeed,ReloadSpeed};
-	
-	protected boolean[][] shape;
-	protected Orientation orient;
-	protected String imagepath;
-	protected int[][] lives; 
-	protected int positionX;
-	protected int positionY;
-	protected int[][] fireshape;
-	protected int nbEquipementmax;
-	protected Map<StatType,Integer> statmax;
-	protected int timereload=0;
-	
-	protected void confStatMax(int maxPower,int maxArmor,int maxMovSpeed, int maxReloadSpeed){
-		statmax.put(StatType.Power,maxPower);
-		statmax.put(StatType.Armor,maxArmor);
-		statmax.put(StatType.MovSpeed,maxMovSpeed);
-		statmax.put(StatType.ReloadSpeed,maxReloadSpeed);
-	}
-	
-	protected void calculeNbEqiupMax(){
-		int res=0;
-		for(int i=0;i<shape.length;i++){
-			for(int j=0;j<shape[0].length;j++){
-				if(shape[i][j])res++;
-			}
-		}
-		nbEquipementmax=res;
-	}
-	
-	protected void Name(){
-		name=this.getClass().getName();
-	}
-	
-	//savoir si il est vivant ou non sera calculer avec lives 
-	//potentiellement si une case brule ou non => tableau de boolean  
-	// un truc pour avoir une époque qui ne change pas 
-	//potentiellement a chaque tour, on peut bouger un bateau ou son orientation
-	// le nombre d'armement de chaque type sera calculer
-	
-	/*public AbstractShip(Orientation ori, String chemin, int x, int y){
-		orient=ori;
-		imagepath=chemin;
-		for(int i=0;i<shape.length;i++){
-			for(int j=0;j<shape[0].length;j++){
-				if(shape[i][j])lives[i][j]=1;
-			}
-		}
-		positionX=x;
-		positionY=y;
-	}*/
+import battleberger.model.Ship.Orientation;
+import battleberger.model.Ship.StatType;
+
+public abstract class AbstractShip {
+	protected int cost;
+	protected String name;
+	public enum TimeSpace{};
+	public abstract int getPower();
+	public abstract int getArmor();
+	public abstract int getMovSpeed();
+	public abstract int getReloadSpeed();
+	public abstract boolean[][] getShape() ;
+	public abstract void setShape(boolean[][] shape);
+	public abstract Orientation getOrient() ;
+	public abstract void setOrient(Orientation orient) ;
+	public abstract String getImagepath() ;
+	public abstract void setImagepath(String imagepath) ;
+	public abstract int[][] getLives() ;
+	public abstract void setLives(int[][] lives) ;
+	public abstract int getPositionX() ;
+	public abstract void setPositionX(int positionX) ;
+	public abstract int getPositionY() ;
+	public abstract void setPositionY(int positionY) ;
+	public abstract int[][] getFireshape() ;
+	public abstract void setFireshape(int[][] fireshape) ;
+	public abstract int getNbEquipementmax() ;
+	public abstract void setNbEquipementmax(int nbEquipementmax) ;
+	public abstract Map<StatType, Integer> getStatmax() ;
+	public abstract void setStatmax(Map<StatType, Integer> statmax) ;
+	public abstract int getTimereload() ;
+	public abstract void setTimereload(int timereload) ;
+	public abstract int getWidth();
+	public abstract int getHeight();
 	
 }

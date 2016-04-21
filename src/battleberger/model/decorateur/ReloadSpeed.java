@@ -1,10 +1,10 @@
 package battleberger.model.decorateur;
 
-import battleberger.model.AbstractAbstractShip;
+import battleberger.model.AbstractShip;
 import battleberger.model.AbstractShipDecorator;
 
 public class ReloadSpeed extends AbstractShipDecorator{
-	public ReloadSpeed(AbstractAbstractShip ship){
+	public ReloadSpeed(AbstractShip ship){
 		next=ship;
 		name="reloadSpeed";
 	}

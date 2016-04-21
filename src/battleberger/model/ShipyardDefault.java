@@ -1,7 +1,7 @@
 package battleberger.model;
 
-import battleberger.model.AbstractShip.Orientation;
-import battleberger.model.AbstractShip.TypeShip;
+import battleberger.model.Ship.Orientation;
+import battleberger.model.Ship.TypeShip;
 import battleberger.model.ship.*;
 
 public class ShipyardDefault extends AbstractShipyard {

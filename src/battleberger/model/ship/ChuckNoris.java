@@ -1,10 +1,10 @@
 package battleberger.model.ship;
 
-import battleberger.model.AbstractShip;
-import battleberger.model.AbstractShip.Orientation;
+import battleberger.model.Ship;
+
 import battleberger.model.FireShape;
 
-public class ChuckNoris extends AbstractShip {
+public class ChuckNoris extends Ship {
 
 	public ChuckNoris(Orientation ori, int x, int y,String chemin){
 		orient=ori;

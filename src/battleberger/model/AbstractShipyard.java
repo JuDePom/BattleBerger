@@ -1,6 +1,6 @@
 package battleberger.model;
 
-import battleberger.model.AbstractShip.TypeShip;
+import battleberger.model.Ship.TypeShip;
 
 public abstract class AbstractShipyard {
 	

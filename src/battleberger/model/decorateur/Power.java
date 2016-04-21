@@ -1,10 +1,10 @@
 package battleberger.model.decorateur;
 
-import battleberger.model.AbstractAbstractShip;
+import battleberger.model.AbstractShip;
 import battleberger.model.AbstractShipDecorator;
 
 public class Power extends AbstractShipDecorator{
-	public Power(AbstractAbstractShip ship){
+	public Power(AbstractShip ship){
 		next=ship;
 		name="Armor";
 	}

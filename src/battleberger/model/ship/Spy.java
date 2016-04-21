@@ -1,10 +1,10 @@
 package battleberger.model.ship;
 
-import battleberger.model.AbstractShip;
-import battleberger.model.AbstractShip.Orientation;
+import battleberger.model.Ship;
+
 import battleberger.model.FireShape;
 
-public class Spy extends AbstractShip {
+public class Spy extends Ship {
 
 	public Spy(Orientation ori, int x, int y,String chemin){
 		orient=ori;
@@ -13,7 +13,7 @@ public class Spy extends AbstractShip {
 		boolean[][] b={{true,false},{false,true}};
 		shape=b;
 		int[][] vie={{1,0},{0,1}};
-		
+		lives=vie;
 		imagepath=chemin;
 		fireshape=FireShape.standardShape();
 		calculeNbEqiupMax();

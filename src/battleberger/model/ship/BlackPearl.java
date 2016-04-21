@@ -1,10 +1,10 @@
 package battleberger.model.ship;
 
-import battleberger.model.AbstractShip;
-import battleberger.model.AbstractShip.Orientation;
+import battleberger.model.Ship;
+
 import battleberger.model.FireShape;
 
-public class BlackPearl extends AbstractShip{
+public class BlackPearl extends Ship{
 	public BlackPearl(Orientation ori, int x, int y,String chemin){
 		orient=ori;
 		positionX=x;
