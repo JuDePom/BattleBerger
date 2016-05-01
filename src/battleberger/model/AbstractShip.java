@@ -1,29 +1,39 @@
 package battleberger.model;
 
+import java.util.Map;
+
+import battleberger.model.Ship.Orientation;
+import battleberger.model.Ship.StatType;
+
 public abstract class AbstractShip {
-	protected boolean[][] shape;
-	public enum Orientation {North,South,East,West};
-	public enum TypeShip{BattleShip,CommanderShip,SpyShip,KevinShip,Destroyer,SubMarine,ElisabethShip,GrosseBertaShip,ChuckNorisShip,DefaultShip}
-	protected Orientation orient;
-	protected String imagepath;
-	protected int[][] lives; // 
-	protected int positionX;
-	protected int positionY;
-	//savoir si il est vivant ou non sera calculer avec lives 
-	//potentiellement si une case brule ou non => tableau de boolean  
-	// un truc pour avoir une époque qui ne change pas 
-	//potentiellement a chaque tour, on peut bouger un bateau ou son orientation
-	
-	/*public AbstractShip(Orientation ori, String chemin, int x, int y){
-		orient=ori;
-		imagepath=chemin;
-		for(int i=0;i<shape.length;i++){
-			for(int j=0;j<shape[0].length;j++){
-				if(shape[i][j])lives[i][j]=1;
-			}
-		}
-		positionX=x;
-		positionY=y;
-	}*/
+	protected int cost;
+	protected String name;
+	public enum TimeSpace{};
+	public abstract int getPower();
+	public abstract int getArmor();
+	public abstract int getMovSpeed();
+	public abstract int getReloadSpeed();
+	public abstract boolean[][] getShape() ;
+	public abstract void setShape(boolean[][] shape);
+	public abstract Orientation getOrient() ;
+	public abstract void setOrient(Orientation orient) ;
+	public abstract String getImagepath() ;
+	public abstract void setImagepath(String imagepath) ;
+	public abstract int[][] getLives() ;
+	public abstract void setLives(int[][] lives) ;
+	public abstract int getPositionX() ;
+	public abstract void setPositionX(int positionX) ;
+	public abstract int getPositionY() ;
+	public abstract void setPositionY(int positionY) ;
+	public abstract int[][] getFireshape() ;
+	public abstract void setFireshape(int[][] fireshape) ;
+	public abstract int getNbEquipementmax() ;
+	public abstract void setNbEquipementmax(int nbEquipementmax) ;
+	public abstract Map<StatType, Integer> getStatmax() ;
+	public abstract void setStatmax(Map<StatType, Integer> statmax) ;
+	public abstract int getTimereload() ;
+	public abstract void setTimereload(int timereload) ;
+	public abstract int getWidth();
+	public abstract int getHeight();
 	
 }
