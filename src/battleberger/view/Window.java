@@ -18,7 +18,7 @@ public class Window extends JFrame implements Observer {
 	public Window(Game game) {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		
+		this.setPreferredSize(new Dimension(1000, 600));
 		
 		BorderLayout layout = new BorderLayout();
 		this.setLayout(layout);
