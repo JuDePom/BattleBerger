@@ -157,7 +157,14 @@ public abstract class Ship extends AbstractShip{
 	
 	@Override
 	public int[][] draw(){
-		return fireshape;
+		int [][] posdes=new int[shape.length][shape[0].length];
+		for(int i=0;i<getHeight();i++){
+			for(int j=0;j<getWidth();j++){
+		if(shape[i][j]=true)posdes[i][j]=1;		
+		else posdes[i][j]=0;
+			}
+		}
+		 return posdes;
 	}
 	
 	@Override
