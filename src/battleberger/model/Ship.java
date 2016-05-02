@@ -155,9 +155,17 @@ public abstract class Ship extends AbstractShip{
 		return shape.length;
 	}
 	
+	@Override
+	public int[][] draw(){
+		return fireshape;
+	}
 	
-	
-	
+	@Override
+	public boolean toucher(int x, int y, int degat){
+		
+		return false;
+		
+	}
 		
 	
 	

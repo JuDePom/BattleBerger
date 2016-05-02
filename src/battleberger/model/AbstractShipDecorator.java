@@ -150,4 +150,12 @@ public abstract class AbstractShipDecorator extends AbstractShip {
 		return next.getHeight();
 	}
 	
+	@Override
+	public int[][] draw(){
+		return next.draw();	
+	}
+	@Override
+	public boolean toucher(int x, int y, int degat){
+		return next.toucher(x, y, degat);
+	}
 }
