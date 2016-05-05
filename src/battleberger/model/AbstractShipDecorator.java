@@ -150,4 +150,13 @@ public abstract class AbstractShipDecorator extends AbstractShip {
 		return next.getHeight();
 	}
 	
+
+	@Override
+	public boolean toucher(int x, int y, int degat){
+		return next.toucher(x, y, degat);
+	}
+	@Override
+	public boolean overlap(int x, int y){
+		return next.overlap(x, y);
+	}
 }

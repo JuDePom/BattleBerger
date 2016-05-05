@@ -23,7 +23,7 @@ public class Commander extends Ship {
 
 	@Override
 	public int getPower() {
-		return 2;
+		return 5;
 	}
 
 	@Override
@@ -38,6 +38,7 @@ public class Commander extends Ship {
 
 	@Override
 	public int getReloadSpeed() {
-		return 2;
+		return 3;
 	}
+	
 }

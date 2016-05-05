@@ -26,12 +26,12 @@ public class GrosseBerta extends Ship {
 
 	@Override
 	public int getPower() {
-		return 10;
+		return 14;
 	}
 
 	@Override
 	public int getArmor() {
-		return 5;
+		return 4;
 	}
 
 	@Override
@@ -41,6 +41,7 @@ public class GrosseBerta extends Ship {
 
 	@Override
 	public int getReloadSpeed() {
-		return 8;
+		return 10;
 	}
+	
 }

@@ -9,7 +9,9 @@ public class ReloadSpeed extends AbstractShipDecorator{
 		name="reloadSpeed";
 	}
 	@Override
-	public int getReloadSpeed() {		
-		return 1+next.getReloadSpeed();
+	public int getReloadSpeed() {	
+		int rs=next.getReloadSpeed()-1;
+		if(rs<1)rs=1;
+		return rs;
 	}
 }

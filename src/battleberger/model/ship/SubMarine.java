@@ -40,4 +40,5 @@ public class SubMarine extends Ship {
 	public int getReloadSpeed() {
 		return 3;
 	}
+	
 }

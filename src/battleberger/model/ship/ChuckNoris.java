@@ -40,4 +40,5 @@ public class ChuckNoris extends Ship {
 	public int getReloadSpeed() {
 		return 4;
 	}
+	
 }

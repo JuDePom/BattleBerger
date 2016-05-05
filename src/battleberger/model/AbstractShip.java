@@ -35,5 +35,7 @@ public abstract class AbstractShip {
 	public abstract void setTimereload(int timereload) ;
 	public abstract int getWidth();
 	public abstract int getHeight();
-	
+
+	public abstract boolean toucher(int x, int y, int degat);
+	public abstract boolean overlap(int x, int y);
 }

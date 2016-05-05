@@ -43,4 +43,5 @@ public class ShipDefault extends Ship {
 	public int getReloadSpeed() {
 		return 2;
 	}
+	
 }

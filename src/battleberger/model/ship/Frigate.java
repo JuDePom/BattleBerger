@@ -44,4 +44,5 @@ public class Frigate extends Ship {
 	public int getReloadSpeed() {
 		return 2;
 	}
+	
 }

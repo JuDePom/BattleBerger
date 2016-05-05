@@ -40,4 +40,5 @@ public class Kevin extends Ship {
 	public int getReloadSpeed() {
 		return 1;
 	}
+	
 }
