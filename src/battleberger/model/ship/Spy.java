@@ -22,7 +22,7 @@ public class Spy extends Ship {
 
 	@Override
 	public int getPower() {
-		return 2;
+		return 3;
 	}
 
 	@Override

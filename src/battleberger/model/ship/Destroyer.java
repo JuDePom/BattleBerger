@@ -21,12 +21,12 @@ public class Destroyer extends Ship {
 
 	@Override
 	public int getPower() {
-		return 3;
+		return 4;
 	}
 
 	@Override
 	public int getArmor() {
-		return 0;
+		return 1;
 	}
 
 	@Override

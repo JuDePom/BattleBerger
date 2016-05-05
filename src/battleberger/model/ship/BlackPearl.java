@@ -21,7 +21,7 @@ public class BlackPearl extends Ship{
 
 	@Override
 	public int getPower() {
-		return 4;
+		return 6;
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class BlackPearl extends Ship{
 
 	@Override
 	public int getReloadSpeed() {
-		return 3;
+		return 4;
 	}
 	
 }
