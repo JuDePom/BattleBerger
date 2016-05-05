@@ -1,5 +1,6 @@
 package battleberger.model;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public abstract class Ship extends AbstractShip{
@@ -20,6 +21,7 @@ public abstract class Ship extends AbstractShip{
 	protected boolean mouv;
 	
 	protected void confStatMax(int maxPower,int maxArmor,int maxMovSpeed, int maxReloadSpeed){
+		statmax = new HashMap<StatType,Integer>();
 		statmax.put(StatType.Power,maxPower);
 		statmax.put(StatType.Armor,maxArmor);
 		statmax.put(StatType.MovSpeed,maxMovSpeed);
