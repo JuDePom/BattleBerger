@@ -8,11 +8,14 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import battleberger.model.AbstractShip;
 import battleberger.model.Game;
+import battleberger.model.player.Player;
 
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel{
@@ -55,7 +58,7 @@ public class GamePanel extends JPanel{
 		gw = game.getWorldWidth();
 		gh = game.getWorldHeight();
 
-		pw = this.getWidth()/2;
+		pw = (this.getWidth()-1)/2;
 		ph = this.getHeight();
 
 		wpc = pw/gw;
@@ -73,10 +76,12 @@ public class GamePanel extends JPanel{
 		else
 			dh = (ph%cs)/2;
 
-		g.drawImage(ocean, dw, dh, cs*gw*2, cs*gh, null);
+		g.drawImage(ocean, 0, 0, this.getWidth(), this.getHeight(), null);
 		
 		drawMyField(g);
 		drawEnemyField(g);
+		
+		drawShips(g);
 		
 		drawMouse(g);
 	}
@@ -104,6 +109,47 @@ public class GamePanel extends JPanel{
 		for (int y = 1; y<gh; y++){
 			g.drawLine(pw, dh + y*cs, pw + 5, dh + y*cs);
 			g.drawLine(pw + gh*cs, dh + y*cs, pw + gh*cs - 5, dh + y*cs);
+		}
+	}
+	
+	public void drawShips(Graphics g){
+		g.setColor(Color.GRAY);
+		List<Player> players = game.getPlayers();
+		
+		Player me = players.get(0);
+		for (int n = 0; n < me.nbShips(); n++){	
+			AbstractShip ship = me.getShip(n);
+			
+			int x = ship.getPositionX();
+			int y = ship.getPositionY();
+			
+			boolean[][] shape = ship.getShape();
+			
+			for (int i = 0; i < shape.length; i++){
+				for (int j = 0; j < shape[i].length; j++){
+					if (shape[i][j]){
+						g.fillRect(dw + (x + i)* cs, dh + (y + j) * cs, cs, cs);
+					}
+				}
+			}
+		}
+		
+		Player enemy = players.get(1);
+		for (int n = 0; n < enemy.nbShips(); n++){	
+			AbstractShip ship = enemy.getShip(n);
+			
+			int x = ship.getPositionX();
+			int y = ship.getPositionY();
+			
+			boolean[][] shape = ship.getShape();
+			
+			for (int i = 0; i < shape.length; i++){
+				for (int j = 0; j < shape[i].length; j++){
+					if (shape[i][j]){
+						g.fillRect(pw + (x + i)* cs, dh + (y + j) * cs, cs, cs);
+					}
+				}
+			}
 		}
 	}
 	
