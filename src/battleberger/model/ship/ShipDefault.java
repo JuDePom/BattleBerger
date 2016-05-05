@@ -43,23 +43,5 @@ public class ShipDefault extends Ship {
 	public int getReloadSpeed() {
 		return 2;
 	}
-	@Override
-	public boolean toucher(int x, int y, int degat){
-		boolean res=false;
-		int c=positionX;
-		while(c<(positionX+getWidth())){
-			if(c==x){
-				c=positionY;
-				while(c<(positionY+getHeight())){
-					if(c==y)
-						if(lives[y-positionY][x-positionX]>0){
-							int armor = getArmor();
-							lives[y-positionY][x-positionX]-=armor-degat;
-							res=true;
-						}
-				}
-			}
-		}
-		return res;
-	}
+	
 }

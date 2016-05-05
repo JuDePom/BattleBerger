@@ -155,25 +155,36 @@ public abstract class Ship extends AbstractShip{
 		return shape.length;
 	}
 	
-	@Override
-	public int[][] draw(){
-		int [][] posdes=new int[shape.length][shape[0].length];
-		for(int i=0;i<getHeight();i++){
-			for(int j=0;j<getWidth();j++){
-		if(shape[i][j]=true)posdes[i][j]=1;		
-		else posdes[i][j]=0;
-			}
-		}
-		 return posdes;
-	}
+	
 	
 	@Override
-	public boolean toucher(int x, int y, int degat){
-		
-		return false;
+	public boolean overlap(int x, int y){
+		boolean res=false;
+		int c=positionX;
+		while(c<(positionX+getWidth())){
+			if(c==x){
+				c=positionY;
+				while(c<(positionY+getHeight())){
+					if(c==y)
+							res=true;
+				}
+			}
+		}
+		return res;
 		
 	}
-		
+	@Override
+	public boolean toucher(int x, int y, int degat){
+		boolean res=false;
+		if(overlap(x,y)){
+				if(lives[y-positionY][x-positionX]>0){
+					int armor = getArmor();
+					lives[y-positionY][x-positionX]-=armor-degat;
+					res=true;
+				}
+		}
+		return res;
+	}
 	
 	
 	//savoir si il est vivant ou non sera calculer avec lives 
