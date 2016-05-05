@@ -28,9 +28,21 @@ public class Game extends Observable {
 			}
 			
 		}
-		
-		
 	}
 	
+	public int getWorldWidth(){
+		return 20;
+	}
+	
+	public int getWorldHeight(){
+		return 20;
+	}
 
+	public int getWorldSize() {
+		return getWorldWidth() * getWorldHeight();
+	}
+	
+	public List<Player> getPlayers(){
+		return players;
+	}
 }
