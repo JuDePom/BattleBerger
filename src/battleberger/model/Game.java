@@ -11,7 +11,7 @@ import battleberger.view.IDisplay;
 public class Game extends Observable {
 
 	private List<Player> players;
-	private int width, height;
+	private static int width, height;
 	private IDisplay display;
 	
 	
@@ -19,7 +19,6 @@ public class Game extends Observable {
 		players = new ArrayList<>();
 		addPlayer(p1);
 		addPlayer(p2);
-		
 		setDisplay(disp);
 	}
 	
@@ -79,11 +78,11 @@ public class Game extends Observable {
 
 
 	public void setWidth(int width) {
-		this.width = width;
+		Game.width = width;
 	}
 
 	public void setHeight(int height) {
-		this.height = height;
+		Game.height = height;
 	}
 
 
@@ -98,11 +97,11 @@ public class Game extends Observable {
 	}
 	
 	
-	public int getWidth(){
+	public static int getWidth(){
 		return width;
 	}
 	
-	public int getHeight(){
+	public static int getHeight(){
 		return height;
 	}
 

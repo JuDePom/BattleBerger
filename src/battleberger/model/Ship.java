@@ -162,39 +162,12 @@ public abstract class Ship extends AbstractShip{
 	
 	@Override
 	public boolean overlap(int x, int y){
-		boolean res=false;
-		int c=positionX;
-		while(c<(positionX+getWidth())){
-			if(c==x){
-				c=positionY;
-				while(c<(positionY+getHeight())){
-					if(c==y)
-							res=true;
-					c++;
-				}
-			}
-			c++;
-		}
-		return res;
-		
+		return  x >= positionX && x < positionX + getWidth()
+				&& y >= positionY && y < positionY + getHeight();		
 	}
 	@Override
 	public boolean overlap(Square s){
-		boolean res=false;
-		int c=positionX;
-		while(c<(positionX+getWidth())){
-			if(c==s.getX()){
-				c=positionY;
-				while(c<(positionY+getHeight())){
-					if(c==s.getY())
-							res=true;
-					c++;
-				}
-			}
-			c++;
-		}
-		return res;
-		
+		return overlap(s.getX(), s.getY());
 	}
 	@Override
 	public boolean toucher(int x, int y, int degat){

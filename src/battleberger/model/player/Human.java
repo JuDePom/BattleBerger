@@ -7,7 +7,12 @@ public class Human extends Player {
 	@Override
 	public Shot play(Game g) {
 		//TODO
-		return new Shot();
+		return null;
+		
+	}
+	
+	public Human(){
+		super(20);
 	}
 
 	@Override

@@ -6,6 +6,8 @@ import battleberger.model.Ship.Orientation;
 import battleberger.model.Ship.StatType;
 
 public abstract class AbstractShip {
+	
+	
 	protected int cost;
 	protected String name;
 	public enum TimeSpace{Default,MoyenAge,SheepAge};
@@ -35,7 +37,12 @@ public abstract class AbstractShip {
 	public abstract void setTimereload(int timereload) ;
 	public abstract int getWidth();
 	public abstract int getHeight();
-
+	
+	
+	public int shipValue(){
+		return 1;//TODO: passer en abstract et faire au cas par cas
+	}
+	
 	public abstract boolean toucher(int x, int y, int degat);
 	public abstract boolean overlap(int x, int y);
 	public abstract boolean overlap(Square s);

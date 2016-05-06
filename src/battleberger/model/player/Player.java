@@ -8,8 +8,15 @@ import battleberger.model.Game;
 
 public abstract class Player {
 	
-	private List<AbstractShip> ships = new ArrayList<AbstractShip>();
-	private Game game;
+	protected List<AbstractShip> ships = new ArrayList<AbstractShip>();
+	protected Game game;
+	protected int maxShipValue;
+	
+	public Player(int maxShipValue){
+		this.setMaxShipValue(maxShipValue);
+		ships = new ArrayList<>();
+	}
+	
 	
 	public abstract Shot play(Game g);
 
@@ -31,6 +38,16 @@ public abstract class Player {
 
 	public void setGame(Game g){
 		game = g;
+	}
+
+
+	public int getMaxShipValue() {
+		return maxShipValue;
+	}
+
+
+	public void setMaxShipValue(int maxShipValue) {
+		this.maxShipValue = maxShipValue;
 	}
 	
 }
