@@ -17,6 +17,7 @@ public class SubMarine extends Ship {
 		
 		imagepath=chemin;
 		fireshape=FireShape.standardShape();
+		this.confStatMax(3, 3, 2, 2);
 		calculeNbEqiupMax();
 		Name();
 	}

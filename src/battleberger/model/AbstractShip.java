@@ -8,7 +8,7 @@ import battleberger.model.Ship.StatType;
 public abstract class AbstractShip {
 	protected int cost;
 	protected String name;
-	public enum TimeSpace{};
+	public enum TimeSpace{Default,MoyenAge,SheepAge};
 	public abstract int getPower();
 	public abstract int getArmor();
 	public abstract int getMovSpeed();

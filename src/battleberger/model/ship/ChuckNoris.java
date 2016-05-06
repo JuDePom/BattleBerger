@@ -17,6 +17,7 @@ public class ChuckNoris extends Ship {
 		
 		imagepath=chemin;
 		fireshape=FireShape.norisShape();
+		this.confStatMax(5, 3, 3, 2);
 		calculeNbEqiupMax();
 		Name();
 	}
