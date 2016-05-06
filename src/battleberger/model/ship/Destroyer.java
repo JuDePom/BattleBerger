@@ -15,6 +15,7 @@ public class Destroyer extends Ship {
 		lives=vie;
 		imagepath=chemin;
 		fireshape=FireShape.crossShape();
+		this.confStatMax(4, 2, 2, 2);
 		calculeNbEqiupMax();
 		Name();
 	}

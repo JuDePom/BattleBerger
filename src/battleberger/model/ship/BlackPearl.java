@@ -15,6 +15,7 @@ public class BlackPearl extends Ship{
 		lives=vie;
 		imagepath=chemin;
 		FireShape.plusShape();
+		this.confStatMax(4, 3, 2,2);
 		 calculeNbEqiupMax();
 		 Name();
 	}

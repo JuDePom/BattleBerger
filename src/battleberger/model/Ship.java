@@ -7,6 +7,7 @@ public abstract class Ship extends AbstractShip{
 	public enum Orientation {North,South,East,West};
 	public enum TypeShip{Frigate,Commander,Spy,Kevin,Destroyer,SubMarine,Elisabeth,GrosseBerta,ChuckNoris,ShipDefault,BlackPearl}
 	public enum StatType{Power,Armor,MovSpeed,ReloadSpeed};
+
 	
 	protected boolean[][] shape;
 	protected Orientation orient;
@@ -169,8 +170,28 @@ public abstract class Ship extends AbstractShip{
 				while(c<(positionY+getHeight())){
 					if(c==y)
 							res=true;
+					c++;
 				}
 			}
+			c++;
+		}
+		return res;
+		
+	}
+	@Override
+	public boolean overlap(Square s){
+		boolean res=false;
+		int c=positionX;
+		while(c<(positionX+getWidth())){
+			if(c==s.getX()){
+				c=positionY;
+				while(c<(positionY+getHeight())){
+					if(c==s.getY())
+							res=true;
+					c++;
+				}
+			}
+			c++;
 		}
 		return res;
 		

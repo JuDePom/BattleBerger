@@ -8,7 +8,7 @@ import battleberger.model.Ship.StatType;
 public abstract class AbstractShip {
 	protected int cost;
 	protected String name;
-	public enum TimeSpace{};
+	public enum TimeSpace{Default,MoyenAge,SheepAge};
 	public abstract int getPower();
 	public abstract int getArmor();
 	public abstract int getMovSpeed();
@@ -38,4 +38,5 @@ public abstract class AbstractShip {
 
 	public abstract boolean toucher(int x, int y, int degat);
 	public abstract boolean overlap(int x, int y);
+	public abstract boolean overlap(Square s);
 }
