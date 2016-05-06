@@ -1,10 +1,10 @@
 package battleberger.model.ship;
 
-import battleberger.model.AbstractShip;
-import battleberger.model.AbstractShip.Orientation;
+import battleberger.model.Ship;
+
 import battleberger.model.FireShape;
 
-public class GrosseBerta extends AbstractShip {
+public class GrosseBerta extends Ship {
 
 	public GrosseBerta(Orientation ori, int x, int y,String chemin){
 		orient=ori;
@@ -26,12 +26,12 @@ public class GrosseBerta extends AbstractShip {
 
 	@Override
 	public int getPower() {
-		return 10;
+		return 14;
 	}
 
 	@Override
 	public int getArmor() {
-		return 5;
+		return 4;
 	}
 
 	@Override
@@ -41,6 +41,7 @@ public class GrosseBerta extends AbstractShip {
 
 	@Override
 	public int getReloadSpeed() {
-		return 8;
+		return 10;
 	}
+	
 }

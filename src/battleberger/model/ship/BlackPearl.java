@@ -1,10 +1,10 @@
 package battleberger.model.ship;
 
-import battleberger.model.AbstractShip;
-import battleberger.model.AbstractShip.Orientation;
+import battleberger.model.Ship;
+
 import battleberger.model.FireShape;
 
-public class BlackPearl extends AbstractShip{
+public class BlackPearl extends Ship{
 	public BlackPearl(Orientation ori, int x, int y,String chemin){
 		orient=ori;
 		positionX=x;
@@ -21,7 +21,7 @@ public class BlackPearl extends AbstractShip{
 
 	@Override
 	public int getPower() {
-		return 4;
+		return 6;
 	}
 
 	@Override
@@ -36,6 +36,7 @@ public class BlackPearl extends AbstractShip{
 
 	@Override
 	public int getReloadSpeed() {
-		return 3;
+		return 4;
 	}
+	
 }

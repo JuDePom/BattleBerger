@@ -1,11 +1,11 @@
 package battleberger.model.decorateur;
 
-import battleberger.model.AbstractAbstractShip;
+import battleberger.model.AbstractShip;
 import battleberger.model.AbstractShipDecorator;
 
 public class MovSpeed extends AbstractShipDecorator{
 
-	public MovSpeed(AbstractAbstractShip ship){
+	public MovSpeed(AbstractShip ship){
 		next=ship;
 		name="MovSpeed";
 	}

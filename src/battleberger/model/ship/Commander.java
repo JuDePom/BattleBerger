@@ -1,10 +1,10 @@
 package battleberger.model.ship;
 
-import battleberger.model.AbstractShip;
-import battleberger.model.AbstractShip.Orientation;
+import battleberger.model.Ship;
+
 import battleberger.model.FireShape;
 
-public class Commander extends AbstractShip {
+public class Commander extends Ship {
 
 	public Commander(Orientation ori, int x, int y,String chemin){
 		orient=ori;
@@ -23,7 +23,7 @@ public class Commander extends AbstractShip {
 
 	@Override
 	public int getPower() {
-		return 2;
+		return 5;
 	}
 
 	@Override
@@ -38,6 +38,7 @@ public class Commander extends AbstractShip {
 
 	@Override
 	public int getReloadSpeed() {
-		return 2;
+		return 3;
 	}
+	
 }

@@ -1,10 +1,10 @@
 package battleberger.model.ship;
 
-import battleberger.model.AbstractShip;
-import battleberger.model.AbstractShip.Orientation;
+import battleberger.model.Ship;
+
 import battleberger.model.FireShape;
 
-public class Elisabeth extends AbstractShip {
+public class Elisabeth extends Ship {
 
 	public Elisabeth(Orientation ori, int x, int y,String chemin){
 		orient=ori;
@@ -12,7 +12,7 @@ public class Elisabeth extends AbstractShip {
 		positionY=y;
 		boolean[][] b={{false,true,true},{true,true,false},{true,true,false},{false,true,true}};
 		shape=b;
-		int[][] vie={{0,2,1},{2,4,0},{2,4,0},{0,2,1}};
+		int[][] vie={{0,2,1},{2,3,0},{2,3,0},{0,2,1}};
 		lives=vie;
 		
 		imagepath=chemin;
@@ -28,7 +28,7 @@ public class Elisabeth extends AbstractShip {
 
 	@Override
 	public int getArmor() {
-		return 4;
+		return 3;
 	}
 
 	@Override
@@ -38,6 +38,7 @@ public class Elisabeth extends AbstractShip {
 
 	@Override
 	public int getReloadSpeed() {
-		return 6;
+		return 5;
 	}
+	
 }

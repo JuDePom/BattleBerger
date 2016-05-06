@@ -1,9 +1,9 @@
 package battleberger.model.ship;
 
-import battleberger.model.AbstractShip;
+import battleberger.model.Ship;
 import battleberger.model.FireShape;
 
-public class ShipDefault extends AbstractShip {
+public class ShipDefault extends Ship {
 
 	public ShipDefault(Orientation ori, int x, int y,String chemin){
 		orient=ori;
@@ -43,4 +43,5 @@ public class ShipDefault extends AbstractShip {
 	public int getReloadSpeed() {
 		return 2;
 	}
+	
 }

@@ -1,15 +1,17 @@
 package battleberger.model.decorateur;
 
-import battleberger.model.AbstractAbstractShip;
+import battleberger.model.AbstractShip;
 import battleberger.model.AbstractShipDecorator;
 
 public class ReloadSpeed extends AbstractShipDecorator{
-	public ReloadSpeed(AbstractAbstractShip ship){
+	public ReloadSpeed(AbstractShip ship){
 		next=ship;
 		name="reloadSpeed";
 	}
 	@Override
-	public int getReloadSpeed() {		
-		return 1+next.getReloadSpeed();
+	public int getReloadSpeed() {	
+		int rs=next.getReloadSpeed()-1;
+		if(rs<1)rs=1;
+		return rs;
 	}
 }

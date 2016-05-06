@@ -1,10 +1,10 @@
 package battleberger.model.ship;
 
-import battleberger.model.AbstractShip;
-import battleberger.model.AbstractShip.Orientation;
+import battleberger.model.Ship;
+
 import battleberger.model.FireShape;
 
-public class Frigate extends AbstractShip {
+public class Frigate extends Ship {
 
 	public Frigate(Orientation ori, int x, int y,String chemin){
 		orient=ori;
@@ -44,4 +44,5 @@ public class Frigate extends AbstractShip {
 	public int getReloadSpeed() {
 		return 2;
 	}
+	
 }

@@ -1,10 +1,9 @@
 package battleberger.model.ship;
 
-import battleberger.model.AbstractShip;
-import battleberger.model.AbstractShip.Orientation;
+import battleberger.model.Ship;
 import battleberger.model.FireShape;
 
-public class Destroyer extends AbstractShip {
+public class Destroyer extends Ship {
 
 	public Destroyer(Orientation ori, int x, int y,String chemin){
 		orient=ori;
@@ -22,12 +21,12 @@ public class Destroyer extends AbstractShip {
 
 	@Override
 	public int getPower() {
-		return 3;
+		return 4;
 	}
 
 	@Override
 	public int getArmor() {
-		return 0;
+		return 1;
 	}
 
 	@Override
@@ -39,4 +38,5 @@ public class Destroyer extends AbstractShip {
 	public int getReloadSpeed() {
 		return 3;
 	}
+	
 }
