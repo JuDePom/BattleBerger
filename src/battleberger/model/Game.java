@@ -3,6 +3,7 @@ package battleberger.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
+import java.util.Timer;
 
 import battleberger.model.player.Player;
 import battleberger.model.player.Shot;
@@ -33,8 +34,9 @@ public class Game extends Observable {
 			p.selectShips();
 		}
 		
+		long start;
 		while( ! isEndOfGame() ){
-			
+			start = System.currentTimeMillis();
 			for(Player p : players){
 				Shot s = p.play(this);
 				display.fire(p, s);
@@ -43,10 +45,20 @@ public class Game extends Observable {
 			}
 			
 			display.updateGameGrid();
+			
+			waitfps(start);
 		}
 		
 	}
 
+	
+	private void waitfps(long start){
+		try {
+			Thread.sleep((long) Math.max( 100./6 - (System.currentTimeMillis() - start), 0)); //on fait du 60 fps
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 
 	
 	private boolean isEndOfGame(){
