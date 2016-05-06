@@ -21,5 +21,8 @@ public abstract class AbstractShipyard {
 	public static void setTimeSpace(TimeSpace s){
 		ts=s;
 	}
+	public static TimeSpace getTimeSpace(){
+		return ts;
+	}
 	public abstract AbstractShip buildShip(TypeShip ship,int x, int y);
 }
