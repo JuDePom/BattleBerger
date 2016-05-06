@@ -9,6 +9,7 @@ import battleberger.model.Game;
 public abstract class Player {
 	
 	private List<AbstractShip> ships = new ArrayList<AbstractShip>();
+	private Game game;
 	
 	public abstract Shot play(Game g);
 
@@ -28,4 +29,8 @@ public abstract class Player {
 	public abstract void selectShips();
 	
 
+	public void setGame(Game g){
+		game = g;
+	}
+	
 }

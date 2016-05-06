@@ -3,7 +3,6 @@ package battleberger.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
-import java.util.Timer;
 
 import battleberger.model.player.Player;
 import battleberger.model.player.Shot;
@@ -15,17 +14,16 @@ public class Game extends Observable {
 	private int width, height;
 	private IDisplay display;
 	
+	
 	public Game(Player p1, Player p2, IDisplay disp){
 		players = new ArrayList<>();
-		players.add(p1);
-		players.add(p2);
-		display = disp;
-		display.setGame(this);
+		addPlayer(p1);
+		addPlayer(p2);
 		
-		width = height = 20;
+		setDisplay(disp);
 	}
 	
-	
+
 	public void play(){
 
 		display.selectGridDimension();
@@ -38,6 +36,7 @@ public class Game extends Observable {
 		while( ! isEndOfGame() ){
 			start = System.currentTimeMillis();
 			for(Player p : players){
+				
 				Shot s = p.play(this);
 				display.fire(p, s);
 				
@@ -79,39 +78,40 @@ public class Game extends Observable {
 	}
 
 
-	public int getWidth() {
-		return width;
-	}
-
-
 	public void setWidth(int width) {
 		this.width = width;
 	}
-
-
-	public int getHeight() {
-		return height;
-	}
-
 
 	public void setHeight(int height) {
 		this.height = height;
 	}
 
 
-
-	
-	
-	public int getWorldWidth(){
-		return 20;
+	public void setDisplay(IDisplay disp){
+		display = disp;
+		display.setGame(this);
 	}
 	
-	public int getWorldHeight(){
-		return 20;
+	public void addPlayer(Player p){
+		players.add(p);
+		p.setGame(this);
+	}
+	
+	
+	public int getWidth(){
+		return width;
+	}
+	
+	public int getHeight(){
+		return height;
 	}
 
+	/**
+	 * 
+	 * @return la taille totale d'un terrain en nombre de case
+	 */
 	public int getWorldSize() {
-		return getWorldWidth() * getWorldHeight();
+		return getWidth() * getHeight();
 	}
 
 
