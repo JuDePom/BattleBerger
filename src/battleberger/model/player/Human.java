@@ -10,6 +10,14 @@ public class Human extends Player {
 		return new Shot();
 	}
 
+	@Override
+	public void selectShips() {
+		
+		
+	}
+
+	
+	
 
 
 }

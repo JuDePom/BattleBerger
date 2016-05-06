@@ -27,15 +27,22 @@ public class Game extends Observable {
 
 		display.selectGridDimension();
 		
+		for(Player p : players){
+			p.selectShips();
+		}
+		
 		while( ! isEndOfGame() ){
 			
 			for(Player p : players){
 				Shot s = p.play(this);
 				display.fire(p, s);
+				
+				if(isEndOfGame()) break;
 			}
 			
 			display.updateGameGrid();
 		}
+		
 	}
 
 

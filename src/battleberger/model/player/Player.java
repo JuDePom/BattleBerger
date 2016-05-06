@@ -24,5 +24,7 @@ public abstract class Player {
 		return ships;
 	}
 	
+	public abstract void selectShips();
+	
 
 }
