@@ -77,7 +77,7 @@ public class Window extends JFrame implements Observer,IDisplay {
 
 	@Override
 	public void updateGameGrid() {
-		// TODO Auto-generated method stub
+		repaint();
 		
 	}
 

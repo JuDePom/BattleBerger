@@ -44,10 +44,13 @@ public class Game extends Observable {
 				if(isEndOfGame()) break;
 			}
 			
+
 			display.updateGameGrid();
 			
 			waitfps(start);
 		}
+		
+		
 		
 	}
 
