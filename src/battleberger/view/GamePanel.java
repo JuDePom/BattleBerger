@@ -55,8 +55,8 @@ public class GamePanel extends JPanel{
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
-		gw = game.getWorldWidth();
-		gh = game.getWorldHeight();
+		gw = game.getWidth();
+		gh = game.getHeight();
 
 		pw = (this.getWidth()-1)/2;
 		ph = this.getHeight();

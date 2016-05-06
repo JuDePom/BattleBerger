@@ -1,5 +1,6 @@
 package battleberger.model.player;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import battleberger.model.AbstractShip;
@@ -7,7 +8,7 @@ import battleberger.model.Game;
 
 public abstract class Player {
 	
-	private List<AbstractShip> ships;
+	private List<AbstractShip> ships = new ArrayList<AbstractShip>();
 	
 	public abstract Shot play(Game g);
 
