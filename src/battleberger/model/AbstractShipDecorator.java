@@ -19,6 +19,18 @@ public abstract class AbstractShipDecorator extends AbstractShip {
 		this.stat = stat;
 	}
 
+	
+	
+	@Override
+	public int shipValue() {
+		return next.shipValue();
+	}
+
+	@Override
+	public boolean isAlive() {
+		return next.isAlive();
+	}
+
 	@Override
 	public int getPower() {
 		return next.getPower();

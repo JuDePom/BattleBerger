@@ -21,7 +21,7 @@ public class GrosseBerta extends Ship {
 		imagepath=chemin;
 		fireshape=FireShape.nuclearShape();
 		this.confStatMax(8, 1, 1, 5);
-		calculeNbEqiupMax();
+		calculeNbEquipMax();
 		Name();
 	}
 

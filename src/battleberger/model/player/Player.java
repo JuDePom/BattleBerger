@@ -25,6 +25,10 @@ public abstract class Player {
 		return ships.size();
 	}
 	
+	public void remove(AbstractShip s){
+		ships.remove(s);
+	}
+	
 	public AbstractShip getShip(int s){
 		return ships.get(s);
 	}

@@ -18,7 +18,7 @@ public class Commander extends Ship {
 		imagepath=chemin;
 		fireshape=FireShape.lineShape();
 		this.confStatMax(3, 3, 1, 2);
-		calculeNbEqiupMax();
+		calculeNbEquipMax();
 		Name();
 	}
 

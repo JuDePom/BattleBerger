@@ -21,6 +21,25 @@ public abstract class Ship extends AbstractShip{
 	protected int timereload=0;
 	protected boolean mouv;
 	
+	public boolean isAlive(){
+		boolean alive = false;
+		for(int[] i : lives){
+			for(int j : i){
+				if(j > 0){
+					alive = true;
+					break;
+				}
+			}
+			if(alive)break;
+		}
+		return alive;
+	}
+	
+	
+	public int shipValue(){
+		return 1;//TODO: faire au cas par cas
+	}
+	
 	protected void confStatMax(int maxPower,int maxArmor,int maxMovSpeed, int maxReloadSpeed){
 		statmax = new HashMap<StatType,Integer>();
 		statmax.put(StatType.Power,maxPower);
@@ -29,7 +48,7 @@ public abstract class Ship extends AbstractShip{
 		statmax.put(StatType.ReloadSpeed,maxReloadSpeed);
 	}
 	
-	protected void calculeNbEqiupMax(){
+	protected void calculeNbEquipMax(){
 		int res=0;
 		for(int i=0;i<shape.length;i++){
 			for(int j=0;j<shape[0].length;j++){
@@ -40,7 +59,7 @@ public abstract class Ship extends AbstractShip{
 	}
 	
 	protected void Name(){
-		name=this.getClass().getName();
+		name = this.getClass().getName();
 	}
 	@Override
 	public boolean[][] getShape() {
@@ -150,12 +169,12 @@ public abstract class Ship extends AbstractShip{
 	@Override
 	public int getWidth() {
 		
-		return shape[0].length;
+		return shape.length;
 	}
 
 	@Override
 	public int getHeight() {
-		return shape.length;
+		return shape[0].length;
 	}
 	
 	
@@ -163,7 +182,8 @@ public abstract class Ship extends AbstractShip{
 	@Override
 	public boolean overlap(int x, int y){
 		return  x >= positionX && x < positionX + getWidth()
-				&& y >= positionY && y < positionY + getHeight();		
+				&& y >= positionY && y < positionY + getHeight()
+				&& shape[x-positionX][y-positionY];		
 	}
 	@Override
 	public boolean overlap(Square s){
@@ -173,11 +193,13 @@ public abstract class Ship extends AbstractShip{
 	public boolean toucher(int x, int y, int degat){
 		boolean res=false;
 		if(overlap(x,y)){
-				if(lives[y-positionY][x-positionX]>0){
-					int armor = getArmor();
-					lives[y-positionY][x-positionX]-=armor-degat;
+			if(lives[x-positionX]
+					[y-positionY]>0){
+				if( getArmor() < degat){
+					lives[x-positionX][y-positionY]+= getArmor()-degat;
 					res=true;
 				}
+			}
 		}
 		return res;
 	}

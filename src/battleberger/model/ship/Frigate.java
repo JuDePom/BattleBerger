@@ -21,7 +21,7 @@ public class Frigate extends Ship {
 		imagepath=chemin;
 		fireshape=FireShape.standardShape();
 		this.confStatMax(3, 3, 1, 2);
-		calculeNbEqiupMax();
+		calculeNbEquipMax();
 		Name();
 	}
 

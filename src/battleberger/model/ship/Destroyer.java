@@ -16,7 +16,7 @@ public class Destroyer extends Ship {
 		imagepath=chemin;
 		fireshape=FireShape.crossShape();
 		this.confStatMax(4, 2, 2, 2);
-		calculeNbEqiupMax();
+		calculeNbEquipMax();
 		Name();
 	}
 

@@ -2,6 +2,7 @@ package battleberger.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Observable;
 
 import battleberger.model.player.Player;
@@ -38,6 +39,7 @@ public class Game extends Observable {
 				
 				Shot s = p.play(this);
 				display.fire(p, s);
+				fire(p, s);
 				
 				if(isEndOfGame()) break;
 			}
@@ -49,6 +51,25 @@ public class Game extends Observable {
 		
 	}
 
+	public void fire(Player p, Shot s){
+		for(Player p2 : players){
+			if(p2 != p){
+				List<AbstractShip> toRemove = new ArrayList<>();
+				for(AbstractShip ship : p2.getShips()){
+					for(Entry<Square, Integer> sq : s.getSquares().entrySet()){
+						if( ship.toucher(sq.getKey().getX(), sq.getKey().getY(), sq.getValue())){
+							if( ! ship.isAlive()){
+								toRemove.add(ship);
+							}
+						}
+					}
+				}
+				for(AbstractShip ship : toRemove){
+					p2.remove(ship);
+				}
+			}
+		}
+	}
 	
 	private void waitfps(long start){
 		try {
@@ -60,7 +81,13 @@ public class Game extends Observable {
 
 	
 	private boolean isEndOfGame(){
-		return false;
+		int count = 0 ;
+		for(Player p : players){
+			if(p.nbShips() > 0){
+				count++;
+			}
+		}
+		return count == 1;
 	}
 
 	

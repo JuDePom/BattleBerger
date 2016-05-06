@@ -39,11 +39,10 @@ public abstract class AbstractShip {
 	public abstract int getHeight();
 	
 	
-	public int shipValue(){
-		return 1;//TODO: passer en abstract et faire au cas par cas
-	}
+	public abstract int shipValue();
 	
 	public abstract boolean toucher(int x, int y, int degat);
 	public abstract boolean overlap(int x, int y);
 	public abstract boolean overlap(Square s);
+	public abstract boolean isAlive();
 }
