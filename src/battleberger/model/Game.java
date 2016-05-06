@@ -7,44 +7,45 @@ import java.util.Scanner;
 
 import battleberger.model.player.Player;
 import battleberger.model.player.Shot;
+import battleberger.view.IDisplay;
 
 public class Game extends Observable {
 
 	private List<Player> players;
 	private int width, height;
-	private Scanner sc;
+	private IDisplay display;
 	
-	
-	public Game(Player p1, Player p2){
+	public Game(Player p1, Player p2, IDisplay disp){
 		players = new ArrayList<>();
 		players.add(p1);
 		players.add(p2);
-		sc = new Scanner(System.in);
+		display = disp;
+		display.setGame(this);
 	}
 	
 	
 	public void play(){
-		boolean end = false;
-		selectGrid();
-		while( ! end ){
+
+		display.selectGridDimension();
+		
+		while( ! isEndOfGame() ){
 			
 			for(Player p : players){
 				Shot s = p.play(this);
-				System.out.println("player :" + p.toString() + " plays: " + s.toString() );
-				
+				display.fire(p, s);
 			}
 			
+			display.updateGameGrid();
 		}
 		
 		
 	}
 	
-	public void selectGrid(){
-		System.out.println("largeur ?");
-		width = sc.nextInt();
-		System.out.println("hauteur ?");
-		height = sc.nextInt();
+	
+	private boolean isEndOfGame(){
+		return false;
 	}
+
 	
 	
 	/**

@@ -13,6 +13,7 @@ public class StrategyYolo implements IStrategy {
 		Random r = new Random();
 		ai.getShip(r.nextInt(ai.nbShips()));
 		r.nextInt(g.getWorldSize());
+		
 		//need le shape toussa	toussa
 		return ;
 	}

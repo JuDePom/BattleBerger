@@ -6,6 +6,11 @@ import battleberger.model.player.Shot;
 
 public interface IStrategy {
 	
+	
+	
 	Shot fire(Computer ai, Game g);
+	
+	
+	
 
 }
