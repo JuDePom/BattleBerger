@@ -14,7 +14,7 @@ public class BlackPearl extends Ship{
 		int[][]vie ={{1,2,0,0,},{0,3,2,1},{1,2,0,0}};
 		lives=vie;
 		imagepath=chemin;
-		FireShape.plusShape();
+		fireshape = FireShape.plusShape();
 		this.confStatMax(4, 3, 2,2);
 		 calculeNbEqiupMax();
 		 Name();
