@@ -20,6 +20,8 @@ public class Game extends Observable {
 		players.add(p2);
 		display = disp;
 		display.setGame(this);
+		
+		width = height = 20;
 	}
 	
 	
