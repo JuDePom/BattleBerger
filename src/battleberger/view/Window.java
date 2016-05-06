@@ -14,15 +14,61 @@ import battleberger.model.player.Shot;
 
 @SuppressWarnings("serial")
 public class Window extends JFrame implements Observer,IDisplay {
+	private PlacementShipPanel shippan;
+	private ShopPanel shoppan;
+	private GamePanel gamepan;
+	private StatusPanel statspan;
 	
-	@Override
-	public void selectGridDimension() {
-		// TODO Auto-generated method stub
-		
+	Game game;
+	
+	public Window() {
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+		this.setPreferredSize(new Dimension(1000, 600));
 	}
 
 	@Override
+	public void update(Observable o, Object arg) {
+		/*if ( game.isPlacing() ){
+			this.add(shippan, BorderLayout.NORTH);
+		} else {
+			this.add(statspan, BorderLayout.NORTH);
+		}*/
+	}
+	
+	@Override
+	public void repaint() {
+		super.repaint();
+		shippan.repaint();
+		shoppan.repaint();
+		gamepan.repaint();
+		statspan.repaint();
+	}
+	
+	@Override
 	public void setGame(Game g) {
+		this.game = g;
+		
+		BorderLayout layout = new BorderLayout();
+		this.setLayout(layout);
+		
+		shippan = new PlacementShipPanel(game);
+		gamepan = new GamePanel(game);
+		shoppan = new ShopPanel(game);
+		statspan = new StatusPanel(game);
+		
+		this.add(shippan, BorderLayout.NORTH);
+		
+		this.add(gamepan, BorderLayout.CENTER);
+		this.add(shoppan, BorderLayout.EAST);
+		
+		this.pack();
+		this.setVisible(true);
+		
+		this.repaint();
+	}
+
+	@Override
+	public void selectGridDimension() {
 		// TODO Auto-generated method stub
 		
 	}
@@ -39,38 +85,10 @@ public class Window extends JFrame implements Observer,IDisplay {
 		
 	}
 
-	private ShopPanel shoppan;
-	private GamePanel gamepan;
-	private StatusPanel statspan;
-	
 	@Override
 	public AbstractShip selectShip(Player p) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	public Window(Game game) {
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		this.setPreferredSize(new Dimension(1000, 600));
-		
-		BorderLayout layout = new BorderLayout();
-		this.setLayout(layout);
-
-		
-		gamepan = new GamePanel(game);
-		shoppan = new ShopPanel(game);
-		statspan = new StatusPanel(game);
-		
-		this.add(gamepan, BorderLayout.CENTER);
-		this.add(shoppan, BorderLayout.EAST);
-		this.add(statspan, BorderLayout.NORTH);
-		
-		this.pack();
-		this.setVisible(true);
-	}
-
-	@Override
-	public void update(Observable o, Object arg) {}
 
 }
