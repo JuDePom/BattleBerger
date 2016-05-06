@@ -159,4 +159,8 @@ public abstract class AbstractShipDecorator extends AbstractShip {
 	public boolean overlap(int x, int y){
 		return next.overlap(x, y);
 	}
+	@Override
+	public boolean overlap(Square s){
+		return next.overlap(s);
+	}
 }

@@ -38,4 +38,5 @@ public abstract class AbstractShip {
 
 	public abstract boolean toucher(int x, int y, int degat);
 	public abstract boolean overlap(int x, int y);
+	public abstract boolean overlap(Square s);
 }
