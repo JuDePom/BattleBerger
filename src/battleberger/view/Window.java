@@ -11,11 +11,17 @@ import battleberger.model.Game;
 
 @SuppressWarnings("serial")
 public class Window extends JFrame implements Observer {
+	
+	private PlacementShipPanel shippan;
 	private ShopPanel shoppan;
 	private GamePanel gamepan;
 	private StatusPanel statspan;
 	
+	Game game;
+	
 	public Window(Game game) {
+		this.game = game;
+		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		this.setPreferredSize(new Dimension(1000, 600));
@@ -23,19 +29,27 @@ public class Window extends JFrame implements Observer {
 		BorderLayout layout = new BorderLayout();
 		this.setLayout(layout);
 		
+		shippan = new PlacementShipPanel(game);
 		gamepan = new GamePanel(game);
 		shoppan = new ShopPanel(game);
 		statspan = new StatusPanel(game);
 		
+		this.add(shippan, BorderLayout.NORTH);
+		
 		this.add(gamepan, BorderLayout.CENTER);
 		this.add(shoppan, BorderLayout.EAST);
-		this.add(statspan, BorderLayout.NORTH);
 		
 		this.pack();
 		this.setVisible(true);
 	}
 
 	@Override
-	public void update(Observable o, Object arg) {}
+	public void update(Observable o, Object arg) {
+		if ( game.isPlacing() ){
+			this.add(shippan, BorderLayout.NORTH);
+		} else {
+			this.add(statspan, BorderLayout.NORTH);
+		}
+	}
 
 }
