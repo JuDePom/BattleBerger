@@ -1,5 +1,6 @@
 package battleberger.view;
 
+import battleberger.model.AbstractShip;
 import battleberger.model.Game;
 import battleberger.model.player.Player;
 import battleberger.model.player.Shot;
@@ -16,6 +17,8 @@ public interface IDisplay {
 	void updateGameGrid();
 	
 	void fire(Player p, Shot s);
+	
+	public AbstractShip selectShip(Player p);
 	
 	
 }

@@ -1,6 +1,6 @@
 package battleberger.model.player;
 
-import battleberger.model.World;
+import battleberger.model.Game;
 import battleberger.model.player.strategy.IStrategy;
 
 public class Computer extends Player {
@@ -12,7 +12,7 @@ public class Computer extends Player {
 	}
 
 	@Override
-	public Shot play(World w) {
+	public Shot play(Game w) {
 		return strat.fire(this, w);
 	}
 	

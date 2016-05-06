@@ -20,5 +20,9 @@ public abstract class Player {
 		return ships.get(s);
 	}
 	
+	public List<AbstractShip> getShips(){
+		return ships;
+	}
+	
 
 }

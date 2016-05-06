@@ -7,6 +7,7 @@ import java.util.Observer;
 
 import javax.swing.JFrame;
 
+import battleberger.model.AbstractShip;
 import battleberger.model.Game;
 import battleberger.model.player.Player;
 import battleberger.model.player.Shot;
@@ -42,6 +43,12 @@ public class Window extends JFrame implements Observer,IDisplay {
 	private GamePanel gamepan;
 	private StatusPanel statspan;
 	
+	@Override
+	public AbstractShip selectShip(Player p) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	public Window(Game game) {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
