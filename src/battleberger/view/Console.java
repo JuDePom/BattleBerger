@@ -2,6 +2,7 @@ package battleberger.view;
 
 import java.util.Scanner;
 
+import battleberger.model.AbstractShip;
 import battleberger.model.Game;
 import battleberger.model.player.Player;
 import battleberger.model.player.Shot;
@@ -17,6 +18,24 @@ public class Console implements IDisplay{
 		
 	}
 	
+	@Override
+	public AbstractShip selectShip(Player p){
+		
+		while(true){
+			System.out.println("choisissez une position");
+		
+			System.out.println("x ?");
+			int x = sc.nextInt();
+			System.out.println("y ?");
+			int y = sc.nextInt();
+			for(AbstractShip s : p.getShips()){
+				if(s.overlap(x,y)){
+					return s;
+				}
+			}
+			System.out.println("ce n'est pas un bateau");
+		}
+	}
 	
 	
 	

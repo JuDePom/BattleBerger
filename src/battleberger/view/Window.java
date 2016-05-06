@@ -7,6 +7,7 @@ import java.util.Observer;
 
 import javax.swing.JFrame;
 
+import battleberger.model.AbstractShip;
 import battleberger.model.Game;
 import battleberger.model.player.Player;
 import battleberger.model.player.Shot;
@@ -82,6 +83,12 @@ public class Window extends JFrame implements Observer,IDisplay {
 	public void fire(Player p, Shot s) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public AbstractShip selectShip(Player p) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

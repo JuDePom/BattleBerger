@@ -12,10 +12,11 @@ public class StrategyYolo implements IStrategy {
 	public Shot fire(Computer ai, Game g) {
 		Random r = new Random();
 		ai.getShip(r.nextInt(ai.nbShips()));
-		r.nextInt(g.getWorldSize());
-		
+		r.nextInt(g.getHeight());
+		Shot s = new Shot();
+		//TODO
 		//need le shape toussa	toussa
-		return ;
+		return s;
 	}
 
 }
