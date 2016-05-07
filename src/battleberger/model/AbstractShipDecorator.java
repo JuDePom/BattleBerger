@@ -57,8 +57,8 @@ public abstract class AbstractShipDecorator extends AbstractShip {
 	}
 
 	@Override
-	public void setShapeNorth(boolean[][] shape) {
-		next.setShapeNorth(shape);
+	public void setShapeNorth(boolean[][] shape, Orientation or) {
+		next.setShapeNorth(shape, or);
 	}
 
 	@Override

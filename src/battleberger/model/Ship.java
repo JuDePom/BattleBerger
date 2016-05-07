@@ -9,7 +9,7 @@ public abstract class Ship extends AbstractShip{
 	public enum StatType{Power,Armor,MovSpeed,ReloadSpeed};
 
 	
-	protected boolean[][] shapeNorth;
+	private boolean[][] shapeNorth;
 	protected boolean[][] shape;
 	private Orientation orient;
 	protected String imagepath;
@@ -69,8 +69,11 @@ public abstract class Ship extends AbstractShip{
 	
 	
 	@Override
-	public void setShapeNorth(boolean[][] shape) {
+	public void setShapeNorth(boolean[][] shape, Orientation or) {
 		this.shapeNorth = shape;
+		this.orient =or;
+		this.shape = shape;
+		setOrient(or);
 	}
 	@Override
 	public Orientation getOrient() {
@@ -84,6 +87,7 @@ public abstract class Ship extends AbstractShip{
 			return;
 		}
 		int[][] tmpL;
+		boolean[][] tmpS;
 		//TODO: j'ai sûrement inversé rotation 90 et -90, à vérifier
 		if(	(orient == Orientation.North && this.orient == Orientation.East)
 				||	(orient == Orientation.East && this.orient == Orientation.South)
@@ -91,14 +95,15 @@ public abstract class Ship extends AbstractShip{
 				||	(orient == Orientation.West && this.orient == Orientation.North)){
 			//rotation 90°
 			tmpL = new int[lives[0].length][lives.length];
-			shape = new boolean[shape[0].length][shape.length];
+			tmpS = new boolean[shape[0].length][shape.length];
 			for(int i = 0 ; i < lives[0].length ; i++){
 				for(int j = 0 ; j < lives.length ; j++){
 					tmpL[i][j] = lives[j][i];
-					shape[i][j] = shapeNorth[j][i];
+					tmpS[i][j] = shape[j][i];
 				}
 			}
-			lives = tmpL;			
+			lives = tmpL;
+			shape = tmpS;
 		}
 		else if(	(orient == Orientation.North && this.orient == Orientation.South)
 				||	(orient == Orientation.East && this.orient == Orientation.West)
@@ -106,13 +111,15 @@ public abstract class Ship extends AbstractShip{
 				||	(orient == Orientation.West && this.orient == Orientation.East)){
 			//rotation 180°
 			tmpL = new int[lives.length][lives[0].length];
+			tmpS = new boolean[lives.length][lives[0].length];
 			for(int i = 0 ; i < lives.length ; i++){
 				for(int j = 0 ; j < lives[0].length ; j++){
 					tmpL[i][j] = lives[i][lives[0].length - 1 - j];
-					shape[i][j] = shapeNorth[i][lives[0].length - 1 - j];
+					tmpS[i][j] = shape[i][lives[0].length - 1 - j];
 				}
 			}
 			lives = tmpL;
+			shape = tmpS;
 			
 		}	
 		else if(	(orient == Orientation.North && this.orient == Orientation.West)
@@ -121,19 +128,19 @@ public abstract class Ship extends AbstractShip{
 				||	(orient == Orientation.West && this.orient == Orientation.South)){
 			//rotation -90°
 			tmpL = new int[lives[0].length][lives.length];
-			shape = new boolean[shape[0].length][shape.length];
+			tmpS = new boolean[shape[0].length][shape.length];
 			for(int i = 0 ; i < lives[0].length ; i++){
 				for(int j = 0 ; j < lives.length ; j++){
 					tmpL[i][j] = lives[lives.length - 1 - j ][lives[0].length - 1 - i];
-					shape[i][j] = shapeNorth[lives.length - 1 - j][lives[0].length - 1 - i];
+					tmpS[i][j] = shape[lives.length - 1 - j][lives[0].length - 1 - i];
 				}
 			}
-			lives = tmpL;			
+			lives = tmpL;	
+			shape = tmpS;		
 			
 		}
 		else if(this.orient == null){
-			//on affecte juste
-			shape = shapeNorth;
+			//rien à faire
 		}
 		else{
 			System.out.println("cas non géré: " +  orient + " " + this.orient);

@@ -11,11 +11,10 @@ public class Kevin extends Ship {
 
 		positionX=x;
 		positionY=y;
-		shapeNorth=new boolean[1][1];
+		boolean[][] b = new boolean[][]{{true}};
 		lives=new int[1][1];
-		shapeNorth[0][0]=true;
 		lives[0][0]=1;
-		setOrient(ori);
+		setShapeNorth(b, ori);
 		
 		imagepath=chemin;
 		fireshape=FireShape.standardShape();

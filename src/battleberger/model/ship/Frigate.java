@@ -10,15 +10,15 @@ public class Frigate extends Ship {
 		
 		positionX=x;
 		positionY=y;
-		shapeNorth=new boolean[1][4];
+		boolean[][] b = new boolean[1][4];
 		lives=new int[1][4];
-		for(int i=0;i<shapeNorth.length;i++){
-			for(int j=0;j<shapeNorth[0].length;j++){
-				shapeNorth[i][j]=true;
+		for(int i=0;i<b.length;i++){
+			for(int j=0;j<b[0].length;j++){
+				b[i][j]=true;
 				lives[i][j]=1;
 			}
 		}
-		setOrient(ori);
+		setShapeNorth(b, ori);
 		
 		imagepath=chemin;
 		fireshape=FireShape.standardShape();

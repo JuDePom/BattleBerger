@@ -11,10 +11,9 @@ public class Commander extends Ship {
 		positionX=x;
 		positionY=y;
 		boolean[][] b={{true,false,false,false},{true,true,true,true},{true,false,false,false}};
-		shapeNorth=b;
 		int[][] vie={{1,0,0,0},{3,2,2,1},{1,0,0,0}};
 		lives=vie;
-		setOrient(ori);
+		setShapeNorth(b, ori);
 		
 		imagepath=chemin;
 		fireshape=FireShape.lineShape();
