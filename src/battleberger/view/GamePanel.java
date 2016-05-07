@@ -134,13 +134,7 @@ public class GamePanel extends JPanel{
 			int imgCH = 0;
 			
 			if (img != null) {
-				double radians = orientToRad(ship.getOrient());
-				
-				AffineTransform transform = new AffineTransform();
-			    transform.rotate(radians, img.getWidth()/2, img.getHeight()/2);
-			    AffineTransformOp op = new AffineTransformOp(transform, AffineTransformOp.TYPE_BILINEAR);
-			    img = op.filter(img, null);
-				
+				img = setOrientation(img, ship.getOrient());
 				
 				imgCW = img.getWidth() / shape.length;
 				imgCH = img.getHeight() / shape[0].length;
@@ -179,19 +173,38 @@ public class GamePanel extends JPanel{
 		}
 	}
 	
-	private double orientToRad(Orientation orient) {
+	private BufferedImage setOrientation(BufferedImage img, Orientation orient) {
+		int w = img.getWidth();
+	    int h = img.getHeight();
+	    
+		BufferedImage imgFlip;
 		switch (orient){
 		case North:
-			return 0;
+			imgFlip = img;
+			break;
 		case East:
-			return Math.PI/2;
+			imgFlip = new BufferedImage(h, w, img.getType());
+			for(int i=0; i<w; i++)
+		        for(int j=0; j<h; j++)
+		            imgFlip.setRGB(h-1-j, w-1-i, img.getRGB(i, j));
+			break;
 		case South:
-			return Math.PI;
+			imgFlip = new BufferedImage(img.getWidth(), img.getHeight(), img.getType());
+			for(int i=0; i<w; i++)
+		        for(int j=0; j<h; j++)
+		            imgFlip.setRGB(w-1-i, h-1-j, img.getRGB(i, j));
+			break;
 		case West:
-			return 3*Math.PI/2;
+			imgFlip = new BufferedImage(img.getHeight(), img.getWidth(), img.getType());
+			for(int i=0; i<w; i++)
+		        for(int j=0; j<h; j++)
+		            imgFlip.setRGB(j, w-1-i, img.getRGB(i, j));
+			break;
 		default:
-			return 0;
+			imgFlip = img;
 		}
+		
+		return imgFlip;
 	}
 
 	public void drawMouse(Graphics g){
