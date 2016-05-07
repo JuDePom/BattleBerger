@@ -6,11 +6,14 @@ import battleberger.model.FireShape;
 
 public class BlackPearl extends Ship{
 	public BlackPearl(Orientation ori, int x, int y,String chemin){
-		orient=ori;
+		
 		positionX = x;
 		positionY = y;
-		shape = new boolean[][]{{true,true,false,false},{false,true,true,true},{true,true,false,false}};
+		shapeNorth = new boolean[][]{{true,true,false,false},{false,true,true,true},{true,true,false,false}};
 		lives =	new int[][]{ {1,2,0,0,}, {0,3,2,1}, {1,2,0,0} };
+		setOrient(ori);
+		
+		
 		imagepath = chemin;
 		fireshape = FireShape.plusShape();
 		this.confStatMax(4, 3, 2,2);

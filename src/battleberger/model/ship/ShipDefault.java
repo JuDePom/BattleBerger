@@ -6,17 +6,20 @@ import battleberger.model.FireShape;
 public class ShipDefault extends Ship {
 
 	public ShipDefault(Orientation ori, int x, int y,String chemin){
-		orient=ori;
+		
 		positionX=x;
 		positionY=y;
-		shape=new boolean[1][2];
+		shapeNorth=new boolean[1][2];
 		lives=new int[1][2];
-		for(int i=0;i<shape.length;i++){
-			for(int j=0;j<shape[0].length;j++){
-				shape[i][j]=true;
+		for(int i=0;i<shapeNorth.length;i++){
+			for(int j=0;j<shapeNorth[0].length;j++){
+				shapeNorth[i][j]=true;
 				lives[i][j]=1;
 			}
 		}
+		setOrient(ori);
+		
+		
 		imagepath=chemin;
 		fireshape = FireShape.standardShape();
 		this.confStatMax(2, 2, 1, 2);

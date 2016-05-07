@@ -7,17 +7,18 @@ import battleberger.model.FireShape;
 public class GrosseBerta extends Ship {
 
 	public GrosseBerta(Orientation ori, int x, int y,String chemin){
-		orient=ori;
+		
 		positionX=x;
 		positionY=y;
-		shape=new boolean[2][4];
+		shapeNorth=new boolean[2][4];
 		lives=new int[2][4];
-		for(int i=0;i<shape.length;i++){
-			for(int j=0;j<shape[0].length;j++){
-				shape[i][j]=true;
+		for(int i=0;i<shapeNorth.length;i++){
+			for(int j=0;j<shapeNorth[0].length;j++){
+				shapeNorth[i][j]=true;
 				lives[i][j]=2;
 			}
 		}
+		setOrient(ori);
 		imagepath=chemin;
 		fireshape=FireShape.nuclearShape();
 		this.confStatMax(8, 1, 1, 5);

@@ -7,13 +7,14 @@ import battleberger.model.FireShape;
 public class Elisabeth extends Ship {
 
 	public Elisabeth(Orientation ori, int x, int y,String chemin){
-		orient=ori;
+		
 		positionX=x;
 		positionY=y;
 		boolean[][] b={{false,true,true},{true,true,false},{true,true,false},{false,true,true}};
-		shape=b;
+		shapeNorth=b;
 		int[][] vie={{0,2,1},{2,3,0},{2,3,0},{0,2,1}};
 		lives=vie;
+		setOrient(ori);
 		
 		imagepath=chemin;
 		fireshape=FireShape.bigShape();

@@ -7,13 +7,16 @@ import battleberger.model.FireShape;
 public class Spy extends Ship {
 
 	public Spy(Orientation ori, int x, int y,String chemin){
-		orient=ori;
+		
 		positionX=x;
 		positionY=y;
 		boolean[][] b={{true,false},{false,true}};
-		shape=b;
+		shapeNorth=b;
 		int[][] vie={{1,0},{0,1}};
 		lives=vie;
+		setOrient(ori);
+		
+		
 		imagepath=chemin;
 		fireshape=FireShape.standardShape();
 		this.confStatMax(2, 2, 2, 1);
