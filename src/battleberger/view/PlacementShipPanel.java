@@ -2,6 +2,7 @@ package battleberger.view;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,13 +39,28 @@ public class PlacementShipPanel extends JPanel{
 		for (AbstractShip ship : ships.values()){
 			boolean[][] shape = ship.getShape();
 			
+			BufferedImage img = RessourceManager.getImage(ship.getImagepath());
+			int imgCW = 0;
+			int imgCH = 0;
+			
+			if (img != null) {
+				imgCW = img.getWidth() / shape.length;
+				imgCH = img.getHeight() / shape[0].length;
+			}
+			
 			g.drawString(ship.getClass().getSimpleName(), x*cs - cs/2, 1*cs - 5);
 			for (int i = 0; i < shape.length; i++, x++){
 				for (int j = 0; j < shape[0].length; j++){
 					ship.setPositionX(x);
 					ship.setPositionY(y);
-					if (shape[i][j])
-						g.fillRect((x)*cs, (y+j) * cs, cs, cs);
+					if (shape[i][j]){
+						if (img != null){
+							BufferedImage sub = img.getSubimage(i*imgCW, j*imgCH, imgCW, imgCH);
+							g.drawImage(sub, x*cs, (y+j) * cs, cs, cs, null);
+						}else{
+							g.fillRect((x)*cs, (y+j) * cs, cs, cs);
+						}
+					}
 				}
 			}
 			
