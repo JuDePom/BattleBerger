@@ -4,6 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class Ship extends AbstractShip{
+	
+
+	private int readyToFireIn;
+
 	public enum Orientation {North,South,East,West};
 	public enum TypeShip{Frigate,Commander,Spy,Kevin,Destroyer,SubMarine,Elisabeth,GrosseBerta,ChuckNoris,ShipDefault,BlackPearl}
 	public enum StatType{Power,Armor,MovSpeed,ReloadSpeed};
@@ -213,6 +217,18 @@ public abstract class Ship extends AbstractShip{
 	public void setTimereload(int timereload) {
 		this.timereload = timereload;
 	}
+	
+	
+	@Override
+	public int isReadyToFireIn() {
+		return readyToFireIn;
+	}
+
+
+	@Override
+	public void setReadyToFireIn(int i) {
+		readyToFireIn = i;
+	}
 
 	@Override
 	public int getPower() {
@@ -233,7 +249,7 @@ public abstract class Ship extends AbstractShip{
 	}
 
 	@Override
-	public int getReloadSpeed() {
+	public int getCooldown() {
 		// TODO Auto-generated method stub
 		return 0;
 	}

@@ -10,11 +10,13 @@ public abstract class AbstractShip {
 	
 	protected int cost;
 	protected String name;
+	
+	
 	public enum TimeSpace{Default,MoyenAge,SheepAge};
 	public abstract int getPower();
 	public abstract int getArmor();
 	public abstract int getMovSpeed();
-	public abstract int getReloadSpeed();
+	public abstract int getCooldown();
 	public abstract boolean[][] getShape() ;
 	public abstract void setShapeNorth(boolean[][] shape, Orientation or);
 	public abstract Orientation getOrient() ;
@@ -39,10 +41,27 @@ public abstract class AbstractShip {
 	public abstract int getHeight();
 	
 	
+	public AbstractShip(){
+		cost = 1;
+	}
+	
+	public abstract int isReadyToFireIn();
+	
+	public boolean isReadyToFire(){
+		return isReadyToFireIn() <= 0;
+	}
+	
+	public abstract void setReadyToFireIn(int i);
+	
+	public void endOfTurnProcessing(){
+		setReadyToFireIn(isReadyToFireIn() - 1);
+	}
+	
 	public abstract int shipValue();
 	
 	public abstract boolean toucher(int x, int y, int degat);
 	public abstract boolean overlap(int x, int y);
 	public abstract boolean overlap(Square s);
 	public abstract boolean isAlive();
+	
 }

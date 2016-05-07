@@ -38,10 +38,15 @@ public class Game extends Observable {
 			for(Player p : players){
 				
 				Shot s = p.play(this);
-				display.fire(p, s);
-				fire(p, s);
+				if(s != null){
+					//si le joueur ne passe pas son tour
+					display.fire(p, s);
+					fire(p, s);
+				}
 				
 				if(isEndOfGame()) break;
+
+				p.endOfTurnProcessing();
 			}
 			
 

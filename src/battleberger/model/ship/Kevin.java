@@ -39,7 +39,7 @@ public class Kevin extends Ship {
 	}
 
 	@Override
-	public int getReloadSpeed() {
+	public int getCooldown() {
 		return 1;
 	}
 	

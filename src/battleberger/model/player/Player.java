@@ -25,6 +25,8 @@ public abstract class Player {
 		return ships.size();
 	}
 	
+	
+	
 	public void remove(AbstractShip s){
 		ships.remove(s);
 	}
@@ -35,6 +37,21 @@ public abstract class Player {
 	
 	public List<AbstractShip> getShips(){
 		return ships;
+	}
+	
+	public List<AbstractShip> getShipsReady(){
+		List<AbstractShip> ret = new ArrayList<>();
+		for(AbstractShip s : ships){
+			if(s.isReadyToFire())
+				ret.add(s);
+		}
+		return ret;
+	}
+	
+	public void endOfTurnProcessing(){
+		for(AbstractShip s : ships){
+			s.endOfTurnProcessing();
+		}
 	}
 	
 	public abstract void selectShips();
