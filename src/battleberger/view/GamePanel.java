@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +17,7 @@ import javax.swing.JPanel;
 
 import battleberger.model.AbstractShip;
 import battleberger.model.Game;
+import battleberger.model.Ship.Orientation;
 import battleberger.model.player.Player;
 
 @SuppressWarnings("serial")
@@ -126,10 +129,19 @@ public class GamePanel extends JPanel{
 			boolean[][] shape = ship.getShape();
 			
 			BufferedImage img = RessourceManager.getImage(ship.getImagepath());
+			
 			int imgCW = 0;
 			int imgCH = 0;
 			
 			if (img != null) {
+				double radians = orientToRad(ship.getOrient());
+				
+				AffineTransform transform = new AffineTransform();
+			    transform.rotate(radians, img.getWidth()/2, img.getHeight()/2);
+			    AffineTransformOp op = new AffineTransformOp(transform, AffineTransformOp.TYPE_BILINEAR);
+			    img = op.filter(img, null);
+				
+				
 				imgCW = img.getWidth() / shape.length;
 				imgCH = img.getHeight() / shape[0].length;
 			}
@@ -167,6 +179,21 @@ public class GamePanel extends JPanel{
 		}
 	}
 	
+	private double orientToRad(Orientation orient) {
+		switch (orient){
+		case North:
+			return 0;
+		case East:
+			return Math.PI/2;
+		case South:
+			return Math.PI;
+		case West:
+			return 3*Math.PI/2;
+		default:
+			return 0;
+		}
+	}
+
 	public void drawMouse(Graphics g){
 		Color myColour = new Color(0, 255, 255, 50);
 		Color enemyColour = new Color(255, 0, 0, 100);
