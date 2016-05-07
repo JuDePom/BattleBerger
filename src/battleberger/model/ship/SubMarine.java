@@ -39,7 +39,7 @@ public class SubMarine extends Ship {
 	}
 
 	@Override
-	public int getReloadSpeed() {
+	public int getCooldown() {
 		return 3;
 	}
 	

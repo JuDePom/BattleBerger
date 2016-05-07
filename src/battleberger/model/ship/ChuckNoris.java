@@ -38,7 +38,7 @@ public class ChuckNoris extends Ship {
 	}
 
 	@Override
-	public int getReloadSpeed() {
+	public int getCooldown() {
 		return 4;
 	}
 	

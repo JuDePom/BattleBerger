@@ -19,7 +19,7 @@ public class StrategyYolo implements IStrategy {
 	@Override
 	public Shot fire(Computer ai, Game g) {
 		Random r = new Random();
-		AbstractShip s = ai.getShip(r.nextInt(ai.nbShips()));
+		AbstractShip s = ai.getShipsReady().get(r.nextInt(ai.getShipsReady().size()));
 		int y = r.nextInt(Game.getHeight());
 		int x = r.nextInt(Game.getWidth());
 		Shot sh = new Shot(s.getFireshape(), x, y);

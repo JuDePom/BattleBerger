@@ -18,12 +18,21 @@ public abstract class AbstractShipDecorator extends AbstractShip {
 	public void setStat(StatType stat) {
 		this.stat = stat;
 	}
-
 	
 	
 	@Override
+	public int isReadyToFireIn() {
+		return next.isReadyToFireIn();
+	}
+
+	@Override
+	public void setReadyToFireIn(int i) {
+		next.setReadyToFireIn(i);
+	}
+
+	@Override
 	public int shipValue() {
-		return next.shipValue();
+		return cost + next.shipValue();
 	}
 
 	@Override
@@ -47,8 +56,8 @@ public abstract class AbstractShipDecorator extends AbstractShip {
 	}
 	
 	@Override
-	public int getReloadSpeed(){
-		return next.getReloadSpeed();
+	public int getCooldown(){
+		return next.getCooldown();
 	}
 
 	@Override

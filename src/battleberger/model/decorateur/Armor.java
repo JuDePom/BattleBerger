@@ -13,4 +13,6 @@ public class Armor extends AbstractShipDecorator{
 	public int getArmor() {		
 		return 1+next.getArmor();
 	}
+	
+	
 }
