@@ -7,6 +7,7 @@ public abstract class Ship extends AbstractShip{
 	public enum Orientation {North,South,East,West};
 	public enum TypeShip{Frigate,Commander,Spy,Kevin,Destroyer,SubMarine,Elisabeth,GrosseBerta,ChuckNoris,ShipDefault,BlackPearl}
 	public enum StatType{Power,Armor,MovSpeed,ReloadSpeed};
+
 	
 	protected boolean[][] shape;
 	protected Orientation orient;
@@ -20,6 +21,25 @@ public abstract class Ship extends AbstractShip{
 	protected int timereload=0;
 	protected boolean mouv;
 	
+	public boolean isAlive(){
+		boolean alive = false;
+		for(int[] i : lives){
+			for(int j : i){
+				if(j > 0){
+					alive = true;
+					break;
+				}
+			}
+			if(alive)break;
+		}
+		return alive;
+	}
+	
+	
+	public int shipValue(){
+		return 1;//TODO: faire au cas par cas
+	}
+	
 	protected void confStatMax(int maxPower,int maxArmor,int maxMovSpeed, int maxReloadSpeed){
 		statmax = new HashMap<StatType,Integer>();
 		statmax.put(StatType.Power,maxPower);
@@ -28,7 +48,7 @@ public abstract class Ship extends AbstractShip{
 		statmax.put(StatType.ReloadSpeed,maxReloadSpeed);
 	}
 	
-	protected void calculeNbEqiupMax(){
+	protected void calculeNbEquipMax(){
 		int res=0;
 		for(int i=0;i<shape.length;i++){
 			for(int j=0;j<shape[0].length;j++){
@@ -39,7 +59,7 @@ public abstract class Ship extends AbstractShip{
 	}
 	
 	protected void Name(){
-		name=this.getClass().getName();
+		name = this.getClass().getName();
 	}
 	@Override
 	public boolean[][] getShape() {
@@ -149,41 +169,37 @@ public abstract class Ship extends AbstractShip{
 	@Override
 	public int getWidth() {
 		
-		return shape[0].length;
+		return shape.length;
 	}
 
 	@Override
 	public int getHeight() {
-		return shape.length;
+		return shape[0].length;
 	}
 	
 	
 	
 	@Override
 	public boolean overlap(int x, int y){
-		boolean res=false;
-		int c=positionX;
-		while(c<(positionX+getWidth())){
-			if(c==x){
-				c=positionY;
-				while(c<(positionY+getHeight())){
-					if(c==y)
-							res=true;
-				}
-			}
-		}
-		return res;
-		
+		return  x >= positionX && x < positionX + getWidth()
+				&& y >= positionY && y < positionY + getHeight()
+				&& shape[x-positionX][y-positionY];		
+	}
+	@Override
+	public boolean overlap(Square s){
+		return overlap(s.getX(), s.getY());
 	}
 	@Override
 	public boolean toucher(int x, int y, int degat){
 		boolean res=false;
 		if(overlap(x,y)){
-				if(lives[y-positionY][x-positionX]>0){
-					int armor = getArmor();
-					lives[y-positionY][x-positionX]-=armor-degat;
+			if(lives[x-positionX]
+					[y-positionY]>0){
+				if( getArmor() < degat){
+					lives[x-positionX][y-positionY]+= getArmor()-degat;
 					res=true;
 				}
+			}
 		}
 		return res;
 	}

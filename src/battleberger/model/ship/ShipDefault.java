@@ -18,9 +18,9 @@ public class ShipDefault extends Ship {
 			}
 		}
 		imagepath=chemin;
-		fireshape=FireShape.standardShape();
+		fireshape = FireShape.standardShape();
 		this.confStatMax(2, 2, 1, 2);
-		calculeNbEqiupMax();
+		calculeNbEquipMax();
 		Name();
 	}
 

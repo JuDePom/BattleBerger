@@ -19,6 +19,18 @@ public abstract class AbstractShipDecorator extends AbstractShip {
 		this.stat = stat;
 	}
 
+	
+	
+	@Override
+	public int shipValue() {
+		return next.shipValue();
+	}
+
+	@Override
+	public boolean isAlive() {
+		return next.isAlive();
+	}
+
 	@Override
 	public int getPower() {
 		return next.getPower();
@@ -158,5 +170,9 @@ public abstract class AbstractShipDecorator extends AbstractShip {
 	@Override
 	public boolean overlap(int x, int y){
 		return next.overlap(x, y);
+	}
+	@Override
+	public boolean overlap(Square s){
+		return next.overlap(s);
 	}
 }

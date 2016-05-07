@@ -7,17 +7,18 @@ import battleberger.model.FireShape;
 public class ChuckNoris extends Ship {
 
 	public ChuckNoris(Orientation ori, int x, int y,String chemin){
-		orient=ori;
-		positionX=x;
-		positionY=y;
+		orient = ori;
+		positionX = x;
+		positionY = y;
 		boolean[][] b = {{true,true,true},{true,false,false},{true,true,true}};
-		shape=b;
-		int[][] vie={{3,2,2},{3,0,0},{3,2,2}};
-		lives= vie;
+		shape = b;
+		int[][] vie = {{3,2,2},{3,0,0},{3,2,2}};
+		lives = vie;
 		
-		imagepath=chemin;
-		fireshape=FireShape.norisShape();
-		calculeNbEqiupMax();
+		imagepath = chemin;
+		fireshape = FireShape.norisShape();
+		this.confStatMax(5, 3, 3, 2);
+		calculeNbEquipMax();
 		Name();
 	}
 

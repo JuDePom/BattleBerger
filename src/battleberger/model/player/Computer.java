@@ -8,6 +8,7 @@ public class Computer extends Player {
 	protected IStrategy strat;
 	
 	public Computer(IStrategy strat){
+		super(20);
 		this.strat = strat;
 	}
 
@@ -16,6 +17,11 @@ public class Computer extends Player {
 		return strat.fire(this, g);
 	}
 	
+	@Override
+	public void selectShips() {
+		ships = strat.selectShips(getMaxShipValue());
+	}
+
 	public void setStrat(IStrategy s){
 		strat = s;
 	}

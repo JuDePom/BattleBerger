@@ -11,7 +11,6 @@ public interface IDisplay {
 
 	void selectGridDimension();
 	
-
 	void setGame(Game g);
 	
 	void updateGameGrid();

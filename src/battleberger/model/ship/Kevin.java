@@ -17,7 +17,7 @@ public class Kevin extends Ship {
 		imagepath=chemin;
 		fireshape=FireShape.standardShape();
 		this.confStatMax(1, 1, 1, 1);
-		calculeNbEqiupMax();
+		calculeNbEquipMax();
 		Name();
 	}
 

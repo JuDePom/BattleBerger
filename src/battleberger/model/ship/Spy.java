@@ -16,7 +16,8 @@ public class Spy extends Ship {
 		lives=vie;
 		imagepath=chemin;
 		fireshape=FireShape.standardShape();
-		calculeNbEqiupMax();
+		this.confStatMax(2, 2, 2, 1);
+		calculeNbEquipMax();
 		Name();
 	}
 

@@ -17,7 +17,8 @@ public class Elisabeth extends Ship {
 		
 		imagepath=chemin;
 		fireshape=FireShape.bigShape();
-		calculeNbEqiupMax();
+		this.confStatMax(6, 3, 4, 2);
+		calculeNbEquipMax();
 		Name();
 	}
 

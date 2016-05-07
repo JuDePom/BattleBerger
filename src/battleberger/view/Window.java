@@ -70,12 +70,14 @@ public class Window extends JFrame implements Observer,IDisplay {
 	@Override
 	public void selectGridDimension() {
 		// TODO Auto-generated method stub
+		game.setWidth(20);
+		game.setHeight(20);
 		
 	}
 
 	@Override
 	public void updateGameGrid() {
-		// TODO Auto-generated method stub
+		repaint();
 		
 	}
 
