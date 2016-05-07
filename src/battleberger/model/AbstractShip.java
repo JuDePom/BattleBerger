@@ -16,7 +16,7 @@ public abstract class AbstractShip {
 	public abstract int getMovSpeed();
 	public abstract int getReloadSpeed();
 	public abstract boolean[][] getShape() ;
-	public abstract void setShapeNorth(boolean[][] shape);
+	public abstract void setShapeNorth(boolean[][] shape, Orientation or);
 	public abstract Orientation getOrient() ;
 	public abstract void setOrient(Orientation orient) ;
 	public abstract String getImagepath() ;

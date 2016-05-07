@@ -10,10 +10,9 @@ public class Destroyer extends Ship {
 		positionX=x;
 		positionY=y;
 		boolean[][] b={{true,false,false},{false,true,true},{true,false,false}};
-		shapeNorth=b;
 		int[][] vie={{1,0,0},{0,2,1},{1,0,0}};
 		lives=vie;
-		setOrient(ori);
+		setShapeNorth(b, ori);
 		
 		imagepath=chemin;
 		fireshape=FireShape.crossShape();

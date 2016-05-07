@@ -11,10 +11,10 @@ public class Elisabeth extends Ship {
 		positionX=x;
 		positionY=y;
 		boolean[][] b={{false,true,true},{true,true,false},{true,true,false},{false,true,true}};
-		shapeNorth=b;
 		int[][] vie={{0,2,1},{2,3,0},{2,3,0},{0,2,1}};
 		lives=vie;
-		setOrient(ori);
+
+		setShapeNorth(b, ori);
 		
 		imagepath=chemin;
 		fireshape=FireShape.bigShape();

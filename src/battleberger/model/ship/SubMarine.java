@@ -11,10 +11,9 @@ public class SubMarine extends Ship {
 		positionX=x;
 		positionY=y;
 		boolean[][] b={{true,false,true,false,true}};
-		shapeNorth=b;
 		int[][] vie={{2,0,2,0,2}};
 		lives=vie;
-		setOrient(ori);
+		setShapeNorth(b, ori);
 		
 		
 		imagepath=chemin;

@@ -11,10 +11,9 @@ public class ChuckNoris extends Ship {
 		positionX = x;
 		positionY = y;
 		boolean[][] b = {{true,true,true},{true,false,false},{true,true,true}};
-		shapeNorth = b;
 		int[][] vie = {{3,2,2},{3,0,0},{3,2,2}};
 		lives = vie;
-		setOrient(ori);
+		setShapeNorth(b, ori);
 		
 		imagepath = chemin;
 		fireshape = FireShape.norisShape();
