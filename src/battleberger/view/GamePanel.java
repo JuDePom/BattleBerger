@@ -5,8 +5,6 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -129,12 +127,16 @@ public class GamePanel extends JPanel{
 			boolean[][] shape = ship.getShape();
 			
 			BufferedImage img = RessourceManager.getImage(ship.getImagepath());
+			BufferedImage imgDmg = RessourceManager.getImage(ship.getImagepath()+"_0");
 			
 			int imgCW = 0;
 			int imgCH = 0;
 			
 			if (img != null) {
 				img = setOrientation(img, ship.getOrient());
+				
+				if (imgDmg != null)
+					imgDmg = setOrientation(imgDmg, ship.getOrient());
 				
 				imgCW = img.getWidth() / shape.length;
 				imgCH = img.getHeight() / shape[0].length;
@@ -144,8 +146,13 @@ public class GamePanel extends JPanel{
 				for (int j = 0; j < shape[i].length; j++){
 					if (shape[i][j]){
 						if (img != null){
-							BufferedImage sub = img.getSubimage(i*imgCW, j*imgCH, imgCW, imgCH);
-							g.drawImage(sub, dw + (x + i)* cs, dh + (y + j) * cs, cs, cs, null);
+							if (ship.getLives()[i][j] <= 0 && imgDmg != null){
+								BufferedImage sub = imgDmg.getSubimage(i*imgCW, j*imgCH, imgCW, imgCH);
+								g.drawImage(sub, dw + (x + i)* cs, dh + (y + j) * cs, cs, cs, null);
+							} else {	
+								BufferedImage sub = img.getSubimage(i*imgCW, j*imgCH, imgCW, imgCH);
+								g.drawImage(sub, dw + (x + i)* cs, dh + (y + j) * cs, cs, cs, null);
+							}
 						}else{
 							g.fillRect(dw + (x + i)* cs, dh + (y + j) * cs, cs, cs);
 						}
