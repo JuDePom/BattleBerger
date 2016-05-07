@@ -9,7 +9,7 @@ public class BlackPearl extends Ship{
 		
 		positionX = x;
 		positionY = y;
-		lives =	new int[][]{ {1,2,0,0,}, {0,3,2,1}, {1,2,0,0} };
+		lives =	new int[][]{ {1,2,0,0}, {0,3,2,1}, {1,2,0,0} };
 		setShapeNorth(new boolean[][]{{true,true,false,false},{false,true,true,true},{true,true,false,false}}, ori);
 		
 		
