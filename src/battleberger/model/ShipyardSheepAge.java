@@ -23,37 +23,37 @@ public class ShipyardSheepAge extends AbstractShipyard {
 		AbstractShip sheep;
 		switch(ship){
 		case ShipDefault :
-			 sheep =new ShipDefault(Orientation.North,x,y,"battleberger/texture");
+			 sheep =new ShipDefault(Orientation.North,x,y,"assets/images/sheepAge/ShipDefault.png");
 			 break;
 		case Kevin :
-			sheep =new Kevin(Orientation.North,x,y,"battleberger/texture");
+			sheep =new Kevin(Orientation.North,x,y,"assets/images/sheepAge/Kevin.png");
 			break;
 		case Frigate :
-			sheep =new Frigate(Orientation.North,x,y,"battleberger/texture");
+			sheep =new Frigate(Orientation.North,x,y,"assets/images/sheepAge/Frigate.png");
 			break;
 		case BlackPearl : 
-			sheep =new BlackPearl(Orientation.North,x,y,"battleberger/texture");
+			sheep =new BlackPearl(Orientation.North,x,y,"assets/images/sheepAge/BlackPearl.png");
 			break;
 		case ChuckNoris :
-			sheep =new ChuckNoris(Orientation.North,x,y,"battleberger/texture");
+			sheep =new ChuckNoris(Orientation.North,x,y,"assets/images/sheepAge/ChuckNoris.png");
 			break;
 		case Commander :
-			sheep =new Commander(Orientation.North,x,y,"battleberger/texture");
+			sheep =new Commander(Orientation.North,x,y,"assets/images/sheepAge/Commander.png");
 			break;
 		case Destroyer :
-			sheep =new Destroyer(Orientation.North,x,y,"battleberger/texture");
+			sheep =new Destroyer(Orientation.North,x,y,"assets/images/sheepAge/Destroyer.png");
 			break;
 		case Elisabeth :
-			sheep =new Elisabeth(Orientation.North,x,y,"battleberger/texture");
+			sheep =new Elisabeth(Orientation.North,x,y,"assets/images/sheepAge/Elysabeth.png");
 			break;
 		case GrosseBerta :
-			sheep =new GrosseBerta(Orientation.North,x,y,"battleberger/texture");
+			sheep =new GrosseBerta(Orientation.North,x,y,"assets/images/sheepAge/GrosseBerta.png");
 			break;
 		case Spy :
-			sheep =new Spy(Orientation.North,x,y,"battleberger/texture");
+			sheep =new Spy(Orientation.North,x,y,"assets/images/sheepAge/Spy.png");
 			break;
 		case SubMarine :
-			sheep =new SubMarine(Orientation.North,x,y,"battleberger/texture");
+			sheep =new SubMarine(Orientation.North,x,y,"assets/images/sheepAge/SubMarine");
 			break;
 			 default :
 		sheep=null;		 
