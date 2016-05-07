@@ -125,10 +125,24 @@ public class GamePanel extends JPanel{
 			
 			boolean[][] shape = ship.getShape();
 			
+			BufferedImage img = RessourceManager.getImage(ship.getImagepath());
+			int imgCW = 0;
+			int imgCH = 0;
+			
+			if (img != null) {
+				imgCW = img.getWidth() / shape.length;
+				imgCH = img.getHeight() / shape[0].length;
+			}
+			
 			for (int i = 0; i < shape.length; i++){
 				for (int j = 0; j < shape[i].length; j++){
 					if (shape[i][j]){
-						g.fillRect(dw + (x + i)* cs, dh + (y + j) * cs, cs, cs);
+						if (img != null){
+							BufferedImage sub = img.getSubimage(i*imgCW, j*imgCH, imgCW, imgCH);
+							g.drawImage(sub, dw + (x + i)* cs, dh + (y + j) * cs, cs, cs, null);
+						}else{
+							g.fillRect(dw + (x + i)* cs, dh + (y + j) * cs, cs, cs);
+						}
 					}
 				}
 			}
