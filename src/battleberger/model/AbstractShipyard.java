@@ -4,7 +4,7 @@ import battleberger.model.AbstractShip.TimeSpace;
 import battleberger.model.Ship.TypeShip;
 
 public abstract class AbstractShipyard {
-	private static TimeSpace ts=TimeSpace.Default;
+	private static TimeSpace ts=TimeSpace.SheepAge;
 	public static AbstractShip orderShip(TypeShip type){
 		switch(ts){
 		case Default :
@@ -13,8 +13,8 @@ public abstract class AbstractShipyard {
 			return new ShipyardMoyenAge().buildShip(type,-1,-1);
 		case SheepAge :
 			return new ShipyardSheepAge().buildShip(type,-1,-1);
-			default :
-				return new ShipyardDefault().buildShip(type,-1,-1);	
+		default :
+			return new ShipyardDefault().buildShip(type,-1,-1);	
 		}
 		
 	}
