@@ -6,13 +6,15 @@ import battleberger.model.FireShape;
 public class Destroyer extends Ship {
 
 	public Destroyer(Orientation ori, int x, int y,String chemin){
-		orient=ori;
+		
 		positionX=x;
 		positionY=y;
 		boolean[][] b={{true,false,false},{false,true,true},{true,false,false}};
-		shape=b;
+		shapeNorth=b;
 		int[][] vie={{1,0,0},{0,2,1},{1,0,0}};
 		lives=vie;
+		setOrient(ori);
+		
 		imagepath=chemin;
 		fireshape=FireShape.crossShape();
 		this.confStatMax(4, 2, 2, 2);

@@ -9,8 +9,9 @@ public abstract class Ship extends AbstractShip{
 	public enum StatType{Power,Armor,MovSpeed,ReloadSpeed};
 
 	
+	protected boolean[][] shapeNorth;
 	protected boolean[][] shape;
-	protected Orientation orient;
+	private Orientation orient;
 	protected String imagepath;
 	protected int[][] lives; 
 	protected int positionX;
@@ -50,9 +51,9 @@ public abstract class Ship extends AbstractShip{
 	
 	protected void calculeNbEquipMax(){
 		int res=0;
-		for(int i=0;i<shape.length;i++){
-			for(int j=0;j<shape[0].length;j++){
-				if(shape[i][j])res++;
+		for(int i=0;i<shapeNorth.length;i++){
+			for(int j=0;j<shapeNorth[0].length;j++){
+				if(shapeNorth[i][j])res++;
 			}
 		}
 		nbEquipementmax=res;
@@ -65,9 +66,11 @@ public abstract class Ship extends AbstractShip{
 	public boolean[][] getShape() {
 		return shape;
 	}
+	
+	
 	@Override
-	public void setShape(boolean[][] shape) {
-		this.shape = shape;
+	public void setShapeNorth(boolean[][] shape) {
+		this.shapeNorth = shape;
 	}
 	@Override
 	public Orientation getOrient() {
@@ -75,7 +78,69 @@ public abstract class Ship extends AbstractShip{
 	}
 	@Override
 	public void setOrient(Orientation orient) {
+		
+		if(orient == this.orient){
+			//rien à faire
+			return;
+		}
+		int[][] tmpL;
+		//TODO: j'ai sûrement inversé rotation 90 et -90, à vérifier
+		if(	(orient == Orientation.North && this.orient == Orientation.East)
+				||	(orient == Orientation.East && this.orient == Orientation.South)
+				||	(orient == Orientation.South && this.orient == Orientation.West)
+				||	(orient == Orientation.West && this.orient == Orientation.North)){
+			//rotation 90°
+			tmpL = new int[lives[0].length][lives.length];
+			shape = new boolean[shape[0].length][shape.length];
+			for(int i = 0 ; i < lives[0].length ; i++){
+				for(int j = 0 ; j < lives.length ; j++){
+					tmpL[i][j] = lives[j][i];
+					shape[i][j] = shapeNorth[j][i];
+				}
+			}
+			lives = tmpL;			
+		}
+		else if(	(orient == Orientation.North && this.orient == Orientation.South)
+				||	(orient == Orientation.East && this.orient == Orientation.West)
+				||	(orient == Orientation.South && this.orient == Orientation.North)
+				||	(orient == Orientation.West && this.orient == Orientation.East)){
+			//rotation 180°
+			tmpL = new int[lives.length][lives[0].length];
+			for(int i = 0 ; i < lives.length ; i++){
+				for(int j = 0 ; j < lives[0].length ; j++){
+					tmpL[i][j] = lives[i][lives[0].length - 1 - j];
+					shape[i][j] = shapeNorth[i][lives[0].length - 1 - j];
+				}
+			}
+			lives = tmpL;
+			
+		}	
+		else if(	(orient == Orientation.North && this.orient == Orientation.West)
+				||	(orient == Orientation.East && this.orient == Orientation.North)
+				||	(orient == Orientation.South && this.orient == Orientation.East)
+				||	(orient == Orientation.West && this.orient == Orientation.South)){
+			//rotation -90°
+			tmpL = new int[lives[0].length][lives.length];
+			shape = new boolean[shape[0].length][shape.length];
+			for(int i = 0 ; i < lives[0].length ; i++){
+				for(int j = 0 ; j < lives.length ; j++){
+					tmpL[i][j] = lives[lives.length - 1 - j ][lives[0].length - 1 - i];
+					shape[i][j] = shapeNorth[lives.length - 1 - j][lives[0].length - 1 - i];
+				}
+			}
+			lives = tmpL;			
+			
+		}
+		else if(this.orient == null){
+			//on affecte juste
+			shape = shapeNorth;
+		}
+		else{
+			System.out.println("cas non géré: " +  orient + " " + this.orient);
+		}
+
 		this.orient = orient;
+		
 	}
 	@Override
 	public String getImagepath() {

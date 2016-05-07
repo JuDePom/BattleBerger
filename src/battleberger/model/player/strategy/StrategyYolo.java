@@ -7,6 +7,7 @@ import java.util.Random;
 import battleberger.model.AbstractShip;
 import battleberger.model.AbstractShipyard;
 import battleberger.model.Game;
+import battleberger.model.Ship.Orientation;
 import battleberger.model.Ship.TypeShip;
 import battleberger.model.player.Computer;
 import battleberger.model.player.Shot;
@@ -33,6 +34,8 @@ public class StrategyYolo implements IStrategy {
 		TypeShip[] s = TypeShip.values();
 		while(disp > 0 ){
 			AbstractShip ship = AbstractShipyard.orderShip(s[r.nextInt(s.length)]);
+			Orientation orient = Orientation.values()[r.nextInt(Orientation.values().length)];
+			ship.setOrient(orient);
 			if(disp - ship.shipValue() >= 0){	
 				
 				boolean[][] shape = ship.getShape();

@@ -7,13 +7,15 @@ import battleberger.model.FireShape;
 public class SubMarine extends Ship {
 
 	public SubMarine(Orientation ori, int x, int y,String chemin){
-		orient=ori;
+		
 		positionX=x;
 		positionY=y;
 		boolean[][] b={{true,false,true,false,true}};
-		shape=b;
+		shapeNorth=b;
 		int[][] vie={{2,0,2,0,2}};
 		lives=vie;
+		setOrient(ori);
+		
 		
 		imagepath=chemin;
 		fireshape=FireShape.standardShape();

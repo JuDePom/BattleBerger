@@ -7,13 +7,16 @@ import battleberger.model.FireShape;
 public class Kevin extends Ship {
 
 	public Kevin(Orientation ori, int x, int y,String chemin){
-		orient=ori;
+
+
 		positionX=x;
 		positionY=y;
-		shape=new boolean[1][1];
+		shapeNorth=new boolean[1][1];
 		lives=new int[1][1];
-		shape[0][0]=true;
+		shapeNorth[0][0]=true;
 		lives[0][0]=1;
+		setOrient(ori);
+		
 		imagepath=chemin;
 		fireshape=FireShape.standardShape();
 		this.confStatMax(1, 1, 1, 1);
