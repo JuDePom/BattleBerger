@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +17,7 @@ import javax.swing.JPanel;
 
 import battleberger.model.AbstractShip;
 import battleberger.model.Game;
+import battleberger.model.Ship.Orientation;
 import battleberger.model.player.Player;
 
 @SuppressWarnings("serial")
@@ -126,10 +129,13 @@ public class GamePanel extends JPanel{
 			boolean[][] shape = ship.getShape();
 			
 			BufferedImage img = RessourceManager.getImage(ship.getImagepath());
+			
 			int imgCW = 0;
 			int imgCH = 0;
 			
 			if (img != null) {
+				img = setOrientation(img, ship.getOrient());
+				
 				imgCW = img.getWidth() / shape.length;
 				imgCH = img.getHeight() / shape[0].length;
 			}
@@ -167,6 +173,40 @@ public class GamePanel extends JPanel{
 		}
 	}
 	
+	private BufferedImage setOrientation(BufferedImage img, Orientation orient) {
+		int w = img.getWidth();
+	    int h = img.getHeight();
+	    
+		BufferedImage imgFlip;
+		switch (orient){
+		case North:
+			imgFlip = img;
+			break;
+		case East:
+			imgFlip = new BufferedImage(h, w, img.getType());
+			for(int i=0; i<w; i++)
+		        for(int j=0; j<h; j++)
+		            imgFlip.setRGB(h-1-j, w-1-i, img.getRGB(i, j));
+			break;
+		case South:
+			imgFlip = new BufferedImage(img.getWidth(), img.getHeight(), img.getType());
+			for(int i=0; i<w; i++)
+		        for(int j=0; j<h; j++)
+		            imgFlip.setRGB(w-1-i, h-1-j, img.getRGB(i, j));
+			break;
+		case West:
+			imgFlip = new BufferedImage(img.getHeight(), img.getWidth(), img.getType());
+			for(int i=0; i<w; i++)
+		        for(int j=0; j<h; j++)
+		            imgFlip.setRGB(j, w-1-i, img.getRGB(i, j));
+			break;
+		default:
+			imgFlip = img;
+		}
+		
+		return imgFlip;
+	}
+
 	public void drawMouse(Graphics g){
 		Color myColour = new Color(0, 255, 255, 50);
 		Color enemyColour = new Color(255, 0, 0, 100);
