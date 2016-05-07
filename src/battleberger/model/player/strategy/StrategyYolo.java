@@ -35,7 +35,7 @@ public class StrategyYolo implements IStrategy {
 		while(disp > 0 ){
 			AbstractShip ship = AbstractShipyard.orderShip(s[r.nextInt(s.length)]);
 			Orientation orient = Orientation.values()[r.nextInt(Orientation.values().length)];
-			ship.setOrient(Orientation.South);
+			ship.setOrient(orient);
 			if(disp - ship.shipValue() >= 0){	
 				
 				boolean[][] shape = ship.getShape();
