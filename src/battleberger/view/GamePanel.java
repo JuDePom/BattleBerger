@@ -49,7 +49,7 @@ public class GamePanel extends JPanel{
 
 	protected void movMouse(Point point) {
 		mouse = point;
-		this.repaint();
+		this.updateUI();
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package battleberger.view;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import battleberger.model.AbstractShip;
@@ -44,9 +46,6 @@ public class Console implements IDisplay{
 		System.out.println("player :" + p.toString() + " plays: " + s.toString() );	
 	}
 
-
-
-
 	@Override
 	public void setGame(Game g){
 		game = g;
@@ -59,6 +58,15 @@ public class Console implements IDisplay{
 		game.setWidth(sc.nextInt());
 		System.out.println("hauteur ?");
 		game.setHeight(sc.nextInt());
+	}
+
+	@Override
+	public List<AbstractShip> placeShips(int maxShipValue) {
+		List<AbstractShip> ships = new ArrayList<AbstractShip>();
+		
+		//TODO: Need a way to choose ships and positions (Not crucial)
+		
+		return ships;
 	}
 	
 }

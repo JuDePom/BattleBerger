@@ -1,12 +1,12 @@
 package battleberger.model.player;
 
 import battleberger.model.Game;
+import battleberger.view.IDisplay;
 
 public class Human extends Player {
 
 	@Override
 	public Shot play(Game g) {
-		//TODO
 		return null;
 		
 	}
@@ -16,9 +16,8 @@ public class Human extends Player {
 	}
 
 	@Override
-	public void selectShips() {
-		
-		
+	public void selectShips(IDisplay display) {
+		ships = display.placeShips(getMaxShipValue());		
 	}
 
 	

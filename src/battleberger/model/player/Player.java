@@ -5,6 +5,7 @@ import java.util.List;
 
 import battleberger.model.AbstractShip;
 import battleberger.model.Game;
+import battleberger.view.IDisplay;
 
 public abstract class Player {
 	
@@ -24,8 +25,6 @@ public abstract class Player {
 	public int nbShips(){
 		return ships.size();
 	}
-	
-	
 	
 	public void remove(AbstractShip s){
 		ships.remove(s);
@@ -54,7 +53,7 @@ public abstract class Player {
 		}
 	}
 	
-	public abstract void selectShips();
+	public abstract void selectShips(IDisplay display);
 	
 
 	public void setGame(Game g){

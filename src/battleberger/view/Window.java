@@ -2,6 +2,8 @@ package battleberger.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -38,10 +40,10 @@ public class Window extends JFrame implements Observer,IDisplay {
 	@Override
 	public void repaint() {
 		super.repaint();
-		shippan.repaint();
-		shoppan.repaint();
 		gamepan.repaint();
 		statspan.repaint();
+		shippan.repaint();
+		shoppan.repaint();
 	}
 	
 	@Override
@@ -55,8 +57,6 @@ public class Window extends JFrame implements Observer,IDisplay {
 		gamepan = new GamePanel(game);
 		shoppan = new ShopPanel(game);
 		statspan = new StatusPanel(game);
-		
-		this.add(shippan, BorderLayout.NORTH);
 		
 		this.add(gamepan, BorderLayout.CENTER);
 		this.add(shoppan, BorderLayout.EAST);
@@ -91,6 +91,23 @@ public class Window extends JFrame implements Observer,IDisplay {
 	public AbstractShip selectShip(Player p) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<AbstractShip> placeShips(int maxShipValue) {
+		this.remove(shippan);
+		this.remove(statspan);
+		
+		this.add(shippan, BorderLayout.NORTH);
+		
+		List<AbstractShip> ships = new ArrayList<AbstractShip>();
+		
+		while (maxShipValue > 0){
+			shippan.setBuyable(maxShipValue);
+			AbstractShip choosen = shippan.getChoosen();
+		}
+		
+		return ships;
 	}
 
 }

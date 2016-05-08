@@ -29,7 +29,7 @@ public class Game extends Observable {
 		display.selectGridDimension();
 		
 		for(Player p : players){
-			p.selectShips();
+			p.selectShips(display);
 		}
 		
 		long start;

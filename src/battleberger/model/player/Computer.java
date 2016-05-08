@@ -2,6 +2,7 @@ package battleberger.model.player;
 
 import battleberger.model.Game;
 import battleberger.model.player.strategy.IStrategy;
+import battleberger.view.IDisplay;
 
 public class Computer extends Player {
 	
@@ -18,7 +19,7 @@ public class Computer extends Player {
 	}
 	
 	@Override
-	public void selectShips() {
+	public void selectShips(IDisplay display) {
 		ships = strat.selectShips(getMaxShipValue());
 	}
 

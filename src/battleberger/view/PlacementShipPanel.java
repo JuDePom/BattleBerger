@@ -1,5 +1,6 @@
 package battleberger.view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -18,9 +19,11 @@ import battleberger.model.ShipyardDefault;
 public class PlacementShipPanel extends JPanel{
 	Map<TypeShip, AbstractShip> ships = new HashMap<TypeShip, AbstractShip>();
 	
+	int credits;
+	boolean buyable = false;
+	
 	public PlacementShipPanel(Game game) {
 		this.setPreferredSize(new Dimension(0, 150));
-		
 		
 		for (TypeShip type : Ship.TypeShip.values()){
 			ships.put(type, ShipyardDefault.orderShip(type));
@@ -29,6 +32,9 @@ public class PlacementShipPanel extends JPanel{
 	
 	@Override
 	protected void paintComponent(Graphics g) {
+		g.setColor(Color.LIGHT_GRAY);
+		g.fillRect(0, 0, getWidth(), getHeight());
+		
 		int h = this.getHeight();
 		
 		int cs = h / 7;
@@ -48,7 +54,23 @@ public class PlacementShipPanel extends JPanel{
 				imgCH = img.getHeight() / shape[0].length;
 			}
 			
+			
+			
+			if (buyable) {
+				if (ship.shipValue() <= credits)
+					g.setColor(Color.ORANGE);
+				else
+					g.setColor(Color.LIGHT_GRAY);
+				g.fillRect(x*cs -cs/2, h-cs, ship.getWidth()*cs + cs, cs);
+				
+				g.setColor(Color.BLACK);
+				g.drawRect(x*cs -cs/2, h-cs, ship.getWidth()*cs + cs, cs-1);
+				
+				g.drawString("Cost: "+ship.shipValue(), x*cs + ship.getWidth()*cs/2 - 17, h-5);
+			}
+			
 			g.drawString(ship.getClass().getSimpleName(), x*cs - cs/2, 1*cs - 5);
+			
 			for (int i = 0; i < shape.length; i++, x++){
 				for (int j = 0; j < shape[0].length; j++){
 					ship.setPositionX(x);
@@ -66,5 +88,15 @@ public class PlacementShipPanel extends JPanel{
 			
 			x += 2;
 		}
+	}
+
+	public void setBuyable(int maxShipValue) {
+		credits = maxShipValue;
+		buyable = true;
+		repaint();
+	}
+
+	public AbstractShip getChoosen() {
+		return null;
 	}
 }

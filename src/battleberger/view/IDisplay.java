@@ -1,5 +1,7 @@
 package battleberger.view;
 
+import java.util.List;
+
 import battleberger.model.AbstractShip;
 import battleberger.model.Game;
 import battleberger.model.player.Player;
@@ -18,6 +20,6 @@ public interface IDisplay {
 	void fire(Player p, Shot s);
 	
 	public AbstractShip selectShip(Player p);
-	
-	
+
+	List<AbstractShip> placeShips(int maxShipValue);
 }
