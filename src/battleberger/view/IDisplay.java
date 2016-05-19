@@ -22,4 +22,6 @@ public interface IDisplay {
 	public AbstractShip selectShip(Player p);
 
 	void placeShips(List<AbstractShip> ships);
+
+	void refresh();
 }

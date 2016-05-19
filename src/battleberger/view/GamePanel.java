@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -51,23 +52,57 @@ public class GamePanel extends JPanel{
 				dragMouse(e.getPoint());
 			}
 		});
+		
+		this.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				click();
+			}
+		});
 	}
 
 	protected void movMouse(Point point) {
 		mouse = point;
-		drag = false;
+		mouse.x -= dw; mouse.y -= dh;
+		mouse.x /= cs; mouse.y /= cs;
+		drag = false;		
 		this.updateUI();
 	}
 	
 	protected void dragMouse(Point point) {
 		mouse = point;
+		mouse.x -= dw; mouse.y -= dh;
+		mouse.x /= cs; mouse.y /= cs;
+		
 		if (lock) return;
 		
 		List<Player> players = game.getPlayers();
 		Player me = players.get(0);
-		
-		mouse.x -= dw; mouse.y -= dh;
-		mouse.x /= cs; mouse.y /= cs;
 		
 		if (!drag){
 			for (AbstractShip ship : me.getShips()){	
@@ -75,11 +110,43 @@ public class GamePanel extends JPanel{
 					shipSel = ship;
 			}
 		}
-		drag = true;
 		
-		shipSel.setPositionX(mouse.x);
-		shipSel.setPositionY(mouse.y);
+		if (shipSel != null){
+			drag = true;
+			
+			shipSel.setPositionX(mouse.x);
+			shipSel.setPositionY(mouse.y);
+		}
 		
+		this.updateUI();
+	}
+	
+	protected void click(){
+		List<Player> players = game.getPlayers();
+		Player me = players.get(0);
+		
+		shipSel = null;
+		for (AbstractShip ship : me.getShips()){	
+			if ( ship.overlap(mouse.x, mouse.y) )
+				shipSel = ship;
+		}
+		
+		if(!lock && shipSel != null){ // rotation car placement
+			
+			
+			Orientation or = shipSel.getOrient();
+			Orientation[] ors = Orientation.values();
+			boolean chg = false;
+			for (int i = 0; i < ors.length - 1; i++) {
+				if (ors[i] == or){
+					shipSel.setOrient(ors[i+1]);
+					chg = true;
+				}
+			}
+			
+			if (!chg)
+				shipSel.setOrient(ors[0]);
+		}
 		this.updateUI();
 	}
 
@@ -253,15 +320,10 @@ public class GamePanel extends JPanel{
 		if ( mouse != null){
 			if (mouse.x < pw){
 				g.setColor(myColour);
-				mouse.x -= dw; mouse.y -= dh;
-				mouse.x /= cs; mouse.y /= cs;
-
 				if ( mouse.x >= 0 && mouse.x < gw && mouse.y >= 0 && mouse.y < gh)
 					g.fillRect(dw + mouse.x*cs, dh + mouse.y*cs, cs, cs);
 			} else {
 				g.setColor(enemyColour);
-				mouse.x -= pw; mouse.y -= dh;
-				mouse.x /= cs; mouse.y /= cs;
 
 				if ( mouse.x >= 0 && mouse.x < gw && mouse.y >= 0 && mouse.y < gh)
 					g.fillRect(pw + mouse.x*cs, dh + mouse.y*cs, cs, cs);

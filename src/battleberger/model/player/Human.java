@@ -22,6 +22,7 @@ public class Human extends Player {
 			AbstractShip ship = display.selectShip(this);
 			setMaxShipValue(getMaxShipValue() - ship.shipValue());
 			ships.add(ship);
+			display.refresh();
 		}
 		
 		display.placeShips(ships);
