@@ -23,6 +23,8 @@ import battleberger.model.player.Player;
 public class GamePanel extends JPanel{
 	private Game game;
 	private BufferedImage ocean;
+	
+	private Point cmouse = new Point();
 	private Point mouse;
 	
 	boolean lock = false;
@@ -88,16 +90,16 @@ public class GamePanel extends JPanel{
 
 	protected void movMouse(Point point) {
 		mouse = point;
-		mouse.x -= dw; mouse.y -= dh;
-		mouse.x /= cs; mouse.y /= cs;
+		cmouse.x = mouse.x - dw; cmouse.y = mouse.y - dh;
+		cmouse.x /= cs; cmouse.y /= cs;
 		drag = false;		
 		this.updateUI();
 	}
 	
 	protected void dragMouse(Point point) {
 		mouse = point;
-		mouse.x -= dw; mouse.y -= dh;
-		mouse.x /= cs; mouse.y /= cs;
+		cmouse.x = mouse.x - dw; cmouse.y = mouse.y - dh;
+		cmouse.x /= cs; cmouse.y /= cs;
 		
 		if (lock) return;
 		
@@ -106,7 +108,7 @@ public class GamePanel extends JPanel{
 		
 		if (!drag){
 			for (AbstractShip ship : me.getShips()){	
-				if ( ship.overlap(mouse.x, mouse.y) )
+				if ( ship.overlap(cmouse.x, cmouse.y) )
 					shipSel = ship;
 			}
 		}
@@ -114,8 +116,8 @@ public class GamePanel extends JPanel{
 		if (shipSel != null){
 			drag = true;
 			
-			shipSel.setPositionX(mouse.x);
-			shipSel.setPositionY(mouse.y);
+			shipSel.setPositionX(cmouse.x);
+			shipSel.setPositionY(cmouse.y);
 		}
 		
 		this.updateUI();
@@ -147,6 +149,13 @@ public class GamePanel extends JPanel{
 			if (!chg)
 				shipSel.setOrient(ors[0]);
 		}
+		
+		if (!lock){ // CLICK ON START
+			if (mouse.x > pw+25 && mouse.x < pw+175 && mouse.y > ph/2 && mouse.y < ph/2 + 50){
+				lock = true;
+			}
+		}
+		
 		this.updateUI();
 	}
 
@@ -183,6 +192,15 @@ public class GamePanel extends JPanel{
 		drawShips(g);
 		
 		drawMouse(g);
+		
+		if (!lock) drawStart(g);
+	}
+	
+	public void drawStart(Graphics g){
+		g.setColor(Color.ORANGE);
+		g.fillRect(pw + 50 , ph/2, 100, 50);
+		g.setColor(Color.BLACK);
+		g.drawString("START", pw+75, ph/2 + 30);
 	}
 	
 	public void drawMyField(Graphics g){
@@ -317,16 +335,16 @@ public class GamePanel extends JPanel{
 		Color enemyColour = new Color(255, 0, 0, 100);
 		
 		
-		if ( mouse != null){
-			if (mouse.x < pw){
+		if ( cmouse != null){
+			if (cmouse.x < pw){
 				g.setColor(myColour);
-				if ( mouse.x >= 0 && mouse.x < gw && mouse.y >= 0 && mouse.y < gh)
-					g.fillRect(dw + mouse.x*cs, dh + mouse.y*cs, cs, cs);
+				if ( cmouse.x >= 0 && cmouse.x < gw && cmouse.y >= 0 && cmouse.y < gh)
+					g.fillRect(dw + cmouse.x*cs, dh + cmouse.y*cs, cs, cs);
 			} else {
 				g.setColor(enemyColour);
 
-				if ( mouse.x >= 0 && mouse.x < gw && mouse.y >= 0 && mouse.y < gh)
-					g.fillRect(pw + mouse.x*cs, dh + mouse.y*cs, cs, cs);
+				if ( cmouse.x >= 0 && cmouse.x < gw && cmouse.y >= 0 && cmouse.y < gh)
+					g.fillRect(pw + cmouse.x*cs, dh + cmouse.y*cs, cs, cs);
 			}
 		}
 	}
