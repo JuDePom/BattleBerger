@@ -15,7 +15,7 @@ import battleberger.model.player.Player;
 import battleberger.model.player.Shot;
 
 @SuppressWarnings("serial")
-public class Window extends JFrame implements Observer,IDisplay {
+public class Window extends JFrame implements Observer, IDisplay {
 	private PlacementShipPanel shippan;
 	private ShopPanel shoppan;
 	private GamePanel gamepan;
@@ -132,9 +132,16 @@ public class Window extends JFrame implements Observer,IDisplay {
 
 		this.add(statspan, BorderLayout.NORTH);
 		
-		while (overlay(ships))
-			;
+		while (overlay(ships));
+		
+		gamepan.lock = true;
+		
 		return;
+	}
+
+	@Override
+	public void refresh() {
+		updateGameGrid();
 	}
 
 

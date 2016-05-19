@@ -25,4 +25,7 @@ public interface IDisplay {
 	void placeShips(List<AbstractShip> ships);
 	
 	Shot getShot(Human h);
+
+
+	void refresh();
 }

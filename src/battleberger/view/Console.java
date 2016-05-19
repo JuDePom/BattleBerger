@@ -62,4 +62,10 @@ public class Console implements IDisplay{
 
 	@Override
 	public void placeShips(List<AbstractShip> ships) {}
+
+	@Override
+	public void refresh() {
+		// TODO Auto-generated method stub
+		
+	}
 }
