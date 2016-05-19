@@ -4,6 +4,7 @@ import java.util.List;
 
 import battleberger.model.AbstractShip;
 import battleberger.model.Game;
+import battleberger.model.player.Human;
 import battleberger.model.player.Player;
 import battleberger.model.player.Shot;
 
@@ -22,4 +23,6 @@ public interface IDisplay {
 	public AbstractShip selectShip(Player p);
 
 	void placeShips(List<AbstractShip> ships);
+	
+	Shot getShot(Human h);
 }

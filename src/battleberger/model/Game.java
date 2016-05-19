@@ -10,21 +10,24 @@ import battleberger.model.player.Player;
 import battleberger.model.player.Shot;
 import battleberger.model.player.strategy.IStrategy;
 import battleberger.model.player.strategy.StrategyDiagonal;
+import battleberger.model.player.strategy.StrategyWithMemory;
 import battleberger.model.player.strategy.StrategyYolo;
 import battleberger.view.IDisplay;
 
 public class Game extends Observable {
 
+	public enum State {nothing, touched, sinked};
 	private List<Player> players;
 	private static int width, height;
 	private IDisplay display;
+	public IDisplay getDisplay() {
+		return display;
+	}
+
 	private List<IStrategy> strategies;
 	
 	public Game(Player p1, Player p2, IDisplay disp){
 		players = new ArrayList<>();
-		strategies = new ArrayList<>();
-		strategies.add(new StrategyYolo());
-		strategies.add(new StrategyDiagonal());
 		addPlayer(p1);
 		addPlayer(p2);
 		setDisplay(disp);
@@ -34,6 +37,11 @@ public class Game extends Observable {
 	public void play(){
 
 		display.selectGridDimension();
+
+		strategies = new ArrayList<>();
+		strategies.add(new StrategyYolo());
+		strategies.add(new StrategyDiagonal(width, height));
+		strategies.add(new StrategyWithMemory(width, height));
 		
 		for(Player p : players){
 			p.selectShips(display);
@@ -67,7 +75,7 @@ public class Game extends Observable {
 	}
 	
 	
-	public void setStrategy(IStrategy.Strategies strat){
+	public void setStrategy(Strategies strat){
 
 		Computer ia = (Computer)players.get(1);
 		IStrategy strategy = null;

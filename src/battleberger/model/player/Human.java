@@ -8,8 +8,7 @@ public class Human extends Player {
 
 	@Override
 	public Shot play(Game g) {
-		return null;
-		
+		return g.getDisplay().getShot(this);
 	}
 	
 	public Human(){
