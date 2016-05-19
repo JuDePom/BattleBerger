@@ -21,6 +21,23 @@ public abstract class Player {
 	
 	public abstract Shot play(Game g);
 
+	public AbstractShip getBestShip(){
+		int best_val = Integer.MIN_VALUE;
+		AbstractShip best= ships.get(0);
+		for(AbstractShip ship: ships){
+			int sum = 0;
+			for(int[] t : ship.getFireshape()){
+				for(int b : t){
+					sum += b * ship.getPower();
+				}
+			}
+			if(sum > best_val){
+				best_val = sum;
+				best = ship;
+			}
+		}
+		return best;
+	}
 	
 	public int nbShips(){
 		return ships.size();

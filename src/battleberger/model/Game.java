@@ -5,8 +5,12 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Observable;
 
+import battleberger.model.player.Computer;
 import battleberger.model.player.Player;
 import battleberger.model.player.Shot;
+import battleberger.model.player.strategy.IStrategy;
+import battleberger.model.player.strategy.StrategyDiagonal;
+import battleberger.model.player.strategy.StrategyYolo;
 import battleberger.view.IDisplay;
 
 public class Game extends Observable {
@@ -14,10 +18,13 @@ public class Game extends Observable {
 	private List<Player> players;
 	private static int width, height;
 	private IDisplay display;
-	
+	private List<IStrategy> strategies;
 	
 	public Game(Player p1, Player p2, IDisplay disp){
 		players = new ArrayList<>();
+		strategies = new ArrayList<>();
+		strategies.add(new StrategyYolo());
+		strategies.add(new StrategyDiagonal());
 		addPlayer(p1);
 		addPlayer(p2);
 		setDisplay(disp);
@@ -57,6 +64,23 @@ public class Game extends Observable {
 		
 		
 		
+	}
+	
+	
+	public void setStrategy(IStrategy.Strategies strat){
+
+		Computer ia = (Computer)players.get(1);
+		IStrategy strategy = null;
+		switch(strat){
+		case Yolo:
+			strategy = strategies.get(0);
+		case Diagonal:
+			strategy = strategies.get(1);
+		default:
+			System.out.println("t'as oublié de gérer une stratégie monsieur le programmeur"); 
+			//erreur
+		}
+		ia.setStrat(strategy);		
 	}
 
 	public void fire(Player p, Shot s){

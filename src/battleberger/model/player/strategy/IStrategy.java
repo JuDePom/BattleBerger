@@ -9,7 +9,7 @@ import battleberger.model.player.Shot;
 
 public interface IStrategy {
 	
-	
+	enum Strategies {Yolo, Diagonal};
 	
 	Shot fire(Computer ai, Game g);
 	
