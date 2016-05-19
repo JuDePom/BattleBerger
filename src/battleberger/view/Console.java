@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import battleberger.model.AbstractShip;
 import battleberger.model.Game;
+import battleberger.model.player.Human;
 import battleberger.model.player.Player;
 import battleberger.model.player.Shot;
 
@@ -67,5 +68,11 @@ public class Console implements IDisplay{
 	public void refresh() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Shot getShot(Human h) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

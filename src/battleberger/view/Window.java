@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 
 import battleberger.model.AbstractShip;
 import battleberger.model.Game;
+import battleberger.model.player.Human;
 import battleberger.model.player.Player;
 import battleberger.model.player.Shot;
 
@@ -140,6 +141,12 @@ public class Window extends JFrame implements Observer, IDisplay {
 	@Override
 	public void refresh() {
 		updateGameGrid();
+	}
+
+	@Override
+	public Shot getShot(Human h) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
