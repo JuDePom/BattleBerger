@@ -138,7 +138,13 @@ public class PlacementShipPanel extends JPanel{
 	}
 
 	public AbstractShip getChoosen() {
-		AbstractShip tmp = choosen;
+		AbstractShip tmp = null;
+		do {
+			tmp = choosen;
+			try {
+				Thread.sleep(50);
+			} catch (InterruptedException e) {}
+		} while (tmp == null);
 		choosen = null;
 		return tmp;
 	}

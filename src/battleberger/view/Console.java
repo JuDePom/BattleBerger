@@ -61,12 +61,11 @@ public class Console implements IDisplay{
 	}
 
 	@Override
-	public List<AbstractShip> placeShips(int maxShipValue) {
-		List<AbstractShip> ships = new ArrayList<AbstractShip>();
+	public void placeShips(List<AbstractShip> ships) {}
+
+	@Override
+	public void refresh() {
+		// TODO Auto-generated method stub
 		
-		//TODO: Need a way to choose ships and positions (Not crucial)
-		
-		return ships;
 	}
-	
 }

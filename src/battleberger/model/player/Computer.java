@@ -8,9 +8,8 @@ public class Computer extends Player {
 	
 	protected IStrategy strat;
 	
-	public Computer(IStrategy strat){
+	public Computer(){
 		super(20);
-		this.strat = strat;
 	}
 
 	@Override
