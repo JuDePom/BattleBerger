@@ -40,8 +40,14 @@ public class Game extends Observable {
 
 		strategies = new ArrayList<>();
 		strategies.add(new StrategyYolo());
-		strategies.add(new StrategyDiagonal(width, height));
-		strategies.add(new StrategyWithMemory(width, height));
+		strategies.add(new StrategyDiagonal());
+		((StrategyDiagonal)strategies.get(1)).setWidth(width);
+		((StrategyDiagonal)strategies.get(1)).setHeight(height);
+		
+		strategies.add(new StrategyWithMemory());
+		((StrategyWithMemory)strategies.get(2)).setDim(width, height);
+		
+		
 		
 		for(Player p : players){
 			p.selectShips(display);

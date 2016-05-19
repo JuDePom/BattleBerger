@@ -10,7 +10,7 @@ import battleberger.view.Window;
 public class Main {
 
 	public static void main(String[] args) {
-		Game g = new Game( new Human(), new Computer(), new Window());
+		Game g = new Game( new Human(), new Computer(new StrategyDiagonal()), new Window());
 		g.play();
 	}
 

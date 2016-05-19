@@ -11,7 +11,11 @@ import battleberger.model.player.Shot;
 public class StrategyWithMemory extends IStrategy {
 
 	State[][] states;
-	public StrategyWithMemory(int width, int height) {
+	public StrategyWithMemory() {
+	}
+	
+	
+	public void setDim(int width, int height){
 		states = new State[width][height];
 		for(int i = 0 ; i < width ; i++){
 			for(int j = 0 ; j < height ; j++){
@@ -21,11 +25,24 @@ public class StrategyWithMemory extends IStrategy {
 	}
 	@Override
 	public Shot fire(Computer ai, Game g) {
-		for(State[] ss : states){
-			for(State state : ss){
-				
+		for(int i = 0 ; i < states.length ; i++){
+			for(int j = 0 ; j < states[0].length ; j++){
+				State state = states[i][j];
+				if(state == State.touched){
+					return new Shot(ai.getBestShip().getFireshape(), i, j);
+				}
 			}
 		}
+		//si on est là on n'a touché aucun bateau
+		for(int i = 0 ; i < states.length ; i++){
+			for(int j = 0 ; j < states[0].length ; j++){
+				State state = states[i][j];
+				if(state == State.nothing){
+					return new Shot(ai.getBestShip().getFireshape(), i, j);
+				}
+			}
+		}
+		return null;
 	}
 
 	@Override

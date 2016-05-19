@@ -12,13 +12,11 @@ public class StrategyDiagonal extends IStrategy{
 	int x, y, last_x, last_y, width, height;
 	
 	
-	public StrategyDiagonal(int width, int height){
+	public StrategyDiagonal(){
 		x = 0;
 		y = 0;
 		last_x = 0;
 		last_y = 0;
-		this.width = width;
-		this.height = height;
 	}
 	
 	@Override
@@ -49,6 +47,23 @@ public class StrategyDiagonal extends IStrategy{
 		return selectRandomShips(maxShipValue);
 	}
 
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+	
 	
 	
 }
