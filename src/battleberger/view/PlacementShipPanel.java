@@ -24,7 +24,7 @@ public class PlacementShipPanel extends JPanel{
 	int credits;
 	boolean buyable = false;
 	int cs = 0; // pour me simplifier la vie
-	Ship choosen = null;
+	AbstractShip choosen = null;
 	
 	public PlacementShipPanel(Game game) {
 		this.setPreferredSize(new Dimension(0, 150));

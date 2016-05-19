@@ -69,5 +69,8 @@ public abstract class Player {
 	public void setMaxShipValue(int maxShipValue) {
 		this.maxShipValue = maxShipValue;
 	}
-	
+	public void upgrade(AbstractShip upgrade,AbstractShip base){
+		remove(base);
+		ships.add(upgrade);
+	}
 }

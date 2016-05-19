@@ -8,6 +8,7 @@ public class Armor extends AbstractShipDecorator{
 	public Armor(AbstractShip ship){
 		next=ship;
 		name="Armor";
+		cost=10;
 	}
 	@Override
 	public int getArmor() {		

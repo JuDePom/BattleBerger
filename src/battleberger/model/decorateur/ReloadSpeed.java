@@ -7,6 +7,7 @@ public class ReloadSpeed extends AbstractShipDecorator{
 	public ReloadSpeed(AbstractShip ship){
 		next=ship;
 		name="reloadSpeed";
+		cost=10;
 	}
 	@Override
 	public int getCooldown() {	

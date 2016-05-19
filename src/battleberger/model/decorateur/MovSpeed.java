@@ -8,6 +8,7 @@ public class MovSpeed extends AbstractShipDecorator{
 	public MovSpeed(AbstractShip ship){
 		next=ship;
 		name="MovSpeed";
+		cost=10;
 	}
 	@Override
 	public int getMovSpeed() {		
