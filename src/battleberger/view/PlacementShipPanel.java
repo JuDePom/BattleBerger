@@ -3,6 +3,8 @@ package battleberger.view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,6 +23,8 @@ public class PlacementShipPanel extends JPanel{
 	
 	int credits;
 	boolean buyable = false;
+	int cs = 0; // pour me simplifier la vie
+	Ship choosen = null;
 	
 	public PlacementShipPanel(Game game) {
 		this.setPreferredSize(new Dimension(0, 150));
@@ -28,6 +32,26 @@ public class PlacementShipPanel extends JPanel{
 		for (TypeShip type : Ship.TypeShip.values()){
 			ships.put(type, ShipyardDefault.orderShip(type));
 		}
+		
+		this.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				actionIn(e.getX(), e.getY());
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {}
+		});
 	}
 	
 	@Override
@@ -37,7 +61,7 @@ public class PlacementShipPanel extends JPanel{
 		
 		int h = this.getHeight();
 		
-		int cs = h / 7;
+		cs = h / 7;
 		
 		int x = 1;
 		int y = 1;
@@ -95,8 +119,27 @@ public class PlacementShipPanel extends JPanel{
 		buyable = true;
 		repaint();
 	}
+	
+	public void actionIn(int mouseX, int mouseY){
+		int x = 1;
+		int h = this.getHeight();
+		
+		for (AbstractShip ship : ships.values()){
+			
+			if (ship.shipValue() <= credits){
+				if (mouseX > x*cs - cs/2
+					&& mouseX < x*cs + ship.getWidth()*cs + cs/2
+					&& mouseY > h-cs)
+					choosen = ShipyardDefault.orderShip(ship.getType());
+				}
+			
+			x += 2 + ship.getWidth();
+		}
+	}
 
 	public AbstractShip getChoosen() {
-		return null;
+		AbstractShip tmp = choosen;
+		choosen = null;
+		return tmp;
 	}
 }

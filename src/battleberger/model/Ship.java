@@ -42,7 +42,7 @@ public abstract class Ship extends AbstractShip{
 	
 	
 	public int shipValue(){
-		return 1;//TODO: faire au cas par cas
+		return cost;
 	}
 	
 	protected void confStatMax(int maxPower,int maxArmor,int maxMovSpeed, int maxReloadSpeed){
