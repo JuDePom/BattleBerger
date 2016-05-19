@@ -14,7 +14,7 @@ public class ChuckNoris extends Ship {
 		int[][] vie = {{3,2,2},{3,0,0},{3,2,2}};
 		lives = vie;
 		setShapeNorth(b, ori);
-		
+		type=TypeShip.ChuckNoris;
 		imagepath = chemin;
 		fireshape = FireShape.norisShape();
 		this.confStatMax(5, 3, 3, 2);

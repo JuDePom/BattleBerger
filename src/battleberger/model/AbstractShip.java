@@ -4,6 +4,7 @@ import java.util.Map;
 
 import battleberger.model.Ship.Orientation;
 import battleberger.model.Ship.StatType;
+import battleberger.model.Ship.TypeShip;
 
 public abstract class AbstractShip {
 	
@@ -39,7 +40,7 @@ public abstract class AbstractShip {
 	public abstract void setTimereload(int timereload) ;
 	public abstract int getWidth();
 	public abstract int getHeight();
-	
+	public abstract TypeShip getType();
 	
 	public AbstractShip(){
 		cost = 1;

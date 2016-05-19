@@ -14,7 +14,7 @@ public class Commander extends Ship {
 		int[][] vie={{1,0,0,0},{3,2,2,1},{1,0,0,0}};
 		lives=vie;
 		setShapeNorth(b, ori);
-		
+		type=TypeShip.Commander;
 		imagepath=chemin;
 		fireshape=FireShape.lineShape();
 		this.confStatMax(3, 3, 1, 2);

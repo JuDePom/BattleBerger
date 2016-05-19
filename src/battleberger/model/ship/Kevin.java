@@ -8,7 +8,7 @@ public class Kevin extends Ship {
 
 	public Kevin(Orientation ori, int x, int y,String chemin){
 
-
+		type=TypeShip.Kevin;
 		positionX=x;
 		positionY=y;
 		boolean[][] b = new boolean[][]{{true}};

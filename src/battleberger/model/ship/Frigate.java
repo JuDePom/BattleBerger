@@ -19,7 +19,7 @@ public class Frigate extends Ship {
 			}
 		}
 		setShapeNorth(b, ori);
-		
+		type=TypeShip.Frigate;
 		imagepath=chemin;
 		fireshape=FireShape.standardShape();
 		this.confStatMax(3, 3, 1, 2);

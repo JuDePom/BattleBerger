@@ -6,16 +6,16 @@ import java.util.Map;
 public abstract class Ship extends AbstractShip{
 	
 
-	private int readyToFireIn;
+	protected int readyToFireIn;
 
 	public enum Orientation {North,South,East,West};
 	public enum TypeShip{Frigate,Commander,Spy,Kevin,Destroyer,SubMarine,Elisabeth,GrosseBerta,ChuckNoris,ShipDefault,BlackPearl}
 	public enum StatType{Power,Armor,MovSpeed,ReloadSpeed};
 
-	
-	private boolean[][] shapeNorth;
+	protected TypeShip type;
+	protected boolean[][] shapeNorth;
 	protected boolean[][] shape;
-	private Orientation orient;
+	protected Orientation orient;
 	protected String imagepath;
 	protected int[][] lives; 
 	protected int positionX;
@@ -291,6 +291,12 @@ public abstract class Ship extends AbstractShip{
 		}
 		return res;
 	}
+	
+	@Override
+	public TypeShip getType(){
+		return type;
+	}
+	
 	
 	
 	//savoir si il est vivant ou non sera calculer avec lives 

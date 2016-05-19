@@ -14,7 +14,7 @@ public class SubMarine extends Ship {
 		int[][] vie={{2,0,2,0,2}};
 		lives=vie;
 		setShapeNorth(b, ori);
-		
+		type=TypeShip.SubMarine;
 		
 		imagepath=chemin;
 		fireshape=FireShape.standardShape();

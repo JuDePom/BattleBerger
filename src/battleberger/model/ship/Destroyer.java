@@ -13,7 +13,7 @@ public class Destroyer extends Ship {
 		int[][] vie={{1,0,0},{0,2,1},{1,0,0}};
 		lives=vie;
 		setShapeNorth(b, ori);
-		
+		type=TypeShip.Destroyer;
 		imagepath=chemin;
 		fireshape=FireShape.crossShape();
 		this.confStatMax(4, 2, 2, 2);

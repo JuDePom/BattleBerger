@@ -18,7 +18,7 @@ public class ShipDefault extends Ship {
 			}
 		}
 		setShapeNorth(b, ori);
-		
+		type=TypeShip.ShipDefault;
 		
 		imagepath=chemin;
 		fireshape = FireShape.standardShape();

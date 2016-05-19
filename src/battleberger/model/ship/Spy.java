@@ -15,7 +15,7 @@ public class Spy extends Ship {
 		lives=vie;
 		setShapeNorth(b, ori);
 		
-		
+		type=TypeShip.Spy;
 		imagepath=chemin;
 		fireshape=FireShape.standardShape();
 		this.confStatMax(2, 2, 2, 1);

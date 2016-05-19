@@ -4,6 +4,7 @@ import java.util.Map;
 
 import battleberger.model.Ship.Orientation;
 import battleberger.model.Ship.StatType;
+import battleberger.model.Ship.TypeShip;
 
 public abstract class AbstractShipDecorator extends AbstractShip {
 // faire une augmentation expodentiel du prisx de l'amrure a chaque achat 
@@ -183,5 +184,9 @@ public abstract class AbstractShipDecorator extends AbstractShip {
 	@Override
 	public boolean overlap(Square s){
 		return next.overlap(s);
+	}
+	@Override
+	public TypeShip getType(){
+		return next.getType();
 	}
 }
