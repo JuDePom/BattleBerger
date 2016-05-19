@@ -132,9 +132,7 @@ public class Window extends JFrame implements Observer, IDisplay {
 
 		this.add(statspan, BorderLayout.NORTH);
 		
-		while (overlay(ships));
-		
-		gamepan.lock = true;
+		while (overlay(ships) || !gamepan.lock);
 		
 		return;
 	}

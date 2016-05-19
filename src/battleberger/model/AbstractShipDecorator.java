@@ -189,4 +189,21 @@ public abstract class AbstractShipDecorator extends AbstractShip {
 	public TypeShip getType(){
 		return next.getType();
 	}
+	@Override
+	public int getUpgrade(StatType type){
+	
+		return next.getUpgrade(type);
+	}
+	@Override
+	public void addUpgrade(StatType type){
+		next.addUpgrade(type);
+	}
+	@Override
+	public Map<StatType, Integer> upgrade(){
+		return next.upgrade();
+	}
+	@Override
+	public int getStatmax(StatType type){
+		return next.getStatmax(type);
+	}
 }

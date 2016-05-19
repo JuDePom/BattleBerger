@@ -20,11 +20,15 @@ public class Game extends Observable {
 	private List<Player> players;
 	private static int width, height;
 	private IDisplay display;
+
+	private Player currentplayer;
+
 	public IDisplay getDisplay() {
 		return display;
 	}
 
 	private List<IStrategy> strategies;
+
 	
 	public Game(Player p1, Player p2, IDisplay disp){
 		players = new ArrayList<>();
@@ -57,7 +61,7 @@ public class Game extends Observable {
 		while( ! isEndOfGame() ){
 			start = System.currentTimeMillis();
 			for(Player p : players){
-				
+				currentplayer=p;
 				Shot s = p.play(this);
 				if(s != null){
 					//si le joueur ne passe pas son tour
@@ -186,5 +190,12 @@ public class Game extends Observable {
 		return getWidth() * getHeight();
 	}
 
+
+	public Player getCurrentplayer() {
+		return currentplayer;
+	}
+
+
+	
 
 }

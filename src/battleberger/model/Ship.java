@@ -297,8 +297,26 @@ public abstract class Ship extends AbstractShip{
 		return type;
 	}
 	
+	@Override
+	public void addUpgrade(StatType type){
+		int nb=upgrade.get(type)+1;
+		upgrade.put(type, nb);
+	}
 	
+	@Override
+	public int getUpgrade(StatType type){
+		return upgrade.get(type);
+	}
 	
+	@Override
+	public Map<StatType,Integer> upgrade(){
+		return upgrade();
+	}
+	
+	@Override 
+	public int getStatmax(StatType type){
+		return statmax.get(type);
+	}
 	//savoir si il est vivant ou non sera calculer avec lives 
 	//potentiellement si une case brule ou non => tableau de boolean  
 	// un truc pour avoir une époque qui ne change pas 

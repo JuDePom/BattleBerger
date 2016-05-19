@@ -11,7 +11,7 @@ public abstract class AbstractShip {
 	
 	protected int cost;
 	protected String name;
-	
+	protected Map<StatType,Integer> upgrade;
 	
 	public enum TimeSpace{Default,MoyenAge,SheepAge};
 	public abstract int getPower();
@@ -35,13 +35,16 @@ public abstract class AbstractShip {
 	public abstract int getNbEquipementmax() ;
 	public abstract void setNbEquipementmax(int nbEquipementmax) ;
 	public abstract Map<StatType, Integer> getStatmax() ;
+	public abstract int getStatmax(StatType type);
 	public abstract void setStatmax(Map<StatType, Integer> statmax) ;
 	public abstract int getTimereload() ;
 	public abstract void setTimereload(int timereload) ;
 	public abstract int getWidth();
 	public abstract int getHeight();
 	public abstract TypeShip getType();
-	
+	public abstract int getUpgrade(StatType stat);
+	public abstract void addUpgrade(StatType stat);
+	public abstract Map<StatType, Integer> upgrade();
 	public AbstractShip(){
 		cost = 1;
 	}
