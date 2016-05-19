@@ -7,7 +7,7 @@ import battleberger.model.FireShape;
 public class ChuckNoris extends Ship {
 
 	public ChuckNoris(Orientation ori, int x, int y,String chemin){
-		
+		cost=7;
 		positionX = x;
 		positionY = y;
 		boolean[][] b = {{true,true,true},{true,false,false},{true,true,true}};

@@ -7,7 +7,7 @@ import battleberger.model.FireShape;
 public class Frigate extends Ship {
 
 	public Frigate(Orientation ori, int x, int y,String chemin){
-		
+		cost=3;
 		positionX=x;
 		positionY=y;
 		boolean[][] b = new boolean[1][4];

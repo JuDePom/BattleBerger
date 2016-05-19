@@ -7,7 +7,7 @@ import battleberger.model.FireShape;
 public class SubMarine extends Ship {
 
 	public SubMarine(Orientation ori, int x, int y,String chemin){
-		
+		cost=4;
 		positionX=x;
 		positionY=y;
 		boolean[][] b={{true,false,true,false,true}};

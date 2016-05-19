@@ -7,7 +7,7 @@ import battleberger.model.FireShape;
 public class GrosseBerta extends Ship {
 
 	public GrosseBerta(Orientation ori, int x, int y,String chemin){
-		
+		cost=10;
 		positionX=x;
 		positionY=y;
 		boolean[][] tmpS = new boolean[2][4];

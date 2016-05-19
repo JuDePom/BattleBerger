@@ -7,7 +7,7 @@ import battleberger.model.FireShape;
 public class Spy extends Ship {
 
 	public Spy(Orientation ori, int x, int y,String chemin){
-		
+		cost=3;
 		positionX=x;
 		positionY=y;
 		boolean[][] b={{true,false},{false,true}};

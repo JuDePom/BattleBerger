@@ -7,7 +7,7 @@ import battleberger.model.FireShape;
 public class Commander extends Ship {
 
 	public Commander(Orientation ori, int x, int y,String chemin){
-		
+		cost=4;
 		positionX=x;
 		positionY=y;
 		boolean[][] b={{true,false,false,false},{true,true,true,true},{true,false,false,false}};

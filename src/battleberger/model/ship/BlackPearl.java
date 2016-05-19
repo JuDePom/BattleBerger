@@ -6,7 +6,7 @@ import battleberger.model.FireShape;
 
 public class BlackPearl extends Ship{
 	public BlackPearl(Orientation ori, int x, int y,String chemin){
-		
+		cost=7;
 		positionX = x;
 		positionY = y;
 		lives =	new int[][]{ {1,2,0,0}, {0,3,2,1}, {1,2,0,0} };

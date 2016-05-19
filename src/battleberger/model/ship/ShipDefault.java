@@ -6,7 +6,7 @@ import battleberger.model.FireShape;
 public class ShipDefault extends Ship {
 
 	public ShipDefault(Orientation ori, int x, int y,String chemin){
-		
+		cost=2;
 		positionX=x;
 		positionY=y;
 		boolean[][] b = new boolean[1][2];

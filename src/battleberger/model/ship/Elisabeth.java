@@ -7,7 +7,7 @@ import battleberger.model.FireShape;
 public class Elisabeth extends Ship {
 
 	public Elisabeth(Orientation ori, int x, int y,String chemin){
-		
+		cost=10;
 		positionX=x;
 		positionY=y;
 		boolean[][] b={{false,true,true},{true,true,false},{true,true,false},{false,true,true}};

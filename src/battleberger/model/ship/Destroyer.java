@@ -6,7 +6,7 @@ import battleberger.model.FireShape;
 public class Destroyer extends Ship {
 
 	public Destroyer(Orientation ori, int x, int y,String chemin){
-		
+		cost=5;
 		positionX=x;
 		positionY=y;
 		boolean[][] b={{true,false,false},{false,true,true},{true,false,false}};
