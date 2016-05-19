@@ -21,5 +21,5 @@ public interface IDisplay {
 	
 	public AbstractShip selectShip(Player p);
 
-	List<AbstractShip> placeShips(int maxShipValue);
+	void placeShips(List<AbstractShip> ships);
 }

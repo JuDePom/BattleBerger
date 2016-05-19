@@ -1,5 +1,6 @@
 package battleberger.model.player;
 
+import battleberger.model.AbstractShip;
 import battleberger.model.Game;
 import battleberger.view.IDisplay;
 
@@ -17,11 +18,12 @@ public class Human extends Player {
 
 	@Override
 	public void selectShips(IDisplay display) {
-		ships = display.placeShips(getMaxShipValue());		
+		while (getMaxShipValue() > 0){
+			AbstractShip ship = display.selectShip(this);
+			setMaxShipValue(getMaxShipValue() - ship.shipValue());
+			ships.add(ship);
+		}
+		
+		display.placeShips(ships);
 	}
-
-	
-	
-
-
 }

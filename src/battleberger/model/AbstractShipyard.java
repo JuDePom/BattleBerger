@@ -8,13 +8,13 @@ public abstract class AbstractShipyard {
 	public static AbstractShip orderShip(TypeShip type){
 		switch(ts){
 		case Default :
-			return new ShipyardDefault().buildShip(type,-1,-1);	
+			return new ShipyardDefault().buildShip(type,0,0);	
 		case MoyenAge :
-			return new ShipyardMoyenAge().buildShip(type,-1,-1);
+			return new ShipyardMoyenAge().buildShip(type,0,0);
 		case SheepAge :
-			return new ShipyardSheepAge().buildShip(type,-1,-1);
+			return new ShipyardSheepAge().buildShip(type,0,0);
 		default :
-			return new ShipyardDefault().buildShip(type,-1,-1);	
+			return new ShipyardDefault().buildShip(type,0,0);	
 		}
 		
 	}

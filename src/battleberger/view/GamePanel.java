@@ -24,6 +24,10 @@ public class GamePanel extends JPanel{
 	private BufferedImage ocean;
 	private Point mouse;
 	
+	boolean lock = false;
+	boolean drag = false;
+	AbstractShip shipSel = null;
+	
 	int gw, gh, pw, ph, wpc, hpc, cs, dw, dh;
 
 	public GamePanel(Game game) {
@@ -43,12 +47,39 @@ public class GamePanel extends JPanel{
 			}
 			
 			@Override
-			public void mouseDragged(MouseEvent e) {}
+			public void mouseDragged(MouseEvent e) {
+				dragMouse(e.getPoint());
+			}
 		});
 	}
 
 	protected void movMouse(Point point) {
 		mouse = point;
+		drag = false;
+		this.updateUI();
+	}
+	
+	protected void dragMouse(Point point) {
+		mouse = point;
+		if (lock) return;
+		
+		List<Player> players = game.getPlayers();
+		Player me = players.get(0);
+		
+		mouse.x -= dw; mouse.y -= dh;
+		mouse.x /= cs; mouse.y /= cs;
+		
+		if (!drag){
+			for (AbstractShip ship : me.getShips()){	
+				if ( ship.overlap(mouse.x, mouse.y) )
+					shipSel = ship;
+			}
+		}
+		drag = true;
+		
+		shipSel.setPositionX(mouse.x);
+		shipSel.setPositionY(mouse.y);
+		
 		this.updateUI();
 	}
 
