@@ -206,4 +206,12 @@ public abstract class AbstractShipDecorator extends AbstractShip {
 	public int getStatmax(StatType type){
 		return next.getStatmax(type);
 	}
+	@Override
+	public String getName(){
+		return next.getName();
+	}
+	@Override
+	public void setName(String s){
+		 next.setName(s);
+	}
 }

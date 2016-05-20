@@ -46,6 +46,8 @@ public abstract class AbstractShip {
 	public abstract int getUpgrade(StatType stat);
 	public abstract void addUpgrade(StatType stat);
 	public abstract Map<StatType, Integer> upgrade();
+	public abstract String getName();
+	public abstract void setName(String s);
 	/**
 	 * function a utiliser juste pour les decorateurs
 	 */

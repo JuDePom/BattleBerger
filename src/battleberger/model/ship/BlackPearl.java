@@ -12,7 +12,7 @@ public class BlackPearl extends Ship{
 		lives =	new int[][]{ {1,2,0,0}, {0,3,2,1}, {1,2,0,0} };
 		setShapeNorth(new boolean[][]{{true,true,false,false},{false,true,true,true},{true,true,false,false}}, ori);
 		type=TypeShip.BlackPearl;
-		
+		setName(type.name());
 		instanceUpgrade();
 		imagepath = chemin;
 		fireshape = FireShape.plusShape();

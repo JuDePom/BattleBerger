@@ -22,6 +22,7 @@ public class Spy extends Ship {
 		calculeNbEquipMax();
 		Name();
 		instanceUpgrade();
+		setName(type.name());
 	}
 
 	@Override

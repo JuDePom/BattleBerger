@@ -26,6 +26,7 @@ public class ShipDefault extends Ship {
 		calculeNbEquipMax();
 		Name();
 		instanceUpgrade();
+		setName(type.name());
 	}
 
 	@Override

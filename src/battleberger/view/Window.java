@@ -163,6 +163,7 @@ public class Window extends JFrame implements Observer, IDisplay {
 		while (!gamepan.isTurnEnded()){
 			sel = gamepan.getSelectedShip();
 			shoppan.refresh(sel);
+			statspan.refresh(sel);
 			Point spos = gamepan.getShotPos();
 			
 			if (sel != null && spos != null){

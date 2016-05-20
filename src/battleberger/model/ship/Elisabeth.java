@@ -22,6 +22,7 @@ public class Elisabeth extends Ship {
 		calculeNbEquipMax();
 		Name();
 		instanceUpgrade();
+		setName(type.name());
 	}
 
 	@Override

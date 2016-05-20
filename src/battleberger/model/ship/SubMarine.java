@@ -22,6 +22,7 @@ public class SubMarine extends Ship {
 		calculeNbEquipMax();
 		Name();
 		instanceUpgrade();
+		setName(type.name());
 	}
 
 	@Override

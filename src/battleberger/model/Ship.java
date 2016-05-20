@@ -329,6 +329,14 @@ public abstract class Ship extends AbstractShip{
 	public StatType getStat(){
 		return null;
 	}
+	@Override
+	public String getName(){
+		return name;
+	}
+	@Override
+	public void setName(String s){
+		name=s;
+	}
 	//savoir si il est vivant ou non sera calculer avec lives 
 	//potentiellement si une case brule ou non => tableau de boolean  
 	// un truc pour avoir une époque qui ne change pas 
