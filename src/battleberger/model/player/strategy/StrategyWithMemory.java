@@ -16,8 +16,9 @@ public class StrategyWithMemory extends IStrategy {
 	public StrategyWithMemory() {
 	}
 	
-	
+	@Override
 	public void setDim(int width, int height){
+		super.setDim(width, height);
 		states = new State[width][height];
 		for(int i = 0 ; i < width ; i++){
 			for(int j = 0 ; j < height ; j++){
@@ -38,22 +39,22 @@ public class StrategyWithMemory extends IStrategy {
 	
 	@Override
 	public Shot fire(Computer ai, Game g) {
+		Random r = new Random();
 		for(int i = 0 ; i < states.length ; i++){
 			for(int j = 0 ; j < states[0].length ; j++){
 				State state = states[i][j];
 				if(state == State.touched){
-					return new Shot(ai.getBestShip().getFireshape(), i, j);
+					return new Shot(ai.getBestShip().getFireshape(), i + (r.nextInt(1)-1 )*r.nextInt(2) , j);
 				}
 			}
 		}
 		//si on est là on n'a touché aucun bateau
-		Random r = new Random();
+		
 		int x, y;
 		do{
-			System.out.println(width + " " + height);
 			x = r.nextInt(width);
 			y = r.nextInt(height);
-		}while(states[x][y] != State.sinked);
+		}while(states[x][y] == State.sinked);
 		return new Shot(ai.getBestShip().getFireshape(), x, y);
 	}
 
