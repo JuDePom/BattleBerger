@@ -143,7 +143,6 @@ public class ShopPanel extends JPanel{
 	public void instancePicture(){
 		Picture[] pictur=Picture.values();
 		for(Picture p : pictur){
-			System.out.println(p.name());
 			imageshop.put(p,new ImageIcon(RessourceManager.getImage("./assets/images/"+p.name())));
 		}
 	}
