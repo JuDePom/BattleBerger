@@ -213,12 +213,15 @@ public class GamePanel extends JPanel{
 	}
 
 	public void drawMyField(Graphics g){
+		g.setColor(new Color(255, 0, 0, 100));
 		for (Pair sh : shots){
-			if (sh.player == game.getCurrentPlayer()){
 				for ( Square sq : sh.shot.getSquares().keySet() ){
-					g.fillRect(dw + (sq.getX())* cs, dh + (sq.getY()) * cs, cs, cs);
+					if (sq.getX() >= 0 && sq.getX() <= gw
+							&& sq.getY() >= 0 && sq.getY() <= gh)
+						
+					g.fillRect(dw + sq.getX()* cs, dh + sq.getY() * cs, cs, cs);
 				}
-			}
+			
 		}
 		
 		g.setColor(Color.CYAN);
