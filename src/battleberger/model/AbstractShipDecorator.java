@@ -10,16 +10,17 @@ public abstract class AbstractShipDecorator extends AbstractShip {
 // faire une augmentation expodentiel du prisx de l'amrure a chaque achat 
 	protected AbstractShip next;
 	protected StatType stat; 
+	protected int costUpgrade;
 	
+	@Override
+	public int getCostUpgrade() {
+		return costUpgrade;
+	}
 	
+	@Override
 	public StatType getStat() {
 		return stat;
 	}
-
-	public void setStat(StatType stat) {
-		this.stat = stat;
-	}
-	
 	
 	@Override
 	public int isReadyToFireIn() {

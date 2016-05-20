@@ -22,6 +22,8 @@ public class ShopPanel extends JPanel{
 	AbstractShip currentship;
 	Game battle;
 	Armory armory;
+	JLabel[] cost=new JLabel[4];
+	JButton[] buy=new JButton[4];
 	public ShopPanel(Game game) {
 		this.setPreferredSize(new Dimension(250, 100));
 		battle=game;
@@ -34,28 +36,38 @@ public class ShopPanel extends JPanel{
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		for(int i=0;i<stat.length;i++){
 			StatType type=stat[i];
-			JButton buy=new JButton("Buy");
-			buy.setPreferredSize(new Dimension(30,10));
+			 buy[i]=new JButton("Buy");
+			buy[i].setPreferredSize(new Dimension(30,10));
 			
 			upgrade[i]=new JPanel();
 			
-			buy.addActionListener(new ActionListener(){
+			buy[i].addActionListener(new ActionListener(){
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
+					if(currentship!=null)
 					battle.getCurrentplayer().upgrade(armory.buildUpgrade(type, currentship),currentship);
+					//System.out.println("kaboum!");
 				}
 			});
-			JLabel cost=new JLabel("Cost : noEntry");
+			cost[i]=new JLabel("Cost : noEntry");
 			JLabel name=new JLabel(type.name());
 			upgrade[i].setBorder(BorderFactory.createLineBorder(Color.black));
 			upgrade[i].setLayout(new GridLayout());
 			upgrade[i].add(name);
-			upgrade[i].add(cost);
-			upgrade[i].add(buy);
+			upgrade[i].add(cost[i]);
+			upgrade[i].add(buy[i]);
 			
 			
 			add(upgrade[i]);
 			
+		}
+	}
+	public void setCost(AbstractShip ship){
+		StatType[] type=StatType.values();
+		for(int i=0;i<type.length;i++){
+			
+			int money=ship.getUpgrade(type[i])*ship.getCostUpgrade();;
+			cost[i].setText("Cost : "+money);
 		}
 	}
 	

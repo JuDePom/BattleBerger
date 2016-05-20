@@ -45,6 +45,12 @@ public abstract class AbstractShip {
 	public abstract int getUpgrade(StatType stat);
 	public abstract void addUpgrade(StatType stat);
 	public abstract Map<StatType, Integer> upgrade();
+	/**
+	 * function a utiliser juste pour les decorateurs
+	 */
+	public abstract StatType getStat();
+	public abstract int getCostUpgrade();
+	
 	public AbstractShip(){
 		cost = 1;
 	}

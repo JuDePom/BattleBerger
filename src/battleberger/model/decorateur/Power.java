@@ -7,7 +7,7 @@ public class Power extends AbstractShipDecorator{
 	public Power(AbstractShip ship){
 		next=ship;
 		name="Armor";
-		cost=10;
+		costUpgrade=10;
 	}
 	@Override
 	public int getPower() {		

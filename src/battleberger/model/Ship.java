@@ -8,7 +8,7 @@ public abstract class Ship extends AbstractShip{
 
 	protected int readyToFireIn;
 
-	public enum Orientation {North,South,East,West};
+	public enum Orientation {North,East,South,West};
 	public enum TypeShip{Frigate,Commander,Spy,Kevin,Destroyer,SubMarine,Elisabeth,GrosseBerta,ChuckNoris,ShipDefault,BlackPearl}
 	public enum StatType{Power,Armor,MovSpeed,ReloadSpeed};
 
@@ -316,6 +316,14 @@ public abstract class Ship extends AbstractShip{
 	@Override 
 	public int getStatmax(StatType type){
 		return statmax.get(type);
+	}
+	@Override 
+	public int getCostUpgrade(){
+		return 0;
+	}
+	@Override
+	public StatType getStat(){
+		return null;
 	}
 	//savoir si il est vivant ou non sera calculer avec lives 
 	//potentiellement si une case brule ou non => tableau de boolean  
