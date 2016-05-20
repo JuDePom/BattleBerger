@@ -220,7 +220,10 @@ public abstract class Ship extends AbstractShip{
 	}
 	@Override
 	public void setTimereload(int timereload) {
-		this.timereload = timereload;
+		if(timereload>0)
+			this.timereload = timereload;
+		else
+			this.timereload=0;
 	}
 	
 	
