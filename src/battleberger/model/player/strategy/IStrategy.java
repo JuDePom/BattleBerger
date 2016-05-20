@@ -14,11 +14,15 @@ import battleberger.model.player.Shot;
 
 public abstract class IStrategy {
 	
+	int width, height;
 	public abstract Shot fire(Computer ai, Game g);
 	
 	public abstract List<AbstractShip> selectShips(int maxShipValue);
 	
-	
+	public void setDim(int width, int height){
+		this.width = width;
+		this.height = height;
+	}
 
 	public List<AbstractShip> selectRandomShips(int maxShipValue){
 		List<AbstractShip> ships = new ArrayList<>();

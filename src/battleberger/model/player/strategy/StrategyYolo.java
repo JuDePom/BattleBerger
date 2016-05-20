@@ -1,14 +1,10 @@
 package battleberger.model.player.strategy;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import battleberger.model.AbstractShip;
-import battleberger.model.AbstractShipyard;
 import battleberger.model.Game;
-import battleberger.model.Ship.Orientation;
-import battleberger.model.Ship.TypeShip;
 import battleberger.model.player.Computer;
 import battleberger.model.player.Shot;
 

@@ -20,40 +20,40 @@ public class Game extends Observable {
 	private List<Player> players;
 	private static int width, height;
 	private IDisplay display;
-
-	private Player currentplayer;
-
 	public IDisplay getDisplay() {
 		return display;
 	}
 
-	private List<IStrategy> strategies;
-
+	private static List<IStrategy> strategies;
+	static {
+		strategies = new ArrayList<>();
+		strategies.add(new StrategyYolo());
+		strategies.add(new StrategyDiagonal());
+	}
+	
 	
 	public Game(Player p1, Player p2, IDisplay disp){
 		players = new ArrayList<>();
 		addPlayer(p1);
 		addPlayer(p2);
-		setDisplay(disp);
+		setDisplay(disp);strategies.add(new StrategyWithMemory());
+		
 	}
-	
+
 
 	public void play(){
 
 		display.selectGridDimension();
 
-		strategies = new ArrayList<>();
-		strategies.add(new StrategyYolo());
-		strategies.add(new StrategyDiagonal());
-		((StrategyDiagonal)strategies.get(1)).setWidth(width);
-		((StrategyDiagonal)strategies.get(1)).setHeight(height);
-		
-		strategies.add(new StrategyWithMemory());
-		((StrategyWithMemory)strategies.get(2)).setDim(width, height);
-		
+		for(IStrategy strat : strategies){
+			strat.setDim(width, height);
+		}
 		
 		
 		for(Player p : players){
+			if(p instanceof Computer){
+				((Computer)p).setStrat(strategies.get(1));
+			}
 			p.selectShips(display);
 		}
 		
@@ -61,7 +61,7 @@ public class Game extends Observable {
 		while( ! isEndOfGame() ){
 			start = System.currentTimeMillis();
 			for(Player p : players){
-				currentplayer=p;
+				
 				Shot s = p.play(this);
 				if(s != null){
 					//si le joueur ne passe pas son tour
@@ -86,8 +86,13 @@ public class Game extends Observable {
 	
 	
 	public void setStrategy(Strategies strat){
-
-		Computer ia = (Computer)players.get(1);
+		Computer ia = null;
+		for(Player p : players){
+			if( p instanceof Computer){
+				ia = (Computer)p;
+			}
+		}
+		
 		IStrategy strategy = null;
 		switch(strat){
 		case Yolo:
@@ -190,12 +195,5 @@ public class Game extends Observable {
 		return getWidth() * getHeight();
 	}
 
-
-	public Player getCurrentplayer() {
-		return currentplayer;
-	}
-
-
-	
 
 }

@@ -9,36 +9,42 @@ import battleberger.model.player.Shot;
 
 public class StrategyDiagonal extends IStrategy{
 
-	int x, y, last_x, last_y, width, height;
+	int x, y, last_x, last_y;
 	
 	
 	public StrategyDiagonal(){
-		x = 0;
-		y = 0;
-		last_x = 0;
-		last_y = 0;
+		x = -1;
+		y = -1;
+		last_x = -1;
+		last_y = -1;
 	}
 	
+	
+	boolean direction = false;
+	private int move(int x){
+		return (direction) ? x-1 : x +1;
+	}
 	@Override
 	public Shot fire(Computer ai, Game g) {
-		x++;
-		y++;
-		
-		if(x >= width){
+		x = move(x);
+		y = move(y);
+		if(x >= width || x <= 0){
 			last_x++;
 			if(last_x >= width){
 				last_x = 0;
 			}
 			x = last_x;
 		}
-		if(y >= height){
+		if(y >= height || y <= 0){
 			last_y++;
 			if(last_y >= height){
 				last_y = 0;
+				y = 0;
+				direction = ! direction;
 			}
-			y = last_y;
+			//y = last_y;
 		}
-		
+		System.out.println(x + " "+ y + " " + width + " " + height);
 		return new Shot(ai.getBestShip().getFireshape(), x, y);
 	}
 
@@ -47,22 +53,7 @@ public class StrategyDiagonal extends IStrategy{
 		return selectRandomShips(maxShipValue);
 	}
 
-	public int getWidth() {
-		return width;
-	}
-
-	public void setWidth(int width) {
-		this.width = width;
-	}
-
-	public int getHeight() {
-		return height;
-	}
-
-	public void setHeight(int height) {
-		this.height = height;
-	}
-
+	
 	
 	
 	
