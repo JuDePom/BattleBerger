@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -24,18 +26,22 @@ import battleberger.model.player.Player;
 
 @SuppressWarnings("serial")
 public class ShopPanel extends JPanel{
+	public enum Picture{Shop,Closeshop,Buyshop,Power,Armor,MovSpeed,ReloadSpeed}
 	AbstractShip currentship;
 	Game battle;
 	Armory armory;
 	JLabel[] cost=new JLabel[4];
 	JButton[] buy=new JButton[4];
+	Map<Picture,ImageIcon> imageshop=new HashMap<Picture,ImageIcon>();
 	public ShopPanel(Game game) {
+		instancePicture();
 		this.setPreferredSize(new Dimension(250, 100));
 		battle=game;
 		armory=new Armory();
 		StatType[] stat=StatType.values();
 		JPanel[] upgrade=new JPanel[stat.length];
-		JLabel title=new JLabel(new ImageIcon("./assets/images/shop.png"));
+		JLabel title=new JLabel(imageshop.get(Picture.Shop));
+		Picture[] picto=Picture.values();
 		this.setBackground(new Color(130,155,189));
 		title.setPreferredSize(new Dimension(250,50));
 		this.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -45,14 +51,14 @@ public class ShopPanel extends JPanel{
 		for(int i=0;i<stat.length;i++){
 			StatType type=stat[i];
 			buy[i]=new JButton();
-			buy[i].setIcon(new ImageIcon("./assets/images/buyshop.png"));
+			buy[i].setIcon(imageshop.get(Picture.Buyshop));
 			buy[i].setBackground(new Color(177,207,248));
 			buy[i].setFocusable(false);
 			buy[i].setPreferredSize(new Dimension(30,10));
 			buy[i].setEnabled(true);
 			buy[i].setBorder(BorderFactory.createLineBorder(Color.black));
 			upgrade[i]=new JPanel();
-			buy[i].setDisabledIcon(new ImageIcon("./assets/images/closeshop.png"));
+			buy[i].setDisabledIcon(imageshop.get(Picture.Closeshop));
 			buy[i].addActionListener(new ActionListener(){
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
@@ -71,7 +77,9 @@ public class ShopPanel extends JPanel{
 			
 			cost[i]=new JLabel("Cost : "/*+(int)(armory.buildUpgrade(type, null).getCostUpgrade()*Math.pow(2,currentship.getUpgrade(type)))*/);
 			JLabel name=new JLabel();
-			name.setIcon(new ImageIcon("./assets/images/"+type.name()+".png"));
+			for(Picture p : picto){
+				if(p.name()==type.name())name.setIcon(imageshop.get(p));
+			}
 			upgrade[i].setBorder(BorderFactory.createLineBorder(Color.black));
 			upgrade[i].setLayout(new GridLayout());
 			upgrade[i].add(name);
@@ -112,6 +120,7 @@ public class ShopPanel extends JPanel{
 			if(currentship!=null)
 				money=(int)Math.pow(2, currentship.getUpgrade(type[i]))*currentship.getCostUpgrade();
 			if(p!=null){
+				if(currentship.getUpgrade(type[i])<=currentship.getStatmax(type[i])){
 				if(p.getMoney()<=money){
 					buy[i].setEnabled(false);
 					
@@ -120,9 +129,9 @@ public class ShopPanel extends JPanel{
 				else{
 					buy[i].setEnabled(true);
 					
-					buy[i].setIcon(new ImageIcon("./assets/images/buyshop.png"));
+					buy[i].setIcon(imageshop.get(Picture.Buyshop));
 				}
-					
+				}
 			}
 		}
 	}
@@ -131,5 +140,10 @@ public class ShopPanel extends JPanel{
 		enabledButton();
 		
 	}
-	
+	public void instancePicture(){
+		Picture[] pictur=Picture.values();
+		for(Picture p : pictur){
+			imageshop.put(p,new ImageIcon(RessourceManager.getImage("./assets/images/"+p.name())));
+		}
+	}
 }
