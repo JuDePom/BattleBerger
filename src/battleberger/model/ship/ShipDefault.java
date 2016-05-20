@@ -25,6 +25,7 @@ public class ShipDefault extends Ship {
 		this.confStatMax(2, 2, 1, 2);
 		calculeNbEquipMax();
 		Name();
+		instanceUpgrade();
 	}
 
 	@Override

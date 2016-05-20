@@ -21,6 +21,7 @@ public class Spy extends Ship {
 		this.confStatMax(2, 2, 2, 1);
 		calculeNbEquipMax();
 		Name();
+		instanceUpgrade();
 	}
 
 	@Override

@@ -20,6 +20,7 @@ public class Commander extends Ship {
 		this.confStatMax(3, 3, 1, 2);
 		calculeNbEquipMax();
 		Name();
+		instanceUpgrade();
 	}
 
 	@Override

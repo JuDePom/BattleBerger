@@ -13,7 +13,7 @@ public class BlackPearl extends Ship{
 		setShapeNorth(new boolean[][]{{true,true,false,false},{false,true,true,true},{true,true,false,false}}, ori);
 		type=TypeShip.BlackPearl;
 		
-		
+		instanceUpgrade();
 		imagepath = chemin;
 		fireshape = FireShape.plusShape();
 		this.confStatMax(4, 3, 2,2);

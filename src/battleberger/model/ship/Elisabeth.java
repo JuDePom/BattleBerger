@@ -21,6 +21,7 @@ public class Elisabeth extends Ship {
 		this.confStatMax(6, 3, 4, 2);
 		calculeNbEquipMax();
 		Name();
+		instanceUpgrade();
 	}
 
 	@Override

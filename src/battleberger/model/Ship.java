@@ -52,7 +52,12 @@ public abstract class Ship extends AbstractShip{
 		statmax.put(StatType.MovSpeed,maxMovSpeed);
 		statmax.put(StatType.ReloadSpeed,maxReloadSpeed);
 	}
-	
+	protected void instanceUpgrade(){
+		StatType[] type=StatType.values();
+		for(StatType st :type){
+			upgrade.put(st, 0);
+		}
+	}
 	protected void calculeNbEquipMax(){
 		int res=0;
 		for(int i=0;i<shapeNorth.length;i++){
@@ -299,8 +304,7 @@ public abstract class Ship extends AbstractShip{
 	
 	@Override
 	public void addUpgrade(StatType type){
-		int nb=upgrade.get(type)+1;
-		upgrade.put(type, nb);
+		upgrade.put(type, upgrade.get(type)+1);
 	}
 	
 	@Override

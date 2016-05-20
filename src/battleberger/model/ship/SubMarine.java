@@ -21,6 +21,7 @@ public class SubMarine extends Ship {
 		this.confStatMax(3, 3, 2, 2);
 		calculeNbEquipMax();
 		Name();
+		instanceUpgrade();
 	}
 
 	@Override

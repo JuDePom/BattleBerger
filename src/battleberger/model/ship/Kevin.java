@@ -21,6 +21,7 @@ public class Kevin extends Ship {
 		this.confStatMax(1, 1, 1, 1);
 		calculeNbEquipMax();
 		Name();
+		instanceUpgrade();
 	}
 
 	@Override

@@ -20,6 +20,7 @@ public class ChuckNoris extends Ship {
 		this.confStatMax(5, 3, 3, 2);
 		calculeNbEquipMax();
 		Name();
+		instanceUpgrade();
 	}
 
 	@Override

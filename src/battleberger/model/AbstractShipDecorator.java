@@ -192,7 +192,6 @@ public abstract class AbstractShipDecorator extends AbstractShip {
 	}
 	@Override
 	public int getUpgrade(StatType type){
-	
 		return next.getUpgrade(type);
 	}
 	@Override

@@ -12,6 +12,7 @@ public abstract class Player {
 	protected List<AbstractShip> ships = new ArrayList<AbstractShip>();
 	protected Game game;
 	protected int maxShipValue;
+	protected int money=0;
 	
 	public Player(int maxShipValue){
 		this.setMaxShipValue(maxShipValue);
@@ -89,5 +90,11 @@ public abstract class Player {
 	public void upgrade(AbstractShip upgrade,AbstractShip base){
 		remove(base);
 		ships.add(upgrade);
+	}
+	public int getMoney(){
+		return money;
+	}
+	public void gainMoney(int potdevin){
+		money+=potdevin;
 	}
 }

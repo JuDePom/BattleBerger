@@ -19,6 +19,7 @@ public class Destroyer extends Ship {
 		this.confStatMax(4, 2, 2, 2);
 		calculeNbEquipMax();
 		Name();
+		instanceUpgrade();
 	}
 
 	@Override

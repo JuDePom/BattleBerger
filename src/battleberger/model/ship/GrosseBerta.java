@@ -25,6 +25,7 @@ public class GrosseBerta extends Ship {
 		this.confStatMax(8, 1, 1, 5);
 		calculeNbEquipMax();
 		Name();
+		instanceUpgrade();
 	}
 
 	@Override

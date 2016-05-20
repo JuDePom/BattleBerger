@@ -1,5 +1,6 @@
 package battleberger.model;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import battleberger.model.Ship.Orientation;
@@ -11,7 +12,7 @@ public abstract class AbstractShip {
 	
 	protected int cost;
 	protected String name;
-	protected Map<StatType,Integer> upgrade;
+	protected Map<StatType,Integer> upgrade=new HashMap<StatType,Integer>();
 	
 	public enum TimeSpace{Default,MoyenAge,SheepAge};
 	public abstract int getPower();
