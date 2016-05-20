@@ -55,7 +55,7 @@ public class ShopPanel extends JPanel{
 			buy[i].setBackground(new Color(177,207,248));
 			buy[i].setFocusable(false);
 			buy[i].setPreferredSize(new Dimension(30,10));
-			buy[i].setEnabled(true);
+			buy[i].setEnabled(false);
 			buy[i].setBorder(BorderFactory.createLineBorder(Color.black));
 			upgrade[i]=new JPanel();
 			buy[i].setDisabledIcon(imageshop.get(Picture.Closeshop));
