@@ -1,0 +1,13 @@
+script ant
+sauvegarde/load
+ecran de fin
+reset le cooldown, il est déjà réduit
+faire le dossier
+(si on a le temps (mdr non): faire le status du bateau sélectionné)
+panneau stratégies
+afficher les tirs des deux côtés
+(souris disparait à droite)
+afficher fireshape côté ennemi
+selection bateau qui ne marche pas
+couleur selon si on touche ou pas
+

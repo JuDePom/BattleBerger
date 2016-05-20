@@ -65,6 +65,7 @@ public abstract class AbstractShip {
 	public abstract void setReadyToFireIn(int i);
 	
 	public void endOfTurnProcessing(){
+		setTimereload(getTimereload() - 1);
 		setReadyToFireIn(isReadyToFireIn() - 1);
 	}
 	

@@ -20,7 +20,6 @@ public abstract class IStrategy {
 	public abstract List<AbstractShip> selectShips(int maxShipValue);
 	
 	public void setDim(int width, int height){
-		System.out.println(this + " " + width);
 		this.width = width;
 		this.height = height;
 	}
