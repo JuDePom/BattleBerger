@@ -21,6 +21,7 @@ public class Window extends JFrame implements Observer, IDisplay {
 	private ShopPanel shoppan;
 	private GamePanel gamepan;
 	private StatusPanel statspan;
+	private StartPanel startpan;
 
 	Game game;
 
@@ -58,6 +59,7 @@ public class Window extends JFrame implements Observer, IDisplay {
 		gamepan = new GamePanel(game);
 		shoppan = new ShopPanel(game);
 		statspan = new StatusPanel(game);
+		startpan = new StartPanel(game);
 
 		this.add(gamepan, BorderLayout.CENTER);
 		this.add(shoppan, BorderLayout.EAST);
@@ -125,9 +127,22 @@ public class Window extends JFrame implements Observer, IDisplay {
 		this.remove(shippan);
 		this.remove(statspan);
 
+
+		this.add(startpan, BorderLayout.NORTH);
+		
+		while ( !startpan.start() ) {
+			if ( overlay(ships) )
+				startpan.setDisable();
+			else
+				startpan.setEnable();
+			
+			startpan.repaint();
+		}
+		gamepan.lock = true;
+		
+		this.remove(startpan);
 		this.add(statspan, BorderLayout.NORTH);
 		
-		while (overlay(ships) || !gamepan.lock);
 		
 		return;
 	}
@@ -144,10 +159,10 @@ public class Window extends JFrame implements Observer, IDisplay {
 		gamepan.startTurn();
 		while (!gamepan.isTurnEnded()){
 			sel = gamepan.getSelectedShip();
-			//shoppan.refresh(sel);
+			shoppan.refresh(sel);
 			Point spos = gamepan.getShotPos();
 			
-			if (spos != null){
+			if (sel != null && spos != null){
 				shot = new Shot(sel.getFireshape(), spos.x, spos.y);
 				break;
 			}

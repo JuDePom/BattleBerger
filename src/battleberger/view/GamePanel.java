@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -27,7 +28,7 @@ public class GamePanel extends JPanel{
 	private Game game;
 	private BufferedImage ocean;
 	
-	private List<Pair> shots = new ArrayList<Pair>();
+	private List<Pair> shots = Collections.synchronizedList(new ArrayList<Pair>());
 
 	private Point cmouse = new Point();
 	private Point mouse, shot;
@@ -136,7 +137,6 @@ public class GamePanel extends JPanel{
 		List<Player> players = game.getPlayers();
 		Player me = players.get(0);
 
-		shipSel = null;
 		for (AbstractShip ship : me.getShips()){	
 			if ( ship.overlap(mouse.x, mouse.y) )
 				shipSel = ship;
@@ -158,11 +158,11 @@ public class GamePanel extends JPanel{
 			if (!chg)
 				shipSel.setOrient(ors[0]);
 		}
-
-		if (!lock){ // CLICK ON START
-			if (mouse.x > pw+25 && mouse.x < pw+175 && mouse.y > ph/2 && mouse.y < ph/2 + 50){
-				lock = true;
-			}
+		
+		if (lock) { // SHOT
+			cmouse.x = mouse.x - pw - dw; cmouse.y = mouse.y - dh;
+			cmouse.x /= cs; cmouse.y /= cs;
+			shot = cmouse;
 		}
 
 		this.updateUI();
@@ -201,17 +201,8 @@ public class GamePanel extends JPanel{
 		drawShips(g);
 
 		drawMouse(g);
-
-		if (!lock) drawStart(g);
 	}
-
-	public void drawStart(Graphics g){
-		g.setColor(Color.ORANGE);
-		g.fillRect(pw + 50 , ph/2, 100, 50);
-		g.setColor(Color.BLACK);
-		g.drawString("START", pw+75, ph/2 + 30);
-	}
-
+	
 	public void drawMyField(Graphics g){
 		g.setColor(new Color(255, 0, 0, 100));
 		for (Pair sh : shots){
@@ -374,7 +365,7 @@ public class GamePanel extends JPanel{
 	}
 
 	public boolean isTurnEnded() {
-		return play;
+		return !play;
 	}
 
 	public AbstractShip getSelectedShip() {
@@ -382,9 +373,12 @@ public class GamePanel extends JPanel{
 	}
 
 	public Point getShotPos() {
-		shot = null;
-		if (cmouse != null);
-		return shot;
+		Point tmp = null;
+		if (shot != null){
+			tmp = shot;
+			shot = null;
+		}
+		return tmp;
 	}
 
 	public void fire(Player p, Shot s) {
