@@ -59,8 +59,8 @@ public class ShopPanel extends JPanel{
 					if(currentship!=null){
 						
 						int nbupgrade=currentship.getUpgrade(type);
-						battle.getCurrentplayer().upgrade(armory.buildUpgrade(type, currentship),currentship);
-						battle.getCurrentplayer().gainMoney(-(nbupgrade*currentship.getCostUpgrade()));
+						battle.getCurrentPlayer().upgrade(armory.buildUpgrade(type, currentship),currentship);
+						battle.getCurrentPlayer().gainMoney(-(nbupgrade*currentship.getCostUpgrade()));
 					
 					}
 					//buy[0].setEnabled(!buy[0].isEnabled());
@@ -104,7 +104,7 @@ public class ShopPanel extends JPanel{
 		}
 	}
 	public void enabledButton(){
-		Player p=battle.getCurrentplayer();
+		Player p=battle.getCurrentPlayer();
 		//p=new Human();
 		StatType[] type=StatType.values();
 		int money=Integer.MAX_VALUE;

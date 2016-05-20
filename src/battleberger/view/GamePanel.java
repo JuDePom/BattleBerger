@@ -214,7 +214,7 @@ public class GamePanel extends JPanel{
 
 	public void drawMyField(Graphics g){
 		for (Pair sh : shots){
-			if (sh.player == game.getCurrentplayer()){
+			if (sh.player == game.getCurrentPlayer()){
 				for ( Square sq : sh.shot.getSquares().keySet() ){
 					g.fillRect(dw + (sq.getX())* cs, dh + (sq.getY()) * cs, cs, cs);
 				}
