@@ -30,6 +30,7 @@ public class Game extends Observable {
 		strategies = new ArrayList<>();
 		strategies.add(new StrategyYolo());
 		strategies.add(new StrategyDiagonal());
+		strategies.add(new StrategyWithMemory());
 	}
 	
 	
@@ -37,7 +38,7 @@ public class Game extends Observable {
 		players = new ArrayList<>();
 		addPlayer(p1);
 		addPlayer(p2);
-		setDisplay(disp);strategies.add(new StrategyWithMemory());
+		setDisplay(disp);
 		
 	}
 
@@ -53,7 +54,7 @@ public class Game extends Observable {
 		
 		for(Player p : players){
 			if(p instanceof Computer){
-				((Computer)p).setStrat(strategies.get(1));
+				((Computer)p).setStrat(strategies.get(2));
 			}
 			p.selectShips(display);
 		}
@@ -67,7 +68,7 @@ public class Game extends Observable {
 				if(s != null){
 					//si le joueur ne passe pas son tour
 					display.fire(p, s);
-					fire(p, s);
+					p.setState(s, fire(p, s));
 				}
 				
 				if(isEndOfGame()) break;
@@ -108,13 +109,15 @@ public class Game extends Observable {
 		ia.setStrat(strategy);		
 	}
 
-	public void fire(Player p, Shot s){
+	public State fire(Player p, Shot s){
+		State ret = State.nothing;
 		for(Player p2 : players){
 			if(p2 != p){
 				List<AbstractShip> toRemove = new ArrayList<>();
 				for(AbstractShip ship : p2.getShips()){
 					for(Entry<Square, Integer> sq : s.getSquares().entrySet()){
 						if( ship.toucher(sq.getKey().getX(), sq.getKey().getY(), sq.getValue())){
+							ret = State.touched;
 							if( ! ship.isAlive()){
 								toRemove.add(ship);
 							}
@@ -123,9 +126,11 @@ public class Game extends Observable {
 				}
 				for(AbstractShip ship : toRemove){
 					p2.remove(ship);
+					ret = State.sinked;
 				}
 			}
 		}
+		return ret;
 	}
 	
 	private void waitfps(long start){

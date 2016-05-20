@@ -20,8 +20,15 @@ public abstract class IStrategy {
 	public abstract List<AbstractShip> selectShips(int maxShipValue);
 	
 	public void setDim(int width, int height){
+		System.out.println(this + " " + width);
 		this.width = width;
 		this.height = height;
+	}
+	
+	
+
+	public void setState(Shot s, battleberger.model.Game.State st) {
+		
 	}
 
 	public List<AbstractShip> selectRandomShips(int maxShipValue){

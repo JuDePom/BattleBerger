@@ -5,6 +5,7 @@ import java.util.List;
 
 import battleberger.model.AbstractShip;
 import battleberger.model.Game;
+import battleberger.model.Game.State;
 import battleberger.view.IDisplay;
 
 public abstract class Player {
@@ -22,6 +23,10 @@ public abstract class Player {
 	
 	public abstract Shot play(Game g);
 
+	
+	public void setState(Shot s, State st){}
+	
+	
 	public AbstractShip getBestShip(){
 		int best_val = Integer.MIN_VALUE;
 		AbstractShip best= ships.get(0);

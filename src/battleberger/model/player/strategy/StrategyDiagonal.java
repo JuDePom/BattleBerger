@@ -39,7 +39,6 @@ public class StrategyDiagonal extends IStrategy{
 			last_y++;
 			if(last_y >= height){
 				last_y = 0;
-				y = 0;
 				direction = ! direction;
 			}
 			//y = last_y;

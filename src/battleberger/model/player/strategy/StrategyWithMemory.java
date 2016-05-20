@@ -1,10 +1,12 @@
 package battleberger.model.player.strategy;
 
 import java.util.List;
+import java.util.Random;
 
 import battleberger.model.AbstractShip;
 import battleberger.model.Game;
 import battleberger.model.Game.State;
+import battleberger.model.Square;
 import battleberger.model.player.Computer;
 import battleberger.model.player.Shot;
 
@@ -23,6 +25,17 @@ public class StrategyWithMemory extends IStrategy {
 			}
 		}
 	}
+	
+	
+
+	@Override
+	public void setState(Shot s, battleberger.model.Game.State st) {
+		for(Square sq : s.getSquares().keySet()){
+			states[sq.getX()][sq.getY()] = st;
+		}
+	};
+	
+	
 	@Override
 	public Shot fire(Computer ai, Game g) {
 		for(int i = 0 ; i < states.length ; i++){
@@ -34,15 +47,14 @@ public class StrategyWithMemory extends IStrategy {
 			}
 		}
 		//si on est là on n'a touché aucun bateau
-		for(int i = 0 ; i < states.length ; i++){
-			for(int j = 0 ; j < states[0].length ; j++){
-				State state = states[i][j];
-				if(state == State.nothing){
-					return new Shot(ai.getBestShip().getFireshape(), i, j);
-				}
-			}
-		}
-		return null;
+		Random r = new Random();
+		int x, y;
+		do{
+			System.out.println(width + " " + height);
+			x = r.nextInt(width);
+			y = r.nextInt(height);
+		}while(states[x][y] != State.sinked);
+		return new Shot(ai.getBestShip().getFireshape(), x, y);
 	}
 
 	@Override

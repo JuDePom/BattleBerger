@@ -17,6 +17,12 @@ public class Computer extends Player {
 		return strat.fire(this, g);
 	}
 	
+
+	@Override
+	public void setState(Shot s, battleberger.model.Game.State st) {
+		strat.setState(s, st);
+	};
+	
 	@Override
 	public void selectShips(IDisplay display) {
 		ships = strat.selectShips(getMaxShipValue());
