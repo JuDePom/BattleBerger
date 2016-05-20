@@ -23,14 +23,14 @@ import battleberger.model.player.Player;
 public class GamePanel extends JPanel{
 	private Game game;
 	private BufferedImage ocean;
-	
+
 	private Point cmouse = new Point();
 	private Point mouse;
-	
+
 	boolean lock = false;
 	boolean drag = false;
 	AbstractShip shipSel = null;
-	
+
 	int gw, gh, pw, ph, wpc, hpc, cs, dw, dh;
 
 	public GamePanel(Game game) {
@@ -41,46 +41,46 @@ public class GamePanel extends JPanel{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		this.addMouseMotionListener(new MouseMotionListener() {
-			
+
 			@Override
 			public void mouseMoved(MouseEvent e) {
 				movMouse(e.getPoint());
 			}
-			
+
 			@Override
 			public void mouseDragged(MouseEvent e) {
 				dragMouse(e.getPoint());
 			}
 		});
-		
+
 		this.addMouseListener(new MouseListener() {
-			
+
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				click();
@@ -95,47 +95,49 @@ public class GamePanel extends JPanel{
 		drag = false;		
 		this.updateUI();
 	}
-	
+
 	protected void dragMouse(Point point) {
 		mouse = point;
 		cmouse.x = mouse.x - dw; cmouse.y = mouse.y - dh;
 		cmouse.x /= cs; cmouse.y /= cs;
-		
+
 		if (lock) return;
-		
+
 		List<Player> players = game.getPlayers();
 		Player me = players.get(0);
-		
+
 		if (!drag){
 			for (AbstractShip ship : me.getShips()){	
 				if ( ship.overlap(cmouse.x, cmouse.y) )
 					shipSel = ship;
 			}
 		}
-		
+
 		if (shipSel != null){
 			drag = true;
-			
-			shipSel.setPositionX(cmouse.x);
-			shipSel.setPositionY(cmouse.y);
+
+			if (cmouse.x >= 0 && cmouse.x + shipSel.getWidth() <= gw)
+				shipSel.setPositionX(cmouse.x);
+			if (cmouse.y >= 0 && cmouse.y + shipSel.getHeight() <= gh) 
+				shipSel.setPositionY(cmouse.y);
 		}
-		
+
 		this.updateUI();
 	}
-	
+
 	protected void click(){
 		List<Player> players = game.getPlayers();
 		Player me = players.get(0);
-		
+
 		shipSel = null;
 		for (AbstractShip ship : me.getShips()){	
 			if ( ship.overlap(mouse.x, mouse.y) )
 				shipSel = ship;
 		}
-		
+
 		if(!lock && shipSel != null){ // rotation car placement
-			
-			
+
+
 			Orientation or = shipSel.getOrient();
 			Orientation[] ors = Orientation.values();
 			boolean chg = false;
@@ -145,17 +147,17 @@ public class GamePanel extends JPanel{
 					chg = true;
 				}
 			}
-			
+
 			if (!chg)
 				shipSel.setOrient(ors[0]);
 		}
-		
+
 		if (!lock){ // CLICK ON START
 			if (mouse.x > pw+25 && mouse.x < pw+175 && mouse.y > ph/2 && mouse.y < ph/2 + 50){
 				lock = true;
 			}
 		}
-		
+
 		this.updateUI();
 	}
 
@@ -185,24 +187,24 @@ public class GamePanel extends JPanel{
 			dh = (ph%cs)/2;
 
 		g.drawImage(ocean, 0, 0, this.getWidth(), this.getHeight(), null);
-		
+
 		drawMyField(g);
 		drawEnemyField(g);
-		
+
 		drawShips(g);
-		
+
 		drawMouse(g);
-		
+
 		if (!lock) drawStart(g);
 	}
-	
+
 	public void drawStart(Graphics g){
 		g.setColor(Color.ORANGE);
 		g.fillRect(pw + 50 , ph/2, 100, 50);
 		g.setColor(Color.BLACK);
 		g.drawString("START", pw+75, ph/2 + 30);
 	}
-	
+
 	public void drawMyField(Graphics g){
 		g.setColor(Color.CYAN);
 		for (int x = 1; x<gw; x++){
@@ -215,7 +217,7 @@ public class GamePanel extends JPanel{
 			g.drawLine(dw + gh*cs, dh + y*cs, dw + gh*cs - 5, dh + y*cs);
 		}
 	}
-	
+
 	public void drawEnemyField(Graphics g){
 		g.setColor(Color.RED);
 		for (int x = 1; x<gw; x++){
@@ -228,36 +230,36 @@ public class GamePanel extends JPanel{
 			g.drawLine(pw + gh*cs, dh + y*cs, pw + gh*cs - 5, dh + y*cs);
 		}
 	}
-	
+
 	public void drawShips(Graphics g){
 		g.setColor(Color.GRAY);
 		List<Player> players = game.getPlayers();
-		
+
 		Player me = players.get(0);
 		for (int n = 0; n < me.nbShips(); n++){	
 			AbstractShip ship = me.getShip(n);
-			
+
 			int x = ship.getPositionX();
 			int y = ship.getPositionY();
-			
+
 			boolean[][] shape = ship.getShape();
-			
+
 			BufferedImage img = RessourceManager.getImage(ship.getImagepath());
 			BufferedImage imgDmg = RessourceManager.getImage(ship.getImagepath()+"_0");
-			
+
 			int imgCW = 0;
 			int imgCH = 0;
-			
+
 			if (img != null) {
 				img = setOrientation(img, ship.getOrient());
-				
+
 				if (imgDmg != null)
 					imgDmg = setOrientation(imgDmg, ship.getOrient());
-				
+
 				imgCW = img.getWidth() / shape.length;
 				imgCH = img.getHeight() / shape[0].length;
 			}
-			
+
 			for (int i = 0; i < shape.length; i++){
 				for (int j = 0; j < shape[i].length; j++){
 					if (shape[i][j]){
@@ -276,16 +278,16 @@ public class GamePanel extends JPanel{
 				}
 			}
 		}
-		
+
 		Player enemy = players.get(1);
 		for (int n = 0; n < enemy.nbShips(); n++){	
 			AbstractShip ship = enemy.getShip(n);
-			
+
 			int x = ship.getPositionX();
 			int y = ship.getPositionY();
-			
+
 			boolean[][] shape = ship.getShape();
-			
+
 			for (int i = 0; i < shape.length; i++){
 				for (int j = 0; j < shape[i].length; j++){
 					if (shape[i][j]){
@@ -295,11 +297,11 @@ public class GamePanel extends JPanel{
 			}
 		}
 	}
-	
+
 	private BufferedImage setOrientation(BufferedImage img, Orientation orient) {
 		int w = img.getWidth();
-	    int h = img.getHeight();
-	    
+		int h = img.getHeight();
+
 		BufferedImage imgFlip;
 		switch (orient){
 		case North:
@@ -308,33 +310,33 @@ public class GamePanel extends JPanel{
 		case East:
 			imgFlip = new BufferedImage(h, w, img.getType());
 			for(int i=0; i<w; i++)
-		        for(int j=0; j<h; j++)
-		            imgFlip.setRGB(h-1-j, w-1-i, img.getRGB(i, j));
+				for(int j=0; j<h; j++)
+					imgFlip.setRGB(h-1-j, w-1-i, img.getRGB(i, j));
 			break;
 		case South:
 			imgFlip = new BufferedImage(img.getWidth(), img.getHeight(), img.getType());
 			for(int i=0; i<w; i++)
-		        for(int j=0; j<h; j++)
-		            imgFlip.setRGB(w-1-i, h-1-j, img.getRGB(i, j));
+				for(int j=0; j<h; j++)
+					imgFlip.setRGB(w-1-i, h-1-j, img.getRGB(i, j));
 			break;
 		case West:
 			imgFlip = new BufferedImage(img.getHeight(), img.getWidth(), img.getType());
 			for(int i=0; i<w; i++)
-		        for(int j=0; j<h; j++)
-		            imgFlip.setRGB(j, w-1-i, img.getRGB(i, j));
+				for(int j=0; j<h; j++)
+					imgFlip.setRGB(j, w-1-i, img.getRGB(i, j));
 			break;
 		default:
 			imgFlip = img;
 		}
-		
+
 		return imgFlip;
 	}
 
 	public void drawMouse(Graphics g){
 		Color myColour = new Color(0, 255, 255, 50);
 		Color enemyColour = new Color(255, 0, 0, 100);
-		
-		
+
+
 		if ( cmouse != null){
 			if (cmouse.x < pw){
 				g.setColor(myColour);
