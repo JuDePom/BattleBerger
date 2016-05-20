@@ -9,6 +9,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -16,19 +17,25 @@ import javax.swing.JPanel;
 
 import battleberger.model.AbstractShip;
 import battleberger.model.Game;
+import battleberger.model.Square;
 import battleberger.model.Ship.Orientation;
 import battleberger.model.player.Player;
+import battleberger.model.player.Shot;
 
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel{
 	private Game game;
 	private BufferedImage ocean;
+	
+	private List<Pair> shots = new ArrayList<Pair>();
 
 	private Point cmouse = new Point();
-	private Point mouse;
+	private Point mouse, shot;
 
 	boolean lock = false;
 	boolean drag = false;
+	boolean play = false;
+	
 	AbstractShip shipSel = null;
 
 	int gw, gh, pw, ph, wpc, hpc, cs, dw, dh;
@@ -165,8 +172,8 @@ public class GamePanel extends JPanel{
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
-		gw = game.getWidth();
-		gh = game.getHeight();
+		gw = Game.getWidth();
+		gh = Game.getHeight();
 
 		pw = (this.getWidth()-1)/2;
 		ph = this.getHeight();
@@ -206,6 +213,14 @@ public class GamePanel extends JPanel{
 	}
 
 	public void drawMyField(Graphics g){
+		for (Pair sh : shots){
+			if (sh.player == game.getCurrentplayer()){
+				for ( Square sq : sh.shot.getSquares().keySet() ){
+					g.fillRect(dw + (sq.getX())* cs, dh + (sq.getY()) * cs, cs, cs);
+				}
+			}
+		}
+		
 		g.setColor(Color.CYAN);
 		for (int x = 1; x<gw; x++){
 			g.drawLine(dw + x*cs, dh, dw + x*cs, dh + 5);
@@ -349,5 +364,36 @@ public class GamePanel extends JPanel{
 					g.fillRect(pw + cmouse.x*cs, dh + cmouse.y*cs, cs, cs);
 			}
 		}
+	}
+
+	public void startTurn() {
+		play = true;
+	}
+
+	public boolean isTurnEnded() {
+		return play;
+	}
+
+	public AbstractShip getSelectedShip() {
+		return shipSel;
+	}
+
+	public Point getShotPos() {
+		shot = null;
+		if (cmouse != null);
+		return shot;
+	}
+
+	public void fire(Player p, Shot s) {
+		shots.add(new Pair(p, s));
+	}
+	
+	class Pair{
+		public Pair(Player p, Shot s) {
+			shot = s;
+			player = p;
+		}
+		Shot shot;
+		Player player;
 	}
 }

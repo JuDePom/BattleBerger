@@ -2,6 +2,7 @@ package battleberger.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -83,12 +84,6 @@ public class Window extends JFrame implements Observer, IDisplay {
 	}
 
 	@Override
-	public void fire(Player p, Shot s) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public AbstractShip selectShip(Player p) {
 		this.remove(shippan);
 		this.remove(statspan);
@@ -145,8 +140,25 @@ public class Window extends JFrame implements Observer, IDisplay {
 
 	@Override
 	public Shot getShot(Human h) {
-		// TODO Auto-generated method stub
-		return null;
+		AbstractShip sel = null;
+		Shot shot = null;
+		gamepan.startTurn();
+		while (!gamepan.isTurnEnded()){
+			sel = gamepan.getSelectedShip();
+			//shoppan.refresh(sel);
+			Point spos = gamepan.getShotPos();
+			
+			if (spos != null){
+				shot = new Shot(sel.getFireshape(), spos.x, spos.y);
+				break;
+			}
+		}
+		return shot;
+	}
+	
+	@Override
+	public void fire(Player p, Shot s) {
+		gamepan.fire(p, s);
 	}
 
 
