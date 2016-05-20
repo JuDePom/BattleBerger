@@ -65,9 +65,11 @@ public class ShopPanel extends JPanel{
 					if(currentship!=null){
 						
 						int nbupgrade=currentship.getUpgrade(type);
-						battle.getCurrentPlayer().upgrade(armory.buildUpgrade(type, currentship),currentship);
-						battle.getCurrentPlayer().gainMoney(-(nbupgrade*currentship.getCostUpgrade()));
-					
+						if(nbupgrade<currentship.getStatmax(type)){
+							battle.getCurrentPlayer().upgrade(armory.buildUpgrade(type, currentship),currentship);
+							battle.getCurrentPlayer().gainMoney(-((int)Math.pow(2, nbupgrade)*currentship.getCostUpgrade()));
+							
+						}
 					}
 					//buy[0].setEnabled(!buy[0].isEnabled());
 					
@@ -113,6 +115,8 @@ public class ShopPanel extends JPanel{
 	}
 	public void enabledButton(){
 		Player p=battle.getCurrentPlayer();
+		
+		
 		//p=new Human();
 		StatType[] type=StatType.values();
 		int money=Integer.MAX_VALUE;
@@ -120,8 +124,10 @@ public class ShopPanel extends JPanel{
 			if(currentship!=null)
 				money=(int)Math.pow(2, currentship.getUpgrade(type[i]))*currentship.getCostUpgrade();
 			if(p!=null){
-				if(currentship.getUpgrade(type[i])<=currentship.getStatmax(type[i])){
-				if(p.getMoney()<=money){
+				
+				
+				if(currentship.getUpgrade(type[i])<currentship.getStatmax(type[i])){
+				if(p.getMoney()<money){
 					buy[i].setEnabled(false);
 					
 					buy[i].setIcon(buy[i].getDisabledIcon());
@@ -131,6 +137,8 @@ public class ShopPanel extends JPanel{
 					
 					buy[i].setIcon(imageshop.get(Picture.Buyshop));
 				}
+				}else{
+					buy[i].setEnabled(false);
 				}
 			}
 		}

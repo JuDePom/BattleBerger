@@ -323,7 +323,7 @@ public abstract class Ship extends AbstractShip{
 	}
 	@Override 
 	public int getCostUpgrade(){
-		return 0;
+		return 10;
 	}
 	@Override
 	public StatType getStat(){

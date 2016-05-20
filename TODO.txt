@@ -4,7 +4,7 @@ ecran de fin
 reset le cooldown, il est déjà réduit
 faire le dossier
 (si on a le temps (mdr non): faire le status du bateau sélectionné)
-panneau stratégies
+panneau stratégies // fait 
 afficher les tirs des deux côtés
 (souris disparait à droite)
 afficher fireshape côté ennemi
