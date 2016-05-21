@@ -89,13 +89,13 @@ public class StatusPanel extends JPanel implements Serializable{
 		this.setPreferredSize(new Dimension(0, 150));
 		StatType[] type=StatType.values();
 		JPanel pan=new JPanel();
-		//pan.setPreferredSize(new Dimension(110,150));
+		pan.setPreferredSize(new Dimension(540,150));
 		pan.setBorder(BorderFactory.createLineBorder(Color.black));
 		pan.setLayout(new BoxLayout(pan,BoxLayout.Y_AXIS));
 		JPanel pan2=new JPanel();
 		JPanel information=new JPanel();
 		pan2.setLayout(new GridLayout(6,1));
-		pan2.setPreferredSize(new Dimension(230,60));
+		pan2.setPreferredSize(new Dimension(270,60));
 		//pan2.setBorder(BorderFactory.createLineBorder(Color.black));
 		this.setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
 		for(int i=0;i<type.length;i++){

@@ -23,7 +23,7 @@ public class EndScreen extends JPanel{
 	JLabel status=new JLabel();
 	JButton[] screen = new JButton[2];
 	Map<Status,ImageIcon> image=new HashMap<Status,ImageIcon>();
-	private JPanel myself=this;
+	
 	public enum Status{Gagner,Gameover};
 	public EndScreen(Game g){
 		this.setBackground(Color.black);
@@ -34,8 +34,8 @@ public class EndScreen extends JPanel{
 		screen[0].addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//game.replay();
-				myself.setVisible(false);
+				game.replay();
+				
 			}
 				
 		});
