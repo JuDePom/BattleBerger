@@ -4,19 +4,31 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import battleberger.model.AbstractShip;
 import battleberger.model.Game;
 import battleberger.model.Square;
 
 public class Shot {
 	
-	private Map<Square,Integer> squares;
-	
+	public AbstractShip getShip() {
+		return ship;
+	}
 
-	public Shot(int[][] shape, int x, int y){
+
+	public void setShip(AbstractShip ship) {
+		this.ship = ship;
+	}
+
+
+	private Map<Square,Integer> squares;
+	private AbstractShip ship;
+
+	public Shot( int x, int y, AbstractShip s){
 		
 		squares = new HashMap<Square, Integer>();
-
-		for(int i = x ; i < Math.min(Game.getWidth(), x + shape.length) ; i++){//TODO vérifier que ça va bien jusqu'au bout
+		ship = s;
+		int [][] shape = ship.getFireshape();
+		for(int i = x ; i < Math.min(Game.getWidth(), x + shape.length) ; i++){//TODO vï¿½rifier que ï¿½a va bien jusqu'au bout
 			for(int j = y ; j < Math.min(Game.getHeight(), y + shape[0].length) ; j++){//TODO idem
 				if(shape[i - x][j -y] > 0 ){
 					squares.put(new Square(i,j), shape[i-x][j-y]);

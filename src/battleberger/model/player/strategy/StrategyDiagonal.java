@@ -44,7 +44,7 @@ public class StrategyDiagonal extends IStrategy{
 			//y = last_y;
 		}
 		System.out.println(x + " "+ y + " " + width + " " + height);
-		return new Shot(ai.getBestShip().getFireshape(), x, y);
+		return new Shot( x, y, ai.getBestShip());
 	}
 
 	@Override

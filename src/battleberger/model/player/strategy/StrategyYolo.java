@@ -18,7 +18,7 @@ public class StrategyYolo extends IStrategy {
 		AbstractShip s = ai.getShipsReady().get(r.nextInt(ai.getShipsReady().size()));
 		int y = r.nextInt(Game.getHeight());
 		int x = r.nextInt(Game.getWidth());
-		Shot sh = new Shot(s.getFireshape(), x, y);
+		Shot sh = new Shot(x, y, s);
 		return sh;
 	}
 

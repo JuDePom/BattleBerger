@@ -169,7 +169,7 @@ public class Window extends JFrame implements Observer, IDisplay {
 			Point spos = gamepan.getShotPos();
 			
 			if (sel != null && spos != null){
-				shot = new Shot(sel.getFireshape(), spos.x, spos.y);
+				shot = new Shot( spos.x, spos.y, sel);
 				break;
 			}
 		}
