@@ -70,13 +70,11 @@ public class Game extends Observable implements Serializable {
 
 
 	public void play(){
-		while (true) {
 			switch (gameState){
 			case EraSelection:
 				era = display.getEra();
 				AbstractShipyard.setTimeSpace(era);
 				gameState = GameState.Preparing;
-				break;
 			case Preparing:
 				display.selectGridDimension();
 
@@ -94,7 +92,6 @@ public class Game extends Observable implements Serializable {
 
 				long start;
 				gameState = GameState.Playing;
-				break;
 			case Playing:
 				while( ! isEndOfGame() ){
 					start = System.currentTimeMillis();
@@ -128,11 +125,9 @@ public class Game extends Observable implements Serializable {
 					waitfps(start);
 				}
 				gameState = GameState.EndScreen;
-				break;
 			case EndScreen:
 				display.endOfGame();
 			}
-		}
 	}
 
 
