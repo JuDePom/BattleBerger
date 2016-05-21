@@ -90,6 +90,7 @@ public class Window extends JFrame implements Serializable,  Observer, IDisplay 
 
 	
 	private void loadWindow(){
+		this.remove(eraPanel);
 		switch(game.gameState){
 		case EraSelection:
 			add(eraPanel, BorderLayout.CENTER);
@@ -122,6 +123,7 @@ public class Window extends JFrame implements Serializable,  Observer, IDisplay 
 	
 	@Override
 	public TimeSpace getEra() {
+		loadWindow();
 		return eraPanel.getEra();
 	}
 
@@ -129,7 +131,6 @@ public class Window extends JFrame implements Serializable,  Observer, IDisplay 
 	public void selectGridDimension() {
 		game.setWidth(20);
 		game.setHeight(20);
-		remove(eraPanel);
 		loadWindow();
 
 	}

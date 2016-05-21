@@ -16,8 +16,13 @@ public class EraPanel extends JPanel{
 	public EraPanel(){
 		super();
 		JButton m_a = new JButton("Moyen age");
+		JButton sheep = new JButton("L'âge des moutons");
+
+		JButton troll = new JButton("Troll ?!");
 		
-		
+		add(m_a);
+		add(sheep);
+		add(troll);
 		
 		m_a.addActionListener(new ActionListener() {
 			
@@ -28,7 +33,6 @@ public class EraPanel extends JPanel{
 			}
 		});
 		
-		JButton sheep = new JButton("L'âge des moutons");
 		sheep.addActionListener(new ActionListener() {
 			
 			@Override
@@ -40,7 +44,6 @@ public class EraPanel extends JPanel{
 		});
 
 		
-		JButton troll = new JButton("Troll ?!");
 		troll.addActionListener(new ActionListener() {
 			
 			@Override
@@ -49,17 +52,13 @@ public class EraPanel extends JPanel{
 				selected = true;
 			}
 		});
-		
-		add(m_a);
-		
-		add(sheep);
-		
-		add(troll);
 	}
+	
 	TimeSpace getEra(){
-		while(! selected){
-			
-		}
+		while(! selected)
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {}
 		return ts;
 	}
 	

@@ -26,7 +26,7 @@ public class Game extends Observable implements Serializable {
 
 	public enum State {nothing, touched, sinked};
 	public enum GameState {EraSelection, Preparing, Playing, EndScreen};
-	
+
 	private List<Player> players;
 	private static int width, height;
 	transient private IDisplay display;
@@ -36,7 +36,7 @@ public class Game extends Observable implements Serializable {
 	public TimeSpace era;
 
 	private static List<Strategy> strategies;
-	
+
 	public State[][] getState() {
 		return state;
 	}
@@ -54,8 +54,8 @@ public class Game extends Observable implements Serializable {
 		strategies.add(new StrategyDiagonal());
 		strategies.add(new StrategyWithMemory());
 	}
-	
-	
+
+
 	public Game(Player p1, Player p2, IDisplay disp){
 
 		gameState = GameState.EraSelection;
@@ -64,75 +64,78 @@ public class Game extends Observable implements Serializable {
 		addPlayer(p1);
 		addPlayer(p2);
 		setDisplay(disp);
-		
+
 	}
 
 
 
 	public void play(){
+		while (true) {
+			switch (gameState){
+			case EraSelection:
+				era = display.getEra();
+				AbstractShipyard.setTimeSpace(era);
+				gameState = GameState.Preparing;
+				break;
+			case Preparing:
+				display.selectGridDimension();
 
-
-		switch (gameState){
-		case EraSelection:
-			era = display.getEra();
-			AbstractShipyard.setTimeSpace(era);
-			gameState = GameState.Preparing;
-		case Preparing:
-			display.selectGridDimension();
-	
-			for(Strategy strat : strategies){
-				strat.setDim(width, height);
-			}
-			
-			
-			for(Player p : players){
-				if(p instanceof Computer){
-					((Computer)p).setStrat(strategies.get(2));
+				for(Strategy strat : strategies){
+					strat.setDim(width, height);
 				}
-				p.selectShips(display);
-			}
-			
-			long start;
-			gameState = GameState.Playing;
-		case Playing:
-			while( ! isEndOfGame() ){
-				start = System.currentTimeMillis();
+
+
 				for(Player p : players){
-					currentPlayer = p;
-					Shot s = null;
-					if(p.getShipsReady().size() > 0){
-						do{
-							s = p.play(this);
-							
-						}while(s != null &&  s.getShip().getTimereload() > 0);
-						//si le joueur ne passe pas son tour
-						if(s != null){
-							display.fire(p, s);
-							if(p instanceof Human){
-								p.setState(s, fire(p, s));
-							}
-							s.getShip().setTimereload(s.getShip().getCooldown());
-						}
+					if(p instanceof Computer){
+						((Computer)p).setStrat(strategies.get(2));
 					}
-					
-					if(isEndOfGame()) break;
-	
-					p.endOfTurnProcessing();
+					p.selectShips(display);
 				}
-				currentPlayer = null;
-				
-	
-				display.updateGameGrid();
-				
-				waitfps(start);
+
+				long start;
+				gameState = GameState.Playing;
+				break;
+			case Playing:
+				while( ! isEndOfGame() ){
+					start = System.currentTimeMillis();
+					for(Player p : players){
+						currentPlayer = p;
+						Shot s = null;
+						if(p.getShipsReady().size() > 0){
+							do{
+								s = p.play(this);
+
+							}while(s != null &&  s.getShip().getTimereload() > 0);
+							//si le joueur ne passe pas son tour
+							if(s != null){
+								display.fire(p, s);
+								if(p instanceof Human){
+									p.setState(s, fire(p, s));
+								}
+								s.getShip().setTimereload(s.getShip().getCooldown());
+							}
+						}
+
+						if(isEndOfGame()) break;
+
+						p.endOfTurnProcessing();
+					}
+					currentPlayer = null;
+
+
+					display.updateGameGrid();
+
+					waitfps(start);
+				}
+				gameState = GameState.EndScreen;
+				break;
+			case EndScreen:
+				display.endOfGame();
 			}
-			gameState = GameState.EndScreen;
-		case EndScreen:
-			display.endOfGame();
 		}
 	}
-	
-	
+
+
 	public void setStrategy(Strategies strat){
 		Computer ia = null;
 		for(Player p : players){
@@ -140,7 +143,7 @@ public class Game extends Observable implements Serializable {
 				ia = (Computer)p;
 			}
 		}
-		
+
 		Strategy strategy = null;
 		switch(strat){
 		case Yolo:
@@ -169,11 +172,11 @@ public class Game extends Observable implements Serializable {
 						if( ship.toucher(sq.getKey().getX(), sq.getKey().getY(), sq.getValue())){
 							ret = State.touched;
 							if(p instanceof Human)
-							state[sq.getKey().getX()][sq.getKey().getY()]=State.touched;
+								state[sq.getKey().getX()][sq.getKey().getY()]=State.touched;
 							if( ! ship.isAlive()){
 								toRemove.add(ship);
 								if(p instanceof Human)
-								state[sq.getKey().getX()][sq.getKey().getY()]=State.sinked;
+									state[sq.getKey().getX()][sq.getKey().getY()]=State.sinked;
 								p.gainMoney(25*ship.shipValue());
 							}
 						}
@@ -182,13 +185,13 @@ public class Game extends Observable implements Serializable {
 				for(AbstractShip ship : toRemove){
 					p2.remove(ship);
 					ret = State.sinked;
-					
+
 				}
 			}
 		}
 		return ret;
 	}
-	
+
 	public void waitfps(long start){
 		try {
 			Thread.sleep((long) Math.max( 100./6 - (System.currentTimeMillis() - start), 0)); //on fait du 60 fps
@@ -197,7 +200,7 @@ public class Game extends Observable implements Serializable {
 		}
 	}
 
-	
+
 	public boolean isEndOfGame(){
 		int count = 0 ;
 		for(Player p : players){
@@ -233,12 +236,12 @@ public class Game extends Observable implements Serializable {
 		display = disp;
 		display.setGame(this);
 	}
-	
+
 	public void addPlayer(Player p){
 		players.add(p);
 		p.setGame(this);
 	}
-	
+
 
 
 	public static List<Strategy> getStrategies() {
@@ -259,11 +262,11 @@ public class Game extends Observable implements Serializable {
 	public IDisplay getDisplay() {
 		return display;
 	}
-	
+
 	public static int getWidth(){
 		return width;
 	}
-	
+
 	public static int getHeight(){
 		return height;
 	}
@@ -278,8 +281,8 @@ public class Game extends Observable implements Serializable {
 	public int getWorldSize() {
 		return getWidth() * getHeight();
 	}
-	
-	
+
+
 	public void initState(int width, int height){
 		state=new State[width][height];
 		for(int i=0;i<state.length;i++){
