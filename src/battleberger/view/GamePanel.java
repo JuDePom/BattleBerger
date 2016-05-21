@@ -100,7 +100,8 @@ public class GamePanel extends JPanel{
 		mouse = point;
 		cmouse.x = mouse.x - dw; cmouse.y = mouse.y - dh;
 		cmouse.x /= cs; cmouse.y /= cs;
-		drag = false;		
+		drag = false;
+		
 		this.updateUI();
 	}
 
@@ -203,6 +204,30 @@ public class GamePanel extends JPanel{
 		drawShips(g);
 
 		drawMouse(g);
+		
+		drawFireShape(g);
+	}
+
+	private void drawFireShape(Graphics g) {
+		if (shipSel!=null && lock){
+			if (mouse.x > pw){
+				cmouse.x = mouse.x - pw - dw; cmouse.y = mouse.y - dh;
+				cmouse.x /= cs; cmouse.y /= cs;
+				
+				int[][] shape = shipSel.getFireshape();
+				
+				for (int i = 0; i < shape.length; i++){
+					for (int j = 0; j < shape[i].length; j++){
+						if (shape[i][j] > 0){
+							g.setColor(Color.CYAN);
+							g.drawRect(pw + (cmouse.x + i)* cs, dh + (cmouse.y + j) * cs, cs, cs);
+							g.setColor(new Color(0, 150, 255, 100));
+							g.fillRect(pw + (cmouse.x + i)* cs, dh + (cmouse.y + j) * cs, cs, cs);
+						}
+					}
+				}
+			}
+		}
 	}
 
 	public void drawMyField(Graphics g){
