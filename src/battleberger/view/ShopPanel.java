@@ -227,7 +227,7 @@ public class ShopPanel extends JPanel implements Serializable{
 	public void instancePicture(){
 		Picture[] pictur=Picture.values();
 		for(Picture p : pictur){
-			imageshop.put(p,new ImageIcon(RessourceManager.getImage("./assets/images/"+p.name())));
+			imageshop.put(p,new ImageIcon(RessourceManager.getImage("/images/"+p.name())));
 		}
 	}
 	public AbstractShip getCurrentShip(){

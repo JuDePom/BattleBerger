@@ -48,17 +48,12 @@ public class GamePanel extends JPanel implements Serializable{
 
 	public GamePanel(Game game) {
 		this.game = game;
-		fail=RessourceManager.getImage("./assets/images/Fail");
-		hit=RessourceManager.getImage("./assets/images/Hit");
-		sinked=RessourceManager.getImage("./assets/images/Sinked");
+		fail=RessourceManager.getImage("/images/Fail");
+		hit=RessourceManager.getImage("/images/Hit");
+		sinked=RessourceManager.getImage("/images/Sinked");
 		
 		this.setBackground(Color.BLACK);
-		try {
-			this.ocean = ImageIO.read(new File("./assets/images/ocean.png"));
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		this.ocean = RessourceManager.getImage("/images/Ocean");
 
 		this.addMouseMotionListener(new MouseMotionListener() {
 

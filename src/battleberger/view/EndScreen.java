@@ -70,7 +70,7 @@ public class EndScreen extends JPanel{
 	public void initImage(){
 		Status[] type=Status.values();
 		for(Status s: type){
-			image.put(s, new ImageIcon(RessourceManager.getImage("./assets/images/"+s.name())));
+			image.put(s, new ImageIcon(RessourceManager.getImage("/images/"+s.name())));
 		}
 	}
 }

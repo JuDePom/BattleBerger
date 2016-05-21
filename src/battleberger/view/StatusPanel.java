@@ -203,9 +203,9 @@ public class StatusPanel extends JPanel implements Serializable{
 		TypeShip[] pictur=TypeShip.values();
 		for(TypeShip p : pictur){
 			if(p==TypeShip.Spy)
-				pictureship.put(p,new ImageIcon(RessourceManager.getImage("./assets/images/"+AbstractShipyard.getTimeSpace().name()+"/"+p.name()+"2")));
+				pictureship.put(p,new ImageIcon(RessourceManager.getImage("/images/"+AbstractShipyard.getTimeSpace().name()+"/"+p.name()+"2")));
 			else
-				pictureship.put(p,new ImageIcon(RessourceManager.getImage("./assets/images/"+AbstractShipyard.getTimeSpace().name()+"/"+p.name())));
+				pictureship.put(p,new ImageIcon(RessourceManager.getImage("/images/"+AbstractShipyard.getTimeSpace().name()+"/"+p.name())));
 		}
 	}
 }

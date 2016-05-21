@@ -23,37 +23,37 @@ public class ShipyardSheepAge extends AbstractShipyard {
 		AbstractShip sheep;
 		switch(ship){
 		case ShipDefault :
-			 sheep =new ShipDefault(Orientation.North,x,y,"assets/images/SheepAge/ShipDefault");
+			 sheep =new ShipDefault(Orientation.North,x,y,"/images/SheepAge/ShipDefault");
 			 break;
 		case Kevin :
-			sheep =new Kevin(Orientation.North,x,y,"assets/images/SheepAge/Kevin");
+			sheep =new Kevin(Orientation.North,x,y,"/images/SheepAge/Kevin");
 			break;
 		case Frigate :
-			sheep =new Frigate(Orientation.North,x,y,"assets/images/SheepAge/Frigate");
+			sheep =new Frigate(Orientation.North,x,y,"/images/SheepAge/Frigate");
 			break;
 		case BlackPearl : 
-			sheep =new BlackPearl(Orientation.North,x,y,"assets/images/SheepAge/BlackPearl");
+			sheep =new BlackPearl(Orientation.North,x,y,"/images/SheepAge/BlackPearl");
 			break;
 		case ChuckNoris :
-			sheep =new ChuckNoris(Orientation.North,x,y,"assets/images/SheepAge/ChuckNoris");
+			sheep =new ChuckNoris(Orientation.North,x,y,"/images/SheepAge/ChuckNoris");
 			break;
 		case Commander :
-			sheep =new Commander(Orientation.North,x,y,"assets/images/SheepAge/Commander");
+			sheep =new Commander(Orientation.North,x,y,"/images/SheepAge/Commander");
 			break;
 		case Destroyer :
-			sheep =new Destroyer(Orientation.North,x,y,"assets/images/SheepAge/Destroyer");
+			sheep =new Destroyer(Orientation.North,x,y,"/images/SheepAge/Destroyer");
 			break;
 		case Elisabeth :
-			sheep =new Elisabeth(Orientation.North,x,y,"assets/images/SheepAge/Elisabeth");
+			sheep =new Elisabeth(Orientation.North,x,y,"/images/SheepAge/Elisabeth");
 			break;
 		case GrosseBerta :
-			sheep =new GrosseBerta(Orientation.North,x,y,"assets/images/SheepAge/GrosseBerta");
+			sheep =new GrosseBerta(Orientation.North,x,y,"/images/SheepAge/GrosseBerta");
 			break;
 		case Spy :
-			sheep =new Spy(Orientation.North,x,y,"assets/images/SheepAge/Spy");
+			sheep =new Spy(Orientation.North,x,y,"/images/SheepAge/Spy");
 			break;
 		case SubMarine :
-			sheep =new SubMarine(Orientation.North,x,y,"assets/images/SheepAge/SubMarine");
+			sheep =new SubMarine(Orientation.North,x,y,"/images/SheepAge/SubMarine");
 			break;
 			 default :
 		sheep=null;		 
