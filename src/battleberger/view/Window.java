@@ -20,7 +20,7 @@ import battleberger.model.player.Shot;
 import sun.util.calendar.Era;
 
 @SuppressWarnings("serial")
-public class Window extends JFrame implements Serializable,  Observer, IDisplay {
+public class Window extends JFrame implements Serializable, IDisplay {
 	
 
 	private PlacementShipPanel shippan;
@@ -40,14 +40,6 @@ public class Window extends JFrame implements Serializable,  Observer, IDisplay 
 		 
 	}
 
-	@Override
-	public void update(Observable o, Object arg) {
-		/*if ( game.isPlacing() ){
-			this.add(shippan, BorderLayout.NORTH);
-		} else {
-			this.add(statspan, BorderLayout.NORTH);
-		}*/
-	}
 
 
 	@Override
@@ -92,6 +84,7 @@ public class Window extends JFrame implements Serializable,  Observer, IDisplay 
 	
 	private void loadWindow(){
 		this.remove(eraPanel);
+		
 		switch(game.gameState){
 		case EraSelection:
 			add(eraPanel, BorderLayout.CENTER);

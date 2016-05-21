@@ -16,7 +16,7 @@ public class EraPanel extends JPanel{
 	public EraPanel(){
 		super();
 		JButton m_a = new JButton("Moyen age");
-		JButton sheep = new JButton("L'âge des moutons");
+		JButton sheep = new JButton("L'age des moutons");
 
 		JButton troll = new JButton("Troll ?!");
 		

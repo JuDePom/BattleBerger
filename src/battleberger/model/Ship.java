@@ -281,8 +281,8 @@ public abstract class Ship extends AbstractShip{
 	
 	@Override
 	public boolean overlap(int x, int y){
-		return     x - positionX >= 0 && x + positionX < getWidth()
-				&& y - positionY >= 0 && y + positionY < getHeight()
+		return     x >= positionX && x < getWidth() + positionX 
+				&& y >= positionY && y < getHeight()+ positionY
 				&& shape[x-positionX][y-positionY];		
 	}
 	@Override
