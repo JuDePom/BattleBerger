@@ -19,6 +19,7 @@ public class Game extends Observable {
 	public enum State {nothing, touched, sinked};
 	private List<Player> players;
 	private static int width, height;
+	private boolean end=false;
 	private IDisplay display;
 	public IDisplay getDisplay() {
 		return display;
@@ -83,7 +84,7 @@ public class Game extends Observable {
 			waitfps(start);
 		}
 		
-		
+		end=true;
 		
 	}
 	
@@ -204,6 +205,9 @@ public class Game extends Observable {
 	public int getWorldSize() {
 		return getWidth() * getHeight();
 	}
-
+	
+	public boolean end(){
+		return end;
+	}
 
 }

@@ -98,7 +98,10 @@ public class StatusPanel extends JPanel{
 	public void initPicture(){
 		TypeShip[] pictur=TypeShip.values();
 		for(TypeShip p : pictur){
-			pictureship.put(p,new ImageIcon(RessourceManager.getImage("./assets/images/"+AbstractShipyard.getTimeSpace().name()+"/"+p.name())));
+			if(p==TypeShip.Spy)
+				pictureship.put(p,new ImageIcon(RessourceManager.getImage("./assets/images/"+AbstractShipyard.getTimeSpace().name()+"/"+p.name()+"2")));
+			else
+				pictureship.put(p,new ImageIcon(RessourceManager.getImage("./assets/images/"+AbstractShipyard.getTimeSpace().name()+"/"+p.name())));
 		}
 	}
 }

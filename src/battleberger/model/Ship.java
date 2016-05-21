@@ -22,6 +22,7 @@ public abstract class Ship extends AbstractShip{
 	protected int positionY;
 	protected int[][] fireshape;
 	protected int nbEquipementmax;
+	protected int nbEquipement=0;
 	protected Map<StatType,Integer> statmax;
 	protected int timereload=0;
 	protected boolean mouv;
@@ -353,6 +354,14 @@ public abstract class Ship extends AbstractShip{
 	@Override
 	public void setName(String s){
 		name=s;
+	}
+	@Override
+	public int getNbEquipement(){
+		return nbEquipement;
+	}
+	@Override
+	public void setNbEquipement(int nbupgrade){
+		nbEquipement=nbupgrade;
 	}
 	//savoir si il est vivant ou non sera calculer avec lives 
 	//potentiellement si une case brule ou non => tableau de boolean  

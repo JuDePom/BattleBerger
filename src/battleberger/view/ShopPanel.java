@@ -32,6 +32,7 @@ public class ShopPanel extends JPanel{
 	Armory armory;
 	JLabel[] cost=new JLabel[4];
 	JButton[] buy=new JButton[4];
+	JLabel money=new JLabel("Money : ???");
 	Map<Picture,ImageIcon> imageshop=new HashMap<Picture,ImageIcon>();
 	public ShopPanel(Game game) {
 		instancePicture();
@@ -40,12 +41,17 @@ public class ShopPanel extends JPanel{
 		armory=new Armory();
 		StatType[] stat=StatType.values();
 		JPanel[] upgrade=new JPanel[stat.length];
+		JPanel entete=new JPanel();
 		JLabel title=new JLabel(imageshop.get(Picture.Shop));
 		Picture[] picto=Picture.values();
-		this.setBackground(new Color(130,155,189));
-		title.setPreferredSize(new Dimension(250,50));
+		entete.setBackground(new Color(130,155,189));
+		entete.setPreferredSize(new Dimension(250,50));
 		this.setBorder(BorderFactory.createLineBorder(Color.black));
-		add(title);
+		entete.setBorder(BorderFactory.createLineBorder(Color.black));
+		entete.add(money);
+		entete.add(title);
+		
+		add(entete);
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		//currentship=armory.buildUpgrade(StatType.Power, armory.buildUpgrade(StatType.ReloadSpeed, armory.buildUpgrade(StatType.Power, AbstractShipyard.orderShip(TypeShip.BlackPearl))));
 		for(int i=0;i<stat.length;i++){
@@ -66,9 +72,14 @@ public class ShopPanel extends JPanel{
 						
 						int nbupgrade=currentship.getUpgrade(type);
 						if(nbupgrade<currentship.getStatmax(type)){
-							battle.getCurrentPlayer().upgrade(armory.buildUpgrade(type, currentship),currentship);
+							AbstractShip up=armory.buildUpgrade(type, currentship);
+							System.out.println(currentship);
+							battle.getCurrentPlayer().upgrade(up,currentship);
 							battle.getCurrentPlayer().gainMoney(-((int)Math.pow(2, nbupgrade)*currentship.getCostUpgrade()));
-							
+							currentship=up;
+							System.out.println(currentship);
+							currentship.setNbEquipement(currentship.getNbEquipement());
+							System.out.println(currentship.getNbEquipement());
 						}
 					}
 					//buy[0].setEnabled(!buy[0].isEnabled());
@@ -124,19 +135,22 @@ public class ShopPanel extends JPanel{
 			if(currentship!=null)
 				money=(int)Math.pow(2, currentship.getUpgrade(type[i]))*currentship.getCostUpgrade();
 			if(p!=null){
-				
-				
-				if(currentship.getUpgrade(type[i])<currentship.getStatmax(type[i])){
-				if(p.getMoney()<money){
-					buy[i].setEnabled(false);
-					
-					buy[i].setIcon(buy[i].getDisabledIcon());
-				}
-				else{
-					buy[i].setEnabled(true);
-					
-					buy[i].setIcon(imageshop.get(Picture.Buyshop));
-				}
+				this.money.setText("Money : "+p.getMoney());
+				if(currentship.getNbEquipement()<currentship.getNbEquipementmax()){
+					if(currentship.getUpgrade(type[i])<currentship.getStatmax(type[i])){
+						if(p.getMoney()<money){
+							buy[i].setEnabled(false);
+							
+							buy[i].setIcon(buy[i].getDisabledIcon());
+						}
+						else{
+							buy[i].setEnabled(true);
+							
+							buy[i].setIcon(imageshop.get(Picture.Buyshop));
+						}
+					}else{
+						buy[i].setEnabled(false);
+					}
 				}else{
 					buy[i].setEnabled(false);
 				}
