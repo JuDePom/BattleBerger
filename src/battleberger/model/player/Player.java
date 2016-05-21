@@ -30,7 +30,7 @@ public abstract class Player {
 	public AbstractShip getBestShip(){
 		int best_val = Integer.MIN_VALUE;
 		AbstractShip best= ships.get(0);
-		for(AbstractShip ship: ships){
+		for(AbstractShip ship: getShipsReady()){
 			int sum = 0;
 			for(int[] t : ship.getFireshape()){
 				for(int b : t){
@@ -44,6 +44,8 @@ public abstract class Player {
 		}
 		return best;
 	}
+	
+	
 	
 	public int nbShips(){
 		return ships.size();
@@ -64,7 +66,7 @@ public abstract class Player {
 	public List<AbstractShip> getShipsReady(){
 		List<AbstractShip> ret = new ArrayList<>();
 		for(AbstractShip s : ships){
-			if(s.isReadyToFire())
+			if(s.getTimereload() <= 0)
 				ret.add(s);
 		}
 		return ret;

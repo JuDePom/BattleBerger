@@ -65,15 +65,19 @@ public class Game extends Observable {
 			start = System.currentTimeMillis();
 			for(Player p : players){
 				currentPlayer = p;
-				Shot s;
-				do{
-					s = p.play(this);
-					
-				}while(s == null ||  s.getShip().getTimereload() > 0);
-				//si le joueur ne passe pas son tour
-				display.fire(p, s);
-				p.setState(s, fire(p, s));
-				s.getShip().setTimereload(s.getShip().getCooldown());
+				Shot s = null;
+				if(p.getShipsReady().size() > 0){
+					do{
+						s = p.play(this);
+						
+					}while(s != null &&  s.getShip().getTimereload() > 0);
+					//si le joueur ne passe pas son tour
+					if(s != null){
+						display.fire(p, s);
+						p.setState(s, fire(p, s));
+						s.getShip().setTimereload(s.getShip().getCooldown());
+					}
+				}
 				
 				if(isEndOfGame()) break;
 

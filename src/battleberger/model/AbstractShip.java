@@ -62,17 +62,8 @@ public abstract class AbstractShip {
 		cost = 1;
 	}
 	
-	public abstract int isReadyToFireIn();
-	
-	public boolean isReadyToFire(){
-		return isReadyToFireIn() <= 0;
-	}
-	
-	public abstract void setReadyToFireIn(int i);
-	
 	public void endOfTurnProcessing(){
 		setTimereload(getTimereload() - 1);
-		setReadyToFireIn(isReadyToFireIn() - 1);
 	}
 	
 	public abstract int shipValue();

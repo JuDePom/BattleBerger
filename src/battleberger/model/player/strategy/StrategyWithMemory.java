@@ -32,7 +32,8 @@ public class StrategyWithMemory extends IStrategy {
 	@Override
 	public void setState(Shot s, battleberger.model.Game.State st) {
 		for(Square sq : s.getSquares().keySet()){
-			states[sq.getX()][sq.getY()] = st;
+			if(sq.getX() >=0 && sq.getX() < width && sq.getY() >= 0 && sq.getY() < height)
+				states[sq.getX()][sq.getY()] = st;
 		}
 	};
 	
