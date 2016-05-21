@@ -102,11 +102,10 @@ public class Window extends JFrame implements Serializable,  Observer, IDisplay 
 			setJMenuBar(menubar);
 			break;
 		case Playing:
+
 			this.add(gamepan, BorderLayout.CENTER);
 			this.add(shoppan, BorderLayout.EAST);
 			add(statspan, BorderLayout.NORTH);
-			gamepan.setLock(true);
-			
 			break;
 		case EndScreen:
 			add(endpan);
