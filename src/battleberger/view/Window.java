@@ -61,12 +61,14 @@ public class Window extends JFrame implements Observer, IDisplay {
 		shoppan = new ShopPanel(game);
 		statspan = new StatusPanel(game);
 		startpan = new StartPanel(game);
+		
 		menubar = new MenuBar(game);
 		
 		
 		this.add(gamepan, BorderLayout.CENTER);
 		this.add(shoppan, BorderLayout.EAST);
-		this.add(menubar,BorderLayout.NORTH);
+		this.setJMenuBar(menubar);
+		
 		this.pack();
 		this.setVisible(true);
 
