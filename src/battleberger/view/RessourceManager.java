@@ -4,7 +4,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,7 +37,7 @@ public class RessourceManager implements Serializable{
 			return images.get(path);
 		
 		try {
-			BufferedImage img = ImageIO.read(RessourceManager.class.getResource(path));
+			BufferedImage img = ImageIO.read(new File("assets/"+path));//RessourceManager.class.getResource(path));
 			images.put(path, img);
 			return img;
 		} catch (IOException e) {
