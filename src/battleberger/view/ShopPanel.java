@@ -168,17 +168,19 @@ public class ShopPanel extends JPanel implements Serializable{
 		
 	}
 	public void setCost(AbstractShip ship){
-		currentship=ship;
-		StatType[] type=StatType.values();
-		int money;
-		for(int i=0;i<type.length;i++){
-			if(ship!=null)
-			 money=(int)(ship.getCostUpgrade()*Math.pow(2,ship.getUpgrade(type[i])));
-			else 
-				money=(armory.buildUpgrade(type[i], null)).getCostUpgrade();
-			//System.out.println(""+type[i] + ship.getUpgrade(type[i]));
-			
-			cost[i].setText("Cost : "+money);
+		if(ship!=null){
+			currentship=ship;
+			StatType[] type=StatType.values();
+			int money;
+			for(int i=0;i<type.length;i++){
+				if(ship!=null)
+				 money=(int)(ship.getCostUpgrade()*Math.pow(2,ship.getUpgrade(type[i])));
+				else 
+					money=(armory.buildUpgrade(type[i], null)).getCostUpgrade();
+				//System.out.println(""+type[i] + ship.getUpgrade(type[i]));
+				
+				cost[i].setText("Cost : "+money);
+			}
 		}
 	}
 	public void enabledButton(){
@@ -194,6 +196,7 @@ public class ShopPanel extends JPanel implements Serializable{
 				money=(int)Math.pow(2, currentship.getUpgrade(type[i]))*currentship.getCostUpgrade();
 			if(p!=null){
 				this.money.setText("Money : "+p.getMoney());
+				
 				if(currentship.getNbEquipementTotal()<currentship.getNbEquipementmax()){
 					if(currentship.getUpgrade(type[i])<currentship.getStatmax(type[i])){
 						if(p.getMoney()<money){
