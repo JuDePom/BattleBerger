@@ -68,6 +68,7 @@ public class Window extends JFrame implements Serializable,  Observer, IDisplay 
 		BorderLayout layout = new BorderLayout();
 		this.setLayout(layout);
 		
+		if(eraPanel != null) remove(eraPanel);
 		if(shippan != null) remove(shippan);
 		if(gamepan != null) remove(gamepan);
 		if(shoppan != null) remove(shoppan);
