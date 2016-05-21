@@ -108,8 +108,13 @@ public class Game extends Observable {
 		switch(strat){
 		case Yolo:
 			strategy = strategies.get(0);
+			break;
 		case Diagonal:
 			strategy = strategies.get(1);
+			break;
+		case StrategyWithMemory:
+			strategy = strategies.get(2);
+			break;
 		default:
 			System.out.println("t'as oublié de gérer une stratégie monsieur le programmeur"); 
 			//erreur

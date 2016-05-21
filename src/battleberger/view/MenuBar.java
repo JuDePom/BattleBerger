@@ -36,6 +36,12 @@ public class MenuBar extends JMenuBar {
 		}
 		jcb.setPreferredSize(new Dimension(100,10));
 		jcb.setSelectedItem(jcb.getItemAt(0));
+		jcb.addActionListener(new ActionListener () {
+			 public void actionPerformed(ActionEvent e) {
+				 game.setStrategy(getSelectStrat());
+			 }
+		});
+		
 		JButton quit=new JButton("Quit");
 		quit.addActionListener(new ActionListener(){
 			@Override
