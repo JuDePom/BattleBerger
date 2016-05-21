@@ -24,15 +24,26 @@ public class Game extends Observable implements Serializable {
 	private static final long serialVersionUID = 5424860716804702256L;
 
 	public enum State {nothing, touched, sinked};
+	public enum GameState {Preparing, Playing, EndScreen};
+	
 	private List<Player> players;
 	private static int width, height;
 	private boolean end=false;
-	transient private IDisplay display;
+	private IDisplay display;
 	private State[][] state;
 	public Player currentPlayer;
 
 	private static List<Strategy> strategies;
 	
+	public State[][] getState() {
+		return state;
+	}
+
+
+
+	public void setState(State[][] state) {
+		this.state = state;
+	}
 	static {
 		width = 20;
 		height = 20;
@@ -99,8 +110,6 @@ public class Game extends Observable implements Serializable {
 			display.updateGameGrid();
 			
 			waitfps(start);
-		end=true;
-		
 		}
 		display.endOfGame();
 	}
