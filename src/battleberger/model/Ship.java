@@ -93,17 +93,17 @@ public abstract class Ship extends AbstractShip{
 	public void setOrient(Orientation orient) {
 		
 		if(orient == this.orient){
-			//rien à faire
+			//rien ï¿½ faire
 			return;
 		}
 		int[][] tmpL;
 		boolean[][] tmpS;
-		//TODO: j'ai sûrement inversé rotation 90 et -90, à vérifier
+		//TODO: j'ai sï¿½rement inversï¿½ rotation 90 et -90, ï¿½ vï¿½rifier
 		if(	(orient == Orientation.North && this.orient == Orientation.East)
 				||	(orient == Orientation.East && this.orient == Orientation.South)
 				||	(orient == Orientation.South && this.orient == Orientation.West)
 				||	(orient == Orientation.West && this.orient == Orientation.North)){
-			//rotation 90°
+			//rotation 90ï¿½
 			tmpL = new int[lives[0].length][lives.length];
 			tmpS = new boolean[shape[0].length][shape.length];
 			for(int i = 0 ; i < lives[0].length ; i++){
@@ -119,7 +119,7 @@ public abstract class Ship extends AbstractShip{
 				||	(orient == Orientation.East && this.orient == Orientation.West)
 				||	(orient == Orientation.South && this.orient == Orientation.North)
 				||	(orient == Orientation.West && this.orient == Orientation.East)){
-			//rotation 180°
+			//rotation 180ï¿½
 			tmpL = new int[lives.length][lives[0].length];
 			tmpS = new boolean[lives.length][lives[0].length];
 			for(int i = 0 ; i < lives.length ; i++){
@@ -136,7 +136,7 @@ public abstract class Ship extends AbstractShip{
 					(orient == Orientation.East && this.orient == Orientation.North)
 				
 				||	(orient == Orientation.West && this.orient == Orientation.South)){
-			//rotation -90°
+			//rotation -90ï¿½
 			tmpL = new int[lives[0].length][lives.length];
 			tmpS = new boolean[shape[0].length][shape.length];
 			for(int i = 0 ; i < lives[0].length ; i++){
@@ -164,10 +164,10 @@ public abstract class Ship extends AbstractShip{
 			
 		}
 		else if(this.orient == null){
-			//rien à faire
+			//rien ï¿½ faire
 		}
 		else{
-			System.out.println("cas non géré: " +  orient + " " + this.orient);
+			System.out.println("cas non gï¿½rï¿½: " +  orient + " " + this.orient);
 		}
 
 		this.orient = orient;
@@ -368,7 +368,7 @@ public abstract class Ship extends AbstractShip{
 	}
 	//savoir si il est vivant ou non sera calculer avec lives 
 	//potentiellement si une case brule ou non => tableau de boolean  
-	// un truc pour avoir une époque qui ne change pas 
+	// un truc pour avoir une ï¿½poque qui ne change pas 
 	//potentiellement a chaque tour, on peut bouger un bateau ou son orientation
 	// le nombre d'armement de chaque type sera calculer
 	

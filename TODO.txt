@@ -10,4 +10,5 @@ afficher les tirs des deux côtés // fait
 afficher fireshape côté ennemi //fait 
 selection bateau qui ne marche pas // fait 
 couleur selon si on touche ou pas 
-
+générer les diagrammes de classe
+agrandire la case reloadspeed parce qu'on ne voit pas la valeur

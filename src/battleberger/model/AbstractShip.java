@@ -1,5 +1,6 @@
 package battleberger.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,9 +8,13 @@ import battleberger.model.Ship.Orientation;
 import battleberger.model.Ship.StatType;
 import battleberger.model.Ship.TypeShip;
 
-public abstract class AbstractShip {
+public abstract class AbstractShip implements Serializable {
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected int cost;
 	protected String name;
 	protected Map<StatType,Integer> upgrade=new HashMap<StatType,Integer>();

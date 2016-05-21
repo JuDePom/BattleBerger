@@ -21,8 +21,6 @@ public abstract class AbstractShipDecorator extends AbstractShip {
 	public StatType getStat() {
 		return stat;
 	}
-	
-	
 
 	@Override
 	public int shipValue() {

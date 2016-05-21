@@ -1,9 +1,16 @@
 package battleberger.model.decorateur;
 
+import java.io.Serializable;
+
 import battleberger.model.AbstractShip;
 import battleberger.model.Ship.StatType;
 
-public class Armory {
+public class Armory implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Armory(){
 		
 	}
