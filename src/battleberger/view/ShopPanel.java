@@ -30,9 +30,9 @@ public class ShopPanel extends JPanel implements Serializable{
 	public enum Picture{Shop,Closeshop,Buyshop,Power,Armor,MovSpeed,ReloadSpeed}
 	AbstractShip currentship;
 	Game battle;
-	
-	
-	
+
+
+
 	public AbstractShip getCurrentship() {
 		return currentship;
 	}
@@ -96,7 +96,7 @@ public class ShopPanel extends JPanel implements Serializable{
 		entete.setBorder(BorderFactory.createLineBorder(Color.black));
 		entete.add(money);
 		entete.add(title);
-		
+
 		add(entete);
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		//currentship=armory.buildUpgrade(StatType.Power, armory.buildUpgrade(StatType.ReloadSpeed, armory.buildUpgrade(StatType.Power, AbstractShipyard.orderShip(TypeShip.BlackPearl))));
@@ -115,18 +115,18 @@ public class ShopPanel extends JPanel implements Serializable{
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					if(currentship!=null){
-						
+
 						int nbupgrade=currentship.getUpgrade(type);
 						if(nbupgrade<currentship.getStatmax(type)){
-							
+
 							AbstractShip up=armory.buildUpgrade(type, currentship);
-							
+
 							battle.getCurrentPlayer().upgrade(up,currentship);
 							battle.getCurrentPlayer().gainMoney(-((int)Math.pow(2, nbupgrade)*currentship.getCostUpgrade()));
-							
+
 							currentship=up;
-							
-							
+
+
 							currentship.setNbEquipement(currentship.calculeNbEquipement());
 							try {
 								Thread.sleep(50);
@@ -134,17 +134,17 @@ public class ShopPanel extends JPanel implements Serializable{
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-							
-							
+
+
 							//refresh(ship);
 						}
 					}
 					//buy[0].setEnabled(!buy[0].isEnabled());
-					
+
 					//System.out.println("kaboum!");
 				}
 			});
-			
+
 			cost[i]=new JLabel("Cost : "/*+(int)(armory.buildUpgrade(type, null).getCostUpgrade()*Math.pow(2,currentship.getUpgrade(type)))*/);
 			JLabel name=new JLabel();
 			for(Picture p : picto){
@@ -155,17 +155,17 @@ public class ShopPanel extends JPanel implements Serializable{
 			upgrade[i].add(name);
 			upgrade[i].add(cost[i]);
 			upgrade[i].add(buy[i]);
-			
-			
+
+
 			add(upgrade[i]);
-			
+
 		}
 		upgrade[0].setBackground(new Color(231,145,119));
 		upgrade[1].setBackground(new Color(138,208,248));
 		upgrade[2].setBackground(new Color(178,255,178));
 		upgrade[3].setBackground(new Color(245,255,178));
 		refresh(currentship);
-		
+
 	}
 	public void setCost(AbstractShip ship){
 		currentship=ship;
@@ -173,55 +173,58 @@ public class ShopPanel extends JPanel implements Serializable{
 		int money;
 		for(int i=0;i<type.length;i++){
 			if(ship!=null)
-			 money=(int)(ship.getCostUpgrade()*Math.pow(2,ship.getUpgrade(type[i])));
+				money=(int)(ship.getCostUpgrade()*Math.pow(2,ship.getUpgrade(type[i])));
 			else 
 				money=(armory.buildUpgrade(type[i], null)).getCostUpgrade();
 			//System.out.println(""+type[i] + ship.getUpgrade(type[i]));
-			
+
 			cost[i].setText("Cost : "+money);
 		}
 	}
 	public void enabledButton(){
 		Player p=battle.getCurrentPlayer();
-		
-		
+
+
 		//p=new Human();
 		StatType[] type=StatType.values();
 		int money=Integer.MAX_VALUE;
 		for(int i=0;i<StatType.values().length;i++){
 			if(i!=2){
-			if(currentship!=null)
-				money=(int)Math.pow(2, currentship.getUpgrade(type[i]))*currentship.getCostUpgrade();
-			if(p!=null){
-				this.money.setText("Money : "+p.getMoney());
-				if(currentship.getNbEquipementTotal()<currentship.getNbEquipementmax()){
-					if(currentship.getUpgrade(type[i])<currentship.getStatmax(type[i])){
-						if(p.getMoney()<money){
+				if(currentship != null){
+					money=(int)Math.pow(2, currentship.getUpgrade(type[i]))*currentship.getCostUpgrade();
+					if(p!=null){
+						this.money.setText("Money : "+p.getMoney());
+						if(currentship.getNbEquipementTotal()
+								<
+								currentship.getNbEquipementmax()){
+							if(currentship.getUpgrade(type[i])<currentship.getStatmax(type[i])){
+								if(p.getMoney()<money){
+									buy[i].setEnabled(false);
+
+									buy[i].setIcon(buy[i].getDisabledIcon());
+								}
+								else{
+									buy[i].setEnabled(true);
+
+									buy[i].setIcon(imageshop.get(Picture.Buyshop));
+								}
+							}else{
+								buy[i].setEnabled(false);
+							}
+						}else{
 							buy[i].setEnabled(false);
-							
-							buy[i].setIcon(buy[i].getDisabledIcon());
 						}
-						else{
-							buy[i].setEnabled(true);
-							
-							buy[i].setIcon(imageshop.get(Picture.Buyshop));
-						}
-					}else{
-						buy[i].setEnabled(false);
 					}
 				}else{
 					buy[i].setEnabled(false);
 				}
-			}
-			}else{
-				buy[i].setEnabled(false);
 			}
 		}
 	}
 	public void refresh(AbstractShip ship){
 		setCost(ship);
 		enabledButton();
-		
+
 	}
 	public void instancePicture(){
 		Picture[] pictur=Picture.values();
@@ -232,5 +235,5 @@ public class ShopPanel extends JPanel implements Serializable{
 	public AbstractShip getCurrentShip(){
 		return currentship;
 	}
-	
+
 }

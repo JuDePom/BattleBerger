@@ -69,7 +69,6 @@ public class Game extends Observable implements Serializable {
 		}
 		
 		long start;
-		while(true){
 		while( ! isEndOfGame() ){
 			start = System.currentTimeMillis();
 			for(Player p : players){
@@ -98,8 +97,6 @@ public class Game extends Observable implements Serializable {
 			display.updateGameGrid();
 			
 			waitfps(start);
-		}
-		System.out.println(end);
 		end=true;
 		}
 	}
