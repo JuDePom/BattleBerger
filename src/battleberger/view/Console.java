@@ -87,4 +87,10 @@ public class Console implements IDisplay{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void clean() {
+		// TODO Auto-generated method stub
+		
+	}
 }

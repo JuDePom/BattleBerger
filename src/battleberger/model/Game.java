@@ -71,7 +71,7 @@ public class Game extends Observable implements Serializable {
 		}
 		
 		long start;
-		while(true){
+		
 		while( ! isEndOfGame() ){
 			start = System.currentTimeMillis();
 			for(Player p : players){
@@ -103,7 +103,7 @@ public class Game extends Observable implements Serializable {
 		}
 		System.out.println(end);
 		end=true;
-		}
+		display.clean();
 	}
 	
 	
@@ -146,7 +146,7 @@ public class Game extends Observable implements Serializable {
 							if( ! ship.isAlive()){
 								toRemove.add(ship);
 								state[sq.getKey().getX()][sq.getKey().getY()]=State.sinked;
-								p.setMoney(25*ship.shipValue());
+								p.gainMoney(25*ship.shipValue());
 							}
 						}
 					}

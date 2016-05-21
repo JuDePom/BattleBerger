@@ -26,7 +26,7 @@ public interface IDisplay {
 	
 	Shot getShot(Human h);
 	
-
+	void clean();
 
 	void refresh();
 }
