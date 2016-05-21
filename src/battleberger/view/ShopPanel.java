@@ -74,13 +74,13 @@ public class ShopPanel extends JPanel{
 						if(nbupgrade<currentship.getStatmax(type)){
 							
 							AbstractShip up=armory.buildUpgrade(type, currentship);
-							System.out.println(currentship);
+							
 							battle.getCurrentPlayer().upgrade(up,currentship);
 							battle.getCurrentPlayer().gainMoney(-((int)Math.pow(2, nbupgrade)*currentship.getCostUpgrade()));
 							
 							currentship=up;
 							
-							System.out.println(currentship);
+							
 							currentship.setNbEquipement(currentship.calculeNbEquipement());
 							try {
 								Thread.sleep(50);
@@ -88,9 +88,7 @@ public class ShopPanel extends JPanel{
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-							System.out.println(currentship.getNbEquipementmax());
-							System.out.println(currentship.getNbEquipementTotal());
-							System.out.println(currentship.calculeNbEquipement());
+							
 							
 							//refresh(ship);
 						}
