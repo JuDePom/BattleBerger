@@ -6,7 +6,6 @@ import java.util.Map;
 public abstract class Ship extends AbstractShip{
 	
 
-	protected int readyToFireIn;
 
 	public enum Orientation {North,East,South,West};
 	public enum TypeShip{Frigate,Commander,Spy,Kevin,Destroyer,SubMarine,Elisabeth,GrosseBerta,ChuckNoris,ShipDefault,BlackPearl}
@@ -282,8 +281,8 @@ public abstract class Ship extends AbstractShip{
 	
 	@Override
 	public boolean overlap(int x, int y){
-		return  x >= positionX && x < positionX + getWidth()
-				&& y >= positionY && y < positionY + getHeight()
+		return     x - positionX >= 0 && x + positionX < getWidth()
+				&& y - positionY >= 0 && y + positionY < getHeight()
 				&& shape[x-positionX][y-positionY];		
 	}
 	@Override

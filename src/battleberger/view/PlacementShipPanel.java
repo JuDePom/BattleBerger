@@ -13,6 +13,7 @@ import java.util.Map;
 import javax.swing.JPanel;
 
 import battleberger.model.AbstractShip;
+import battleberger.model.AbstractShipyard;
 import battleberger.model.Game;
 import battleberger.model.Ship;
 import battleberger.model.Ship.TypeShip;
@@ -31,7 +32,7 @@ public class PlacementShipPanel extends JPanel implements Serializable{
 		this.setPreferredSize(new Dimension(0, 150));
 		
 		for (TypeShip type : Ship.TypeShip.values()){
-			ships.put(type, ShipyardDefault.orderShip(type));
+			ships.put(type, AbstractShipyard.orderShip(type));
 		}
 		
 		this.addMouseListener(new MouseListener() {

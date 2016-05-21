@@ -20,7 +20,7 @@ public class EraPanel extends JPanel{
 
 		JButton troll = new JButton("Troll ?!");
 		
-		add(m_a);
+		//add(m_a);
 		add(sheep);
 		add(troll);
 		
