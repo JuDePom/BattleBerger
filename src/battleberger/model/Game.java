@@ -98,7 +98,9 @@ public class Game extends Observable implements Serializable {
 			
 			waitfps(start);
 		end=true;
+		
 		}
+		display.endOfGame();
 	}
 	
 	
