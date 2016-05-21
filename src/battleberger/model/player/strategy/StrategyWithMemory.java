@@ -1,5 +1,6 @@
 package battleberger.model.player.strategy;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -41,13 +42,19 @@ public class StrategyWithMemory extends Strategy {
 	@Override
 	public Shot fire(Computer ai, Game g) {
 		Random r = new Random();
+		List<Square> touched = new ArrayList<>();
 		for(int i = 0 ; i < states.length ; i++){
 			for(int j = 0 ; j < states[0].length ; j++){
 				State state = states[i][j];
 				if(state == State.touched){
-					return new Shot(i + (r.nextInt(2)-1 )*r.nextInt(2) , j, ai.getBestShip());
+					touched.add(new Square(i + (r.nextInt(2)-1 )*r.nextInt(4) , j  + (r.nextInt(2)-1 )*r.nextInt(4)));
+					
 				}
 			}
+		}
+		if(touched.size()>0){
+			Square s = touched.get(r.nextInt(touched.size()));
+			return new Shot(s.getX(), s.getY(), ai.getBestShip());
 		}
 		//si on est là on n'a touché aucun bateau
 		

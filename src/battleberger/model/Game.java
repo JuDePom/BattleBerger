@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Observable;
 
+import battleberger.model.Game.State;
 import battleberger.model.player.Computer;
 import battleberger.model.player.Player;
 import battleberger.model.player.Shot;
@@ -27,7 +28,7 @@ public class Game extends Observable implements Serializable {
 	private static int width, height;
 	private boolean end=false;
 	transient private IDisplay display;
-
+	private State[][] state;
 	public Player currentPlayer;
 
 	private static List<Strategy> strategies;
@@ -43,6 +44,7 @@ public class Game extends Observable implements Serializable {
 	
 	
 	public Game(Player p1, Player p2, IDisplay disp){
+		this.initState(width, height);
 		players = new ArrayList<>();
 		addPlayer(p1);
 		addPlayer(p2);
@@ -139,8 +141,10 @@ public class Game extends Observable implements Serializable {
 					for(Entry<Square, Integer> sq : s.getSquares().entrySet()){
 						if( ship.toucher(sq.getKey().getX(), sq.getKey().getY(), sq.getValue())){
 							ret = State.touched;
+							state[sq.getKey().getX()][sq.getKey().getY()]=State.touched;
 							if( ! ship.isAlive()){
 								toRemove.add(ship);
+								state[sq.getKey().getX()][sq.getKey().getY()]=State.sinked;
 							}
 						}
 					}
@@ -148,6 +152,7 @@ public class Game extends Observable implements Serializable {
 				for(AbstractShip ship : toRemove){
 					p2.remove(ship);
 					ret = State.sinked;
+					
 				}
 			}
 		}
@@ -255,5 +260,15 @@ public class Game extends Observable implements Serializable {
 	public boolean end(){
 		return end;
 	}
-
+	public void initState(int width, int height){
+		state=new State[width][height];
+		for(int i=0;i<state.length;i++){
+			for(int j=0;j<state[0].length;j++){
+				state[i][j]=State.nothing;
+			}
+		}
+	}
+	public State[][] state(){
+		return state;
+	}
 }

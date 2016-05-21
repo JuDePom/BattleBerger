@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 
 import battleberger.model.AbstractShip;
 import battleberger.model.Game;
+import battleberger.model.Game.State;
 import battleberger.model.Square;
 import battleberger.model.Ship.Orientation;
 import battleberger.model.player.Player;
@@ -28,8 +29,9 @@ import battleberger.model.player.Shot;
 public class GamePanel extends JPanel implements Serializable{
 	private Game game;
 	private transient BufferedImage ocean;
-
-	
+	private transient BufferedImage fail;
+	private transient BufferedImage hit;
+	private transient BufferedImage sinked;
 
 	private List<Pair> shots = Collections.synchronizedList(new ArrayList<Pair>());
 
@@ -46,9 +48,14 @@ public class GamePanel extends JPanel implements Serializable{
 
 	public GamePanel(Game game) {
 		this.game = game;
+		fail=RessourceManager.getImage("./assets/images/Fail");
+		hit=RessourceManager.getImage("./assets/images/Hit");
+		sinked=RessourceManager.getImage("./assets/images/Sinked");
+		
 		this.setBackground(Color.BLACK);
 		try {
 			this.ocean = ImageIO.read(new File("./assets/images/ocean.png"));
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -238,8 +245,11 @@ public class GamePanel extends JPanel implements Serializable{
 		for (Pair sh : shots)
 			if (sh.player == game.getPlayers().get(1))
 				for ( Square sq : sh.shot.getSquares().keySet() )
-					if (sq.getX() >= 0 && sq.getX() <= gw && sq.getY() >= 0 && sq.getY() <= gh)
+					if (sq.getX() >= 0 && sq.getX() <= gw && sq.getY() >= 0 && sq.getY() <= gh){
 						g.fillRect(dw + sq.getX()* cs, dh + sq.getY() * cs, cs, cs);
+					}
+						
+					
 
 		g.setColor(Color.CYAN);
 		for (int x = 1; x<gw; x++){
@@ -259,7 +269,24 @@ public class GamePanel extends JPanel implements Serializable{
 			if (sh.player == game.getPlayers().get(0))
 				for ( Square sq : sh.shot.getSquares().keySet() )
 					if (sq.getX() >= 0 && sq.getX() <= gw && sq.getY() >= 0 && sq.getY() <= gh)
-						g.fillRect(pw + sq.getX()* cs, dh + sq.getY() * cs, cs, cs);
+						switch(game.state()[sq.getX()][sq.getY()]){
+						case nothing:
+							//g.setColor(new Color(255, 0, 0, 50));
+							//g.fillRect(pw + sq.getX()* cs, dh + sq.getY() * cs, cs, cs);
+							g.drawImage(fail, pw + sq.getX()* cs, dh+ sq.getY() * cs, cs, cs, null);
+							break;
+						case touched :
+						//	g.setColor(new Color(0,255,0,255));
+							//g.fillRect(pw + sq.getX()* cs, dh + sq.getY() * cs, cs, cs);
+							g.drawImage(hit, pw + sq.getX()* cs, dh+ sq.getY() * cs, cs, cs, null);
+							break;
+						case sinked: 
+						//	g.setColor(new Color(0,0,255,255));
+						//	g.fillRect(pw + sq.getX()* cs, dh + sq.getY() * cs, cs, cs);
+							g.drawImage(sinked, pw + sq.getX()* cs, dh+ sq.getY() * cs, cs, cs, null);
+							break;
+						}
+						
 		
 		g.setColor(Color.RED);
 		for (int x = 1; x<gw; x++){
@@ -320,7 +347,7 @@ public class GamePanel extends JPanel implements Serializable{
 				}
 			}
 		}
-
+/*
 		Player enemy = players.get(1);
 		for (int n = 0; n < enemy.nbShips(); n++){	
 			AbstractShip ship = enemy.getShip(n);
@@ -338,6 +365,7 @@ public class GamePanel extends JPanel implements Serializable{
 				}
 			}
 		}
+		*/
 	}
 
 	private BufferedImage setOrientation(BufferedImage img, Orientation orient) {

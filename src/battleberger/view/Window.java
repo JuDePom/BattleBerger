@@ -63,11 +63,11 @@ public class Window extends JFrame implements Serializable,  Observer, IDisplay 
 		this.setLayout(layout);
 
 		
-		if(shippan != null) shippan.setVisible(false);
-		if(gamepan != null) gamepan.setVisible(false);
-		if(shoppan != null) shoppan.setVisible(false);
-		if(statspan != null) statspan.setVisible(false);
-		if(startpan != null) startpan.setVisible(false);
+		if(shippan != null) remove(shippan);
+		if(gamepan != null) remove(gamepan);
+		if(shoppan != null) remove(shoppan);
+		if(statspan != null) remove(statspan);
+		if(startpan != null) remove(startpan);
 		
 		shippan = new PlacementShipPanel(game);
 		gamepan = new GamePanel(game);
@@ -138,6 +138,14 @@ public class Window extends JFrame implements Serializable,  Observer, IDisplay 
 		}
 
 		return false;
+	}
+	
+	
+
+	@Override
+	public void endOfGame() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override

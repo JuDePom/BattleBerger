@@ -10,7 +10,7 @@ import battleberger.model.player.Shot;
 
 public interface IDisplay {
 
-	
+	void endOfGame();
 
 	void selectGridDimension();
 	
