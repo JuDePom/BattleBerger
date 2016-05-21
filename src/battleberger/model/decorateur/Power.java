@@ -7,7 +7,7 @@ import battleberger.model.Ship.StatType;
 public class Power extends AbstractShipDecorator{
 	public Power(AbstractShip ship){
 		next=ship;
-		name="Armor";
+		name="Power";
 		costUpgrade=10;
 		if(ship!=null)
 		ship.addUpgrade(StatType.Power);

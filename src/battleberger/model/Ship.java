@@ -70,7 +70,7 @@ public abstract class Ship extends AbstractShip{
 	}
 	
 	protected void Name(){
-		name = this.getClass().getName();
+		name = type.name();
 	}
 	@Override
 	public boolean[][] getShape() {
@@ -356,12 +356,20 @@ public abstract class Ship extends AbstractShip{
 		name=s;
 	}
 	@Override
-	public int getNbEquipement(){
+	public int getNbEquipementTotal(){
 		return nbEquipement;
+	}
+	@Override
+	public int getNbEquipement(){
+		return 0;
 	}
 	@Override
 	public void setNbEquipement(int nbupgrade){
 		nbEquipement=nbupgrade;
+	}
+	@Override
+	public String toString(){
+		return name;
 	}
 	//savoir si il est vivant ou non sera calculer avec lives 
 	//potentiellement si une case brule ou non => tableau de boolean  
