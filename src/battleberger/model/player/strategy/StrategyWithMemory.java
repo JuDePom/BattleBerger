@@ -45,7 +45,7 @@ public class StrategyWithMemory extends IStrategy {
 			for(int j = 0 ; j < states[0].length ; j++){
 				State state = states[i][j];
 				if(state == State.touched){
-					return new Shot(i + (r.nextInt(1)-1 )*r.nextInt(2) , j, ai.getBestShip());
+					return new Shot(i + (r.nextInt(2)-1 )*r.nextInt(2) , j, ai.getBestShip());
 				}
 			}
 		}
