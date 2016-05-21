@@ -12,4 +12,14 @@ faire le dossier
 couleur selon si on touche ou pas 
 gÃ©nÃ©rer les diagrammes de classe
  
-menu principal 
+menu principal
+
+
+mail du horatiu sur le projet 	
+
+Bonjour,
+
+La date limite pour le dépôt du dossier d'implémentation est reportée au 20 mai. 
+Je vous rappelle qu'il faudra déposer les sources ainsi qu'un README qui explique comment compiler et installer le logiciel. 
+Un script d'installation (make, ant, maven, etc.) est fortement conseillé. 
+Il faudra également déposer un document, pas forcement très long, qui explique la conception finale et les différences par rapport à la conception. 
