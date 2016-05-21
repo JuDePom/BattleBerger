@@ -267,7 +267,16 @@ public class Window extends JFrame implements Serializable,  Observer, IDisplay 
 	@Override
 	public void replay() {
 		remove(endpan);
-		setGame(new Game(new Human(),new Computer(),this));
+		
+		this.setMenubar(null);
+		game=new Game(new Human(),new Computer(),this);
+		Thread t=new Thread(){
+			@Override
+			public void run(){
+				game.play();
+			}
+		};
+		t.start();
 	}
 
 

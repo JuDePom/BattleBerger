@@ -8,6 +8,7 @@ import java.util.Observable;
 
 import battleberger.model.Game.State;
 import battleberger.model.player.Computer;
+import battleberger.model.player.Human;
 import battleberger.model.player.Player;
 import battleberger.model.player.Shot;
 import battleberger.model.player.strategy.Strategy;
@@ -55,7 +56,7 @@ public class Game extends Observable implements Serializable {
 
 
 	public void play(){
-
+		System.out.println(end);
 		display.selectGridDimension();
 
 		for(Strategy strat : strategies){
@@ -101,8 +102,9 @@ public class Game extends Observable implements Serializable {
 			
 			waitfps(start);
 		}
-		System.out.println(end);
+		
 		end=true;
+		System.out.println(end);
 		display.clean();
 	}
 	
@@ -142,9 +144,11 @@ public class Game extends Observable implements Serializable {
 					for(Entry<Square, Integer> sq : s.getSquares().entrySet()){
 						if( ship.toucher(sq.getKey().getX(), sq.getKey().getY(), sq.getValue())){
 							ret = State.touched;
+							if(p instanceof Human)
 							state[sq.getKey().getX()][sq.getKey().getY()]=State.touched;
 							if( ! ship.isAlive()){
 								toRemove.add(ship);
+								if(p instanceof Human)
 								state[sq.getKey().getX()][sq.getKey().getY()]=State.sinked;
 								p.gainMoney(25*ship.shipValue());
 							}
