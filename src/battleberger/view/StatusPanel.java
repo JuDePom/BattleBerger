@@ -100,7 +100,7 @@ public class StatusPanel extends JPanel implements Serializable{
 		this.setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
 		for(int i=0;i<type.length;i++){
 			stat[i]=new JLabel();
-			stat[i].setPreferredSize(new Dimension(110,20));
+			stat[i].setPreferredSize(new Dimension(140,20));
 			
 			statmax[i]=new JLabel();
 			currentstat[i]=new JLabel();

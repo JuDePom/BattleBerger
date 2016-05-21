@@ -366,7 +366,7 @@ public class GamePanel extends JPanel implements Serializable{
 				}
 			}
 		}
-		*/
+	*/	
 	}
 
 	private BufferedImage setOrientation(BufferedImage img, Orientation orient) {

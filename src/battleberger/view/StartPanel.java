@@ -60,7 +60,8 @@ public class StartPanel extends JPanel implements Serializable{
 		g.setColor(color);
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		g.setColor(Color.BLACK);
-		g.drawString("START", this.getWidth()/2 - 25 , this.getHeight() / 2);
+		g.drawImage(RessourceManager.getImage("./assets/images/Start"),this.getWidth()/2   , this.getHeight() / 2, this.getWidth()/2, this.getHeight()/2, null);
+//		g.drawString("START", , );
 	}
 
 	public boolean start() {
