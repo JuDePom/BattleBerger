@@ -32,7 +32,7 @@ public class ShopPanel extends JPanel{
 	Armory armory;
 	JLabel[] cost=new JLabel[4];
 	JButton[] buy=new JButton[4];
-	JLabel money=new JLabel("Money : ???");
+	JLabel money=new JLabel("Money : ??? ");
 	Map<Picture,ImageIcon> imageshop=new HashMap<Picture,ImageIcon>();
 	public ShopPanel(Game game) {
 		instancePicture();
@@ -81,9 +81,16 @@ public class ShopPanel extends JPanel{
 							currentship=up;
 							
 							System.out.println(currentship);
-							currentship.setNbEquipement(currentship.getNbEquipement());
+							currentship.setNbEquipement(currentship.calculeNbEquipement());
+							try {
+								Thread.sleep(50);
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							System.out.println(currentship.getNbEquipementmax());
 							System.out.println(currentship.getNbEquipementTotal());
-							System.out.println(currentship.getNbEquipement());
+							System.out.println(currentship.calculeNbEquipement());
 							
 							//refresh(ship);
 						}

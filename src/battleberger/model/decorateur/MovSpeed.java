@@ -15,6 +15,6 @@ public class MovSpeed extends AbstractShipDecorator{
 	}
 	@Override
 	public int getMovSpeed() {		
-		return 1+next.getMovSpeed();
+		return next.getMovSpeed();
 	}
 }

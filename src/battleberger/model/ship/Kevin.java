@@ -1,7 +1,7 @@
 package battleberger.model.ship;
 
 import battleberger.model.Ship;
-
+import battleberger.model.Ship.StatType;
 import battleberger.model.FireShape;
 
 public class Kevin extends Ship {
@@ -18,7 +18,7 @@ public class Kevin extends Ship {
 		
 		imagepath=chemin;
 		fireshape=FireShape.standardShape();
-		this.confStatMax(1, 1, 1, 1);
+		this.confStatMax(1, 1, 1, 0);
 		calculeNbEquipMax();
 		Name();
 		instanceUpgrade();
@@ -27,21 +27,22 @@ public class Kevin extends Ship {
 
 	@Override
 	public int getPower() {
-		return 1;
+		return 1+getUpgrade(StatType.Power);
 	}
 
 	@Override
 	public int getArmor() {
-		return 0;
+		return 0+getUpgrade(StatType.Armor);
 	}
 
 	@Override
 	public int getMovSpeed() {
-		return 4;
+		return 4+getUpgrade(StatType.MovSpeed);
 	}
 
 	@Override
 	public int getCooldown() {
+		
 		return 1;
 	}
 	

@@ -23,22 +23,24 @@ public class BlackPearl extends Ship{
 
 	@Override
 	public int getPower() {
-		return 6;
+		return 6+getUpgrade(StatType.Power);
 	}
 
 	@Override
 	public int getArmor() {
-		return 2;
+		return 2+getUpgrade(StatType.Armor);
 	}
 
 	@Override
 	public int getMovSpeed() {
-		return 2;
+		return 2+getUpgrade(StatType.MovSpeed);
 	}
 
 	@Override
 	public int getCooldown() {
-		return 4;
+		int res=4-getUpgrade(StatType.ReloadSpeed);
+		if(res<1)res=1;
+		return res;
 	}
 	
 }

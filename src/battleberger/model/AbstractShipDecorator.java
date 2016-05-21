@@ -215,12 +215,12 @@ public abstract class AbstractShipDecorator extends AbstractShip {
 		 next.setName(s);
 	}
 	@Override
-	public int getNbEquipement(){
-		return next.getNbEquipement()+1;
+	public int calculeNbEquipement(){
+		return next.calculeNbEquipement();
 	}
 	@Override
 	public int getNbEquipementTotal(){
-		return next.getNbEquipement();
+		return next.getNbEquipementTotal();
 	}
 	@Override
 	public void setNbEquipement(int nbupgrade){

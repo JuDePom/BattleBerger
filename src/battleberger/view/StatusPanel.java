@@ -92,7 +92,7 @@ public class StatusPanel extends JPanel{
 			stat[1].setText(""+st[1].name()+" : " + currentship.getArmor());
 			stat[2].setText(""+st[2].name()+" : " + currentship.getMovSpeed());
 			stat[3].setText(""+st[3].name()+" : " + currentship.getCooldown());
-			info[1].setText("Temps avant de pouvoir retir� : "+currentship.getTimereload());
+			info[1].setText("Temps avant de pouvoir retirer : "+currentship.getTimereload());
 			}
 		
 	}

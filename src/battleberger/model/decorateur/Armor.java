@@ -15,7 +15,7 @@ public class Armor extends AbstractShipDecorator{
 	}
 	@Override
 	public int getArmor() {		
-		return 1+next.getArmor();
+		return next.getArmor();
 	}
 	
 	

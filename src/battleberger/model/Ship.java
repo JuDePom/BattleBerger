@@ -360,8 +360,13 @@ public abstract class Ship extends AbstractShip{
 		return nbEquipement;
 	}
 	@Override
-	public int getNbEquipement(){
-		return 0;
+	public int calculeNbEquipement(){
+		StatType[] type=StatType.values();
+		int res=0;
+		for(StatType st : upgrade.keySet()){
+			res+=upgrade.get(st);
+		}
+		return res;
 	}
 	@Override
 	public void setNbEquipement(int nbupgrade){

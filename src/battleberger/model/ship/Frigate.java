@@ -1,7 +1,7 @@
 package battleberger.model.ship;
 
 import battleberger.model.Ship;
-
+import battleberger.model.Ship.StatType;
 import battleberger.model.FireShape;
 
 public class Frigate extends Ship {
@@ -31,22 +31,24 @@ public class Frigate extends Ship {
 
 	@Override
 	public int getPower() {
-		return 2;
+		return 2+getUpgrade(StatType.Power);
 	}
 
 	@Override
 	public int getArmor() {
-		return 0;
+		return 0+getUpgrade(StatType.Armor);
 	}
 
 	@Override
 	public int getMovSpeed() {
-		return 1;
+		return 1+getUpgrade(StatType.MovSpeed);
 	}
 
 	@Override
 	public int getCooldown() {
-		return 2;
+		int res=2-getUpgrade(StatType.ReloadSpeed);
+		if(res<1)res=1;
+		return res;
 	}
 	
 }

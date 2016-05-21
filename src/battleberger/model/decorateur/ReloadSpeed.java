@@ -14,8 +14,7 @@ public class ReloadSpeed extends AbstractShipDecorator{
 	}
 	@Override
 	public int getCooldown() {	
-		int rs=next.getCooldown()-1;
-		if(rs<1)rs=1;
-		return rs;
+		return next.getCooldown();
+		
 	}
 }

@@ -14,6 +14,6 @@ public class Power extends AbstractShipDecorator{
 	}
 	@Override
 	public int getPower() {		
-		return 1+next.getPower();
+		return next.getPower();
 	}
 }
