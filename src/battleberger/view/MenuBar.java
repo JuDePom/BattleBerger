@@ -10,19 +10,13 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
-import javax.swing.JLabel;
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-
-import javax.swing.plaf.basic.BasicComboBoxRenderer;
 
 import battleberger.backup.AbstractDAOFactory;
 import battleberger.backup.DAO;
 import battleberger.backup.ExportType;
 import battleberger.model.Game;
 import battleberger.model.Strategies;
-import battleberger.model.player.strategy.StrategyDiagonal;
-import battleberger.model.player.strategy.StrategyWithMemory;
 
 public class MenuBar extends JMenuBar {
 	List<JButton> button = new ArrayList<JButton>();
@@ -56,8 +50,19 @@ public class MenuBar extends JMenuBar {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				DAO<Game> save=AbstractDAOFactory.getAbstractDAOFactory(ExportType.MySQL).getGameDAO();
-				save.save(game, "./save");
+				JFileChooser chooser=new JFileChooser();
+				chooser.setCurrentDirectory(new File("."));
+				chooser.setDialogTitle("Choisir un fichier");
+				chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+				chooser.setAcceptAllFileFilterUsed(false);
+
+				if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+					if (chooser.getSelectedFile().isFile()) {
+						File file =chooser.getSelectedFile();
+						DAO<Game> save = AbstractDAOFactory.getAbstractDAOFactory(ExportType.Serialize).getGameDAO();
+						save.save(game, file.getAbsolutePath());
+					}
+				}
 			}
 			
 		});
@@ -76,7 +81,7 @@ public class MenuBar extends JMenuBar {
 				if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 					if (chooser.getSelectedFile().isFile()) {
 						File file =chooser.getSelectedFile();
-						DAO<Game> load = AbstractDAOFactory.getAbstractDAOFactory(ExportType.MySQL).getGameDAO();
+						DAO<Game> load = AbstractDAOFactory.getAbstractDAOFactory(ExportType.Serialize).getGameDAO();
 						load.load(file.getAbsolutePath());
 					}
 				}

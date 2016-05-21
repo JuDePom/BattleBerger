@@ -1,5 +1,6 @@
 package battleberger.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
@@ -14,16 +15,19 @@ import battleberger.model.player.strategy.StrategyWithMemory;
 import battleberger.model.player.strategy.StrategyYolo;
 import battleberger.view.IDisplay;
 
-public class Game extends Observable {
+public class Game extends Observable implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5424860716804702256L;
 
 	public enum State {nothing, touched, sinked};
 	private List<Player> players;
 	private static int width, height;
 	private boolean end=false;
 	private IDisplay display;
-	public IDisplay getDisplay() {
-		return display;
-	}
+
 	public Player currentPlayer;
 
 	private static List<IStrategy> strategies;
@@ -198,6 +202,34 @@ public class Game extends Observable {
 		p.setGame(this);
 	}
 	
+	public boolean isEnd() {
+		return end;
+	}
+
+
+	public void setEnd(boolean end) {
+		this.end = end;
+	}
+
+
+	public static List<IStrategy> getStrategies() {
+		return strategies;
+	}
+
+
+	public static void setStrategies(List<IStrategy> strategies) {
+		Game.strategies = strategies;
+	}
+
+
+	public void setCurrentPlayer(Player currentPlayer) {
+		this.currentPlayer = currentPlayer;
+	}
+
+
+	public IDisplay getDisplay() {
+		return display;
+	}
 	
 	public static int getWidth(){
 		return width;

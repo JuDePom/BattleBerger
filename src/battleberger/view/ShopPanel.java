@@ -55,7 +55,7 @@ public class ShopPanel extends JPanel{
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		//currentship=armory.buildUpgrade(StatType.Power, armory.buildUpgrade(StatType.ReloadSpeed, armory.buildUpgrade(StatType.Power, AbstractShipyard.orderShip(TypeShip.BlackPearl))));
 		for(int i=0;i<stat.length;i++){
-			StatType type=stat[i];
+			final StatType type=stat[i];
 			buy[i]=new JButton();
 			buy[i].setIcon(imageshop.get(Picture.Buyshop));
 			buy[i].setBackground(new Color(177,207,248));

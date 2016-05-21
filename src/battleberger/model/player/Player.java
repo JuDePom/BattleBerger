@@ -1,5 +1,6 @@
 package battleberger.model.player;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,8 +9,12 @@ import battleberger.model.Game;
 import battleberger.model.Game.State;
 import battleberger.view.IDisplay;
 
-public abstract class Player {
+public abstract class Player implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected List<AbstractShip> ships = new ArrayList<AbstractShip>();
 	protected Game game;
 	protected int maxShipValue;

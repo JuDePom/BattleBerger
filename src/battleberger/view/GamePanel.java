@@ -26,7 +26,7 @@ import battleberger.model.player.Shot;
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel{
 	private Game game;
-	private BufferedImage ocean;
+	private transient BufferedImage ocean;
 
 	private List<Pair> shots = Collections.synchronizedList(new ArrayList<Pair>());
 
