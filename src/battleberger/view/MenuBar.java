@@ -35,6 +35,7 @@ public class MenuBar extends JMenuBar {
 			jcb.addItem(s.name());
 		}
 		jcb.setPreferredSize(new Dimension(100,10));
+		jcb.setSelectedItem(jcb.getItemAt(0));
 		JButton quit=new JButton("Quit");
 		quit.addActionListener(new ActionListener(){
 			@Override
