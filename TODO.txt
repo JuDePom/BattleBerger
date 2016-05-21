@@ -1,14 +1,15 @@
-script ant
-sauvegarde/load
-ecran de fin
-reset le cooldown, il est déjà réduit// fait 
+script ant // fait par eclipse
+sauvegarde/load // fait ? 
+ecran de fin // fait ?
+
 faire le dossier
-(si on a le temps (mdr non): faire le status du bateau sélectionné)// fait 
-panneau stratégies // fait 
-afficher les tirs des deux côtés // fait 
-(souris disparait à droite) // fait 
-afficher fireshape côté ennemi //fait 
-selection bateau qui ne marche pas // fait 
+ 
+ 
+ 
+ 
+ 
+ 
 couleur selon si on touche ou pas 
 générer les diagrammes de classe
-agrandire la case reloadspeed parce qu'on ne voit pas la valeur
+ 
+menu principal 
