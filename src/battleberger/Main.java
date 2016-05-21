@@ -9,7 +9,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		Game g = new Game( new Human(), new Computer(), new Window());
-		
+		g.play();
 	}
 
 }

@@ -15,6 +15,7 @@ import battleberger.model.Game;
 import battleberger.model.player.Human;
 import battleberger.model.player.Player;
 import battleberger.model.player.Shot;
+import sun.misc.GC;
 
 @SuppressWarnings("serial")
 public class Window extends JFrame implements Serializable,  Observer, IDisplay {
@@ -44,57 +45,6 @@ public class Window extends JFrame implements Serializable,  Observer, IDisplay 
 		}*/
 	}
 
-	public PlacementShipPanel getShippan() {
-		return shippan;
-	}
-
-	public void setShippan(PlacementShipPanel shippan) {
-		this.shippan = shippan;
-	}
-
-	public ShopPanel getShoppan() {
-		return shoppan;
-	}
-
-	public void setShoppan(ShopPanel shoppan) {
-		this.shoppan = shoppan;
-	}
-
-	public GamePanel getGamepan() {
-		return gamepan;
-	}
-
-	public void setGamepan(GamePanel gamepan) {
-		this.gamepan = gamepan;
-	}
-
-	public StatusPanel getStatspan() {
-		return statspan;
-	}
-
-	public void setStatspan(StatusPanel statspan) {
-		this.statspan = statspan;
-	}
-
-	public StartPanel getStartpan() {
-		return startpan;
-	}
-
-	public void setStartpan(StartPanel startpan) {
-		this.startpan = startpan;
-	}
-
-	public MenuBar getMenubar() {
-		return menubar;
-	}
-
-	public void setMenubar(MenuBar menubar) {
-		this.menubar = menubar;
-	}
-
-	public Game getGame() {
-		return game;
-	}
 
 	@Override
 	public void repaint() {
@@ -104,10 +54,6 @@ public class Window extends JFrame implements Serializable,  Observer, IDisplay 
 		shippan.repaint();
 		shoppan.repaint();
 	}
-	
-	public void load(Game g){
-		
-	}
 
 	@Override
 	public void setGame(Game g) {
@@ -116,14 +62,20 @@ public class Window extends JFrame implements Serializable,  Observer, IDisplay 
 		BorderLayout layout = new BorderLayout();
 		this.setLayout(layout);
 
+		
+		if(shippan != null) shippan.setVisible(false);
+		if(gamepan != null) gamepan.setVisible(false);
+		if(shoppan != null) shoppan.setVisible(false);
+		if(statspan != null) statspan.setVisible(false);
+		if(startpan != null) startpan.setVisible(false);
+		
 		shippan = new PlacementShipPanel(game);
 		gamepan = new GamePanel(game);
 		shoppan = new ShopPanel(game);
 		statspan = new StatusPanel(game);
 		startpan = new StartPanel(game);
 		
-		menubar = new MenuBar(game);
-		
+		menubar = new MenuBar(game, this);
 		
 		
 		this.add(gamepan, BorderLayout.CENTER);
@@ -240,6 +192,64 @@ public class Window extends JFrame implements Serializable,  Observer, IDisplay 
 	@Override
 	public void fire(Player p, Shot s) {
 		gamepan.fire(p, s);
+	}
+
+	
+	
+	
+	
+	
+	
+	public PlacementShipPanel getShippan() {
+		return shippan;
+	}
+
+	public void setShippan(PlacementShipPanel shippan) {
+		this.shippan = shippan;
+	}
+
+	public ShopPanel getShoppan() {
+		return shoppan;
+	}
+
+	public void setShoppan(ShopPanel shoppan) {
+		this.shoppan = shoppan;
+	}
+
+	public GamePanel getGamepan() {
+		return gamepan;
+	}
+
+	public void setGamepan(GamePanel gamepan) {
+		this.gamepan = gamepan;
+	}
+
+	public StatusPanel getStatspan() {
+		return statspan;
+	}
+
+	public void setStatspan(StatusPanel statspan) {
+		this.statspan = statspan;
+	}
+
+	public StartPanel getStartpan() {
+		return startpan;
+	}
+
+	public void setStartpan(StartPanel startpan) {
+		this.startpan = startpan;
+	}
+
+	public MenuBar getMenubar() {
+		return menubar;
+	}
+
+	public void setMenubar(MenuBar menubar) {
+		this.menubar = menubar;
+	}
+
+	public Game getGame() {
+		return game;
 	}
 
 

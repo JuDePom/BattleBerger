@@ -20,6 +20,44 @@ import battleberger.model.Game;
 import battleberger.model.Strategies;
 
 public class MenuBar extends JMenuBar implements Serializable {
+	
+	class LoadListener implements ActionListener{
+
+		Window parent;
+		public LoadListener(Window p ) {
+			parent = p;
+		}
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			JFileChooser chooser=new JFileChooser();
+			chooser.setCurrentDirectory(new File("."));
+			chooser.setDialogTitle("Choisir un fichier");
+			chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+			chooser.setAcceptAllFileFilterUsed(false);
+			if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+				if (chooser.getSelectedFile().isFile()) {
+					File file =chooser.getSelectedFile();
+					DAO<Game> load = AbstractDAOFactory.getAbstractDAOFactory(ExportType.Serialize).getGameDAO();
+					Game g = load.load(file.getAbsolutePath());
+					game.setEnd(true);
+					g.setDisplay(parent);
+					Thread t = new Thread(){
+
+						@Override
+						public void run() {
+							parent.game.play();
+						}
+						
+						
+					};
+					t.start();
+				}
+			}
+				
+		}
+		
+	}
+	
 	List<JButton> button = new ArrayList<JButton>();
 	Game game;
 	
@@ -27,8 +65,8 @@ public class MenuBar extends JMenuBar implements Serializable {
 	
 	Window parent;
 
-	public MenuBar(Game g) {
-		
+	public MenuBar(Game g, Window p) {
+		this.parent = p;
 		game=g;
 		
 		for(Strategies s : Strategies.values()){
@@ -75,26 +113,7 @@ public class MenuBar extends JMenuBar implements Serializable {
 		save.setFocusable(false);
 		button.add(save);
 		JButton load= new JButton("Load");
-		load.addActionListener(new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				JFileChooser chooser=new JFileChooser();
-				chooser.setCurrentDirectory(new File("."));
-				chooser.setDialogTitle("Choisir un fichier");
-				chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-				chooser.setAcceptAllFileFilterUsed(false);
-				if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-					if (chooser.getSelectedFile().isFile()) {
-						File file =chooser.getSelectedFile();
-						DAO<Game> load = AbstractDAOFactory.getAbstractDAOFactory(ExportType.Serialize).getGameDAO();
-						parent.load(load.load(file.getAbsolutePath()));
-					}
-				}
-					
-			}
-			
-		});
+		load.addActionListener( new LoadListener(parent));
 		load.setFocusable(false);
 		button.add(load);
 		for(JButton b : button)

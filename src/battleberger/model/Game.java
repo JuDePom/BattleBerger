@@ -26,7 +26,7 @@ public class Game extends Observable implements Serializable {
 	private List<Player> players;
 	private static int width, height;
 	private boolean end=false;
-	private IDisplay display;
+	transient private IDisplay display;
 
 	public Player currentPlayer;
 
