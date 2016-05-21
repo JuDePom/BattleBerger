@@ -138,7 +138,7 @@ public class GamePanel extends JPanel{
 		Player me = players.get(0);
 
 		for (AbstractShip ship : me.getShips()){	
-			if ( ship.overlap(mouse.x, mouse.y) )
+			if ( ship.overlap(cmouse.x, cmouse.y) )
 				shipSel = ship;
 		}
 
@@ -162,7 +162,9 @@ public class GamePanel extends JPanel{
 		if (lock) { // SHOT
 			cmouse.x = mouse.x - pw - dw; cmouse.y = mouse.y - dh;
 			cmouse.x /= cs; cmouse.y /= cs;
-			shot = cmouse;
+			
+			if (cmouse.x >= 0 && cmouse.x <= gw && cmouse.y >= 0 && cmouse.y <= gw)
+				shot = cmouse;
 		}
 
 		this.updateUI();
@@ -354,7 +356,7 @@ public class GamePanel extends JPanel{
 			} else {
 				g.setColor(enemyColour);
 
-				if ( cmouse.x >= 0 && cmouse.x < gw && cmouse.y >= 0 && cmouse.y < gh)
+				if ( cmouse.x >= gw && cmouse.x < gw*2 && cmouse.y >= 0 && cmouse.y < gh)
 					g.fillRect(pw + cmouse.x*cs, dh + cmouse.y*cs, cs, cs);
 			}
 		}
