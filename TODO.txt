@@ -1,6 +1,6 @@
 script ant // fait par eclipse
-sauvegarde/load // fait ? 
-ecran de fin // fait ?
+sauvegarde/load // fait  
+ecran de fin // fait 
 
 faire le dossier
  

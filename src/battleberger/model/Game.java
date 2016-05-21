@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Observable;
 
+import battleberger.model.AbstractShip.TimeSpace;
 import battleberger.model.player.Computer;
 import battleberger.model.player.Human;
 import battleberger.model.player.Player;
@@ -24,7 +25,7 @@ public class Game extends Observable implements Serializable {
 	private static final long serialVersionUID = 5424860716804702256L;
 
 	public enum State {nothing, touched, sinked};
-	public enum GameState {Preparing, Playing, EndScreen};
+	public enum GameState {EraSelection, Preparing, Playing, EndScreen};
 	
 	private List<Player> players;
 	private static int width, height;
@@ -32,6 +33,7 @@ public class Game extends Observable implements Serializable {
 	private State[][] state;
 	public Player currentPlayer;
 	public GameState gameState;
+	public TimeSpace era;
 
 	private static List<Strategy> strategies;
 	
@@ -56,7 +58,7 @@ public class Game extends Observable implements Serializable {
 	
 	public Game(Player p1, Player p2, IDisplay disp){
 
-		gameState = GameState.Preparing;
+		gameState = GameState.EraSelection;
 		this.initState(width, height);
 		players = new ArrayList<>();
 		addPlayer(p1);
@@ -71,6 +73,10 @@ public class Game extends Observable implements Serializable {
 
 
 		switch (gameState){
+		case EraSelection:
+			era = display.getEra();
+			AbstractShipyard.setTimeSpace(era);
+			gameState = GameState.Preparing;
 		case Preparing:
 			display.selectGridDimension();
 	

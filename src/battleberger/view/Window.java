@@ -11,12 +11,13 @@ import java.util.Observer;
 import javax.swing.JFrame;
 
 import battleberger.model.AbstractShip;
+import battleberger.model.AbstractShip.TimeSpace;
 import battleberger.model.Game;
 import battleberger.model.player.Computer;
 import battleberger.model.player.Human;
 import battleberger.model.player.Player;
 import battleberger.model.player.Shot;
-import sun.misc.GC;
+import sun.util.calendar.Era;
 
 @SuppressWarnings("serial")
 public class Window extends JFrame implements Serializable,  Observer, IDisplay {
@@ -29,13 +30,14 @@ public class Window extends JFrame implements Serializable,  Observer, IDisplay 
 	private StartPanel startpan;
 	private EndScreen endpan;
 	private MenuBar menubar; 
+	private EraPanel eraPanel;
 	Game game;
 
 	
 	public Window() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 		this.setPreferredSize(new Dimension(1000, 600));
-		
+		 
 	}
 
 	@Override
@@ -51,6 +53,7 @@ public class Window extends JFrame implements Serializable,  Observer, IDisplay 
 	@Override
 	public void repaint() {
 		super.repaint();
+		eraPanel.repaint();
 		gamepan.repaint();
 		statspan.repaint();
 		shippan.repaint();
@@ -79,9 +82,18 @@ public class Window extends JFrame implements Serializable,  Observer, IDisplay 
 		endpan = new EndScreen(game);
 		menubar = new MenuBar(game, this);
 		
+		eraPanel = new EraPanel();
 		
 		
+		loadWindow();
+	}
+
+	
+	private void loadWindow(){
 		switch(game.gameState){
+		case EraSelection:
+			add(eraPanel, BorderLayout.CENTER);
+			break;
 		case Preparing:
 			this.add(gamepan, BorderLayout.CENTER);
 			this.add(shoppan, BorderLayout.EAST);
@@ -106,12 +118,19 @@ public class Window extends JFrame implements Serializable,  Observer, IDisplay 
 
 		this.repaint();
 	}
+	
+	
+	@Override
+	public TimeSpace getEra() {
+		return eraPanel.getEra();
+	}
 
 	@Override
 	public void selectGridDimension() {
-		// TODO Auto-generated method stub
 		game.setWidth(20);
 		game.setHeight(20);
+		remove(eraPanel);
+		loadWindow();
 
 	}
 

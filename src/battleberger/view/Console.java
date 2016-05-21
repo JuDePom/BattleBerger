@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import battleberger.model.AbstractShip;
+import battleberger.model.AbstractShip.TimeSpace;
 import battleberger.model.Game;
 import battleberger.model.player.Human;
 import battleberger.model.player.Player;
@@ -16,6 +17,12 @@ public class Console implements IDisplay{
 	public void endOfGame() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public TimeSpace getEra() {
+		// TODO Auto-generated method stub
+		return TimeSpace.Default;
 	}
 
 	private Scanner sc;

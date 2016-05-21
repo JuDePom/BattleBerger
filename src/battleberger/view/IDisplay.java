@@ -3,6 +3,7 @@ package battleberger.view;
 import java.util.List;
 
 import battleberger.model.AbstractShip;
+import battleberger.model.AbstractShip.TimeSpace;
 import battleberger.model.Game;
 import battleberger.model.player.Human;
 import battleberger.model.player.Player;
@@ -28,6 +29,8 @@ public interface IDisplay {
 
 	void clean();
 	void replay();
+	
+	TimeSpace getEra();
 	
 	void refresh();
 }
