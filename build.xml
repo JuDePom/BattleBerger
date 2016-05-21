@@ -49,9 +49,12 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="Main (11)">
+    <target name="Main">
         <java classname="battleberger.Main" failonerror="true" fork="yes">
             <classpath refid="BattleBerger.classpath"/>
         </java>
     </target>
+              	
+    
+              	
 </project>
