@@ -28,17 +28,6 @@ public class Window extends JFrame implements Serializable,  Observer, IDisplay 
 	private MenuBar menubar; 
 	Game game;
 
-	@Override
-	public void load(IDisplay d) {
-		Window w = (Window) d;
-
-		setMenubar(w.menubar);
-		setShoppan(w.shoppan);
-		setGamepan(w.gamepan);
-		setStatspan(w.statspan);
-		setStartpan(w.startpan);
-		game = w.getGame();
-	}
 	
 	public Window() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
@@ -115,6 +104,10 @@ public class Window extends JFrame implements Serializable,  Observer, IDisplay 
 		shippan.repaint();
 		shoppan.repaint();
 	}
+	
+	public void load(Game g){
+		
+	}
 
 	@Override
 	public void setGame(Game g) {
@@ -130,6 +123,7 @@ public class Window extends JFrame implements Serializable,  Observer, IDisplay 
 		startpan = new StartPanel(game);
 		
 		menubar = new MenuBar(game);
+		
 		
 		
 		this.add(gamepan, BorderLayout.CENTER);

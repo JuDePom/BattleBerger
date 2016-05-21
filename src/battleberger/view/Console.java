@@ -11,11 +11,6 @@ import battleberger.model.player.Shot;
 
 public class Console implements IDisplay{
 
-	@Override
-	public void load(IDisplay d) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	private Scanner sc;
 	private Game game;

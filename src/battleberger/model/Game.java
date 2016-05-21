@@ -33,6 +33,8 @@ public class Game extends Observable implements Serializable {
 	private static List<Strategy> strategies;
 	
 	static {
+		width = 20;
+		height = 20;
 		strategies = new ArrayList<>();
 		strategies.add(new StrategyYolo());
 		strategies.add(new StrategyDiagonal());
@@ -172,17 +174,6 @@ public class Game extends Observable implements Serializable {
 		return count == 1;
 	}
 
-	
-	public void loadGame(Game g){
-		players = g.players;
-		width = g.width;
-		height = g.height;
-		end= g.end;
-		currentPlayer = g.currentPlayer;
-		
-		
-		display.load(g.display);
-	}
 
 
 	public List<Player> getPlayers() {
