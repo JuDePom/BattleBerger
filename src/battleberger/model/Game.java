@@ -28,7 +28,6 @@ public class Game extends Observable implements Serializable {
 	
 	private List<Player> players;
 	private static int width, height;
-	private boolean end=false;
 	private IDisplay display;
 	private State[][] state;
 	public Player currentPlayer;
@@ -69,6 +68,7 @@ public class Game extends Observable implements Serializable {
 
 
 	public void play(){
+
 
 		switch (gameState){
 		case Preparing:
@@ -162,9 +162,11 @@ public class Game extends Observable implements Serializable {
 					for(Entry<Square, Integer> sq : s.getSquares().entrySet()){
 						if( ship.toucher(sq.getKey().getX(), sq.getKey().getY(), sq.getValue())){
 							ret = State.touched;
+							if(p instanceof Human)
 							state[sq.getKey().getX()][sq.getKey().getY()]=State.touched;
 							if( ! ship.isAlive()){
 								toRemove.add(ship);
+								if(p instanceof Human)
 								state[sq.getKey().getX()][sq.getKey().getY()]=State.sinked;
 								p.gainMoney(25*ship.shipValue());
 							}
@@ -231,14 +233,6 @@ public class Game extends Observable implements Serializable {
 		p.setGame(this);
 	}
 	
-	public boolean isEnd() {
-		return end;
-	}
-
-
-	public void setEnd(boolean end) {
-		this.end = end;
-	}
 
 
 	public static List<Strategy> getStrategies() {
@@ -290,5 +284,8 @@ public class Game extends Observable implements Serializable {
 	}
 	public State[][] state(){
 		return state;
+	}
+	public void replay(){
+		display.replay();
 	}
 }

@@ -94,4 +94,16 @@ public class Console implements IDisplay{
 		return null;
 	}
 
+	@Override
+	public void clean() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void replay() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

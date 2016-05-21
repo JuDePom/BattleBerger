@@ -269,6 +269,7 @@ public class GamePanel extends JPanel implements Serializable{
 			if (sh.player == game.getPlayers().get(0))
 				for ( Square sq : sh.shot.getSquares().keySet() )
 					if (sq.getX() >= 0 && sq.getX() <= gw && sq.getY() >= 0 && sq.getY() <= gh)
+						
 						switch(game.state()[sq.getX()][sq.getY()]){
 						case nothing:
 							//g.setColor(new Color(255, 0, 0, 50));
