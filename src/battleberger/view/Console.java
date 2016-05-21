@@ -93,4 +93,10 @@ public class Console implements IDisplay{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void replay() {
+		// TODO Auto-generated method stub
+		
+	}
 }

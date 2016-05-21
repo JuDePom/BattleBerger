@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 
 import battleberger.model.AbstractShip;
 import battleberger.model.Game;
+import battleberger.model.player.Computer;
 import battleberger.model.player.Human;
 import battleberger.model.player.Player;
 import battleberger.model.player.Shot;
@@ -64,12 +65,12 @@ public class Window extends JFrame implements Serializable,  Observer, IDisplay 
 		BorderLayout layout = new BorderLayout();
 		this.setLayout(layout);
 
-		
-		if(shippan != null) shippan.setVisible(false);
-		if(gamepan != null) gamepan.setVisible(false);
-		if(shoppan != null) shoppan.setVisible(false);
-		if(statspan != null) statspan.setVisible(false);
-		if(startpan != null) startpan.setVisible(false);
+//		
+//		if(shippan != null) shippan.setVisible(false);
+//		if(gamepan != null) gamepan.setVisible(false);
+//		if(shoppan != null) shoppan.setVisible(false);
+//		if(statspan != null) statspan.setVisible(false);
+//		if(startpan != null) startpan.setVisible(false);
 		
 		shippan = new PlacementShipPanel(game);
 		gamepan = new GamePanel(game);
@@ -261,6 +262,12 @@ public class Window extends JFrame implements Serializable,  Observer, IDisplay 
 		remove(statspan);
 		this.add(endpan);
 		endpan.refresh();
+	}
+
+	@Override
+	public void replay() {
+		remove(endpan);
+		setGame(new Game(new Human(),new Computer(),this));
 	}
 
 

@@ -18,7 +18,7 @@ public abstract class Player implements Serializable{
 	protected List<AbstractShip> ships = new ArrayList<AbstractShip>();
 	protected Game game;
 	protected int maxShipValue;
-	protected int money=0;
+	protected int money=1000;
 	
 	public Player(int maxShipValue){
 		this.setMaxShipValue(maxShipValue);

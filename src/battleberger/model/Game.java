@@ -271,4 +271,7 @@ public class Game extends Observable implements Serializable {
 	public State[][] state(){
 		return state;
 	}
+	public void replay(){
+		display.replay();
+	}
 }
