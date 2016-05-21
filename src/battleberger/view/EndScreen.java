@@ -51,7 +51,7 @@ public class EndScreen extends JPanel{
 		add(screen[1]);
 	}
 	public void refresh(){
-		if(game.end()){
+		if(game.isEnd()){
 			
 			Player player=game.getPlayers().get(0);
 			if(player instanceof Human){

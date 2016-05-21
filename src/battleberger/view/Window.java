@@ -260,6 +260,7 @@ public class Window extends JFrame implements Serializable,  Observer, IDisplay 
 		remove(gamepan);
 		remove(statspan);
 		this.add(endpan);
+		endpan.refresh();
 	}
 
 

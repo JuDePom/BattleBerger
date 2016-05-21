@@ -259,9 +259,7 @@ public class Game extends Observable implements Serializable {
 		return getWidth() * getHeight();
 	}
 	
-	public boolean end(){
-		return end;
-	}
+	
 	public void initState(int width, int height){
 		state=new State[width][height];
 		for(int i=0;i<state.length;i++){
