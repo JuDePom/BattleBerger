@@ -7,7 +7,7 @@ import battleberger.model.Game;
 import battleberger.model.player.Computer;
 import battleberger.model.player.Shot;
 
-public class StrategyDiagonal extends IStrategy{
+public class StrategyDiagonal extends Strategy{
 
 	int x, y, last_x, last_y;
 	
@@ -20,6 +20,38 @@ public class StrategyDiagonal extends IStrategy{
 	}
 	
 	
+	public int getX() {
+		return x;
+	}
+	public void setX(int x) {
+		this.x = x;
+	}
+	public int getY() {
+		return y;
+	}
+	public void setY(int y) {
+		this.y = y;
+	}
+	public int getLast_x() {
+		return last_x;
+	}
+	public void setLast_x(int last_x) {
+		this.last_x = last_x;
+	}
+	public int getLast_y() {
+		return last_y;
+	}
+	public void setLast_y(int last_y) {
+		this.last_y = last_y;
+	}
+	public boolean isDirection() {
+		return direction;
+	}
+	public void setDirection(boolean direction) {
+		this.direction = direction;
+	}
+
+
 	boolean direction = false;
 	private int move(int x){
 		return (direction) ? x-1 : x +1;

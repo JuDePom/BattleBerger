@@ -1,5 +1,6 @@
 package battleberger.model.player.strategy;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -12,7 +13,7 @@ import battleberger.model.Ship.TypeShip;
 import battleberger.model.player.Computer;
 import battleberger.model.player.Shot;
 
-public abstract class IStrategy {
+public abstract class Strategy implements Serializable{
 	
 	int width, height;
 	public abstract Shot fire(Computer ai, Game g);
@@ -25,6 +26,22 @@ public abstract class IStrategy {
 	}
 	
 	
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
 
 	public void setState(Shot s, battleberger.model.Game.State st) {
 		

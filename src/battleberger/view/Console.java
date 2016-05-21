@@ -1,6 +1,5 @@
 package battleberger.view;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,9 +11,27 @@ import battleberger.model.player.Shot;
 
 public class Console implements IDisplay{
 
+	@Override
+	public void load(IDisplay d) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	private Scanner sc;
 	private Game game;
 	
+	public Scanner getSc() {
+		return sc;
+	}
+
+	public void setSc(Scanner sc) {
+		this.sc = sc;
+	}
+
+	public Game getGame() {
+		return game;
+	}
+
 	@Override
 	public void updateGameGrid() {
 		// TODO Auto-generated method stub

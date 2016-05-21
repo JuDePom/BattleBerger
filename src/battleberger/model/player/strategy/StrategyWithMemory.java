@@ -10,7 +10,7 @@ import battleberger.model.Square;
 import battleberger.model.player.Computer;
 import battleberger.model.player.Shot;
 
-public class StrategyWithMemory extends IStrategy {
+public class StrategyWithMemory extends Strategy {
 
 	State[][] states;
 	public StrategyWithMemory() {
@@ -57,6 +57,14 @@ public class StrategyWithMemory extends IStrategy {
 			y = r.nextInt(height);
 		}while(states[x][y] == State.sinked);
 		return new Shot(x, y, ai.getBestShip());
+	}
+
+	public State[][] getStates() {
+		return states;
+	}
+
+	public void setStates(State[][] states) {
+		this.states = states;
 	}
 
 	@Override

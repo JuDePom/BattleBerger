@@ -5,18 +5,43 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.Serializable;
 
 import javax.swing.JPanel;
 
 import battleberger.model.Game;
 
 @SuppressWarnings("serial")
-public class StartPanel extends JPanel{
+public class StartPanel extends JPanel implements Serializable{
 	
 	Color color = Color.GRAY;
 	boolean possible = false;
 	boolean start = false;
 	
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
+	public boolean isPossible() {
+		return possible;
+	}
+
+	public void setPossible(boolean possible) {
+		this.possible = possible;
+	}
+
+	public boolean isStart() {
+		return start;
+	}
+
+	public void setStart(boolean start) {
+		this.start = start;
+	}
+
 	public StartPanel(Game game) {
 		this.setPreferredSize(new Dimension(0, 150));
 		

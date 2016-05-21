@@ -9,6 +9,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -24,9 +25,161 @@ import battleberger.model.player.Player;
 import battleberger.model.player.Shot;
 
 @SuppressWarnings("serial")
-public class GamePanel extends JPanel{
+public class GamePanel extends JPanel implements Serializable{
 	private Game game;
 	private transient BufferedImage ocean;
+
+	public Game getGame() {
+		return game;
+	}
+
+	public void setGame(Game game) {
+		this.game = game;
+	}
+
+	public BufferedImage getOcean() {
+		return ocean;
+	}
+
+	public void setOcean(BufferedImage ocean) {
+		this.ocean = ocean;
+	}
+
+	public List<Pair> getShots() {
+		return shots;
+	}
+
+	public void setShots(List<Pair> shots) {
+		this.shots = shots;
+	}
+
+	public Point getCmouse() {
+		return cmouse;
+	}
+
+	public void setCmouse(Point cmouse) {
+		this.cmouse = cmouse;
+	}
+
+	public Point getMouse() {
+		return mouse;
+	}
+
+	public void setMouse(Point mouse) {
+		this.mouse = mouse;
+	}
+
+	public Point getShot() {
+		return shot;
+	}
+
+	public void setShot(Point shot) {
+		this.shot = shot;
+	}
+
+	public boolean isLock() {
+		return lock;
+	}
+
+	public void setLock(boolean lock) {
+		this.lock = lock;
+	}
+
+	public boolean isDrag() {
+		return drag;
+	}
+
+	public void setDrag(boolean drag) {
+		this.drag = drag;
+	}
+
+	public boolean isPlay() {
+		return play;
+	}
+
+	public void setPlay(boolean play) {
+		this.play = play;
+	}
+
+	public AbstractShip getShipSel() {
+		return shipSel;
+	}
+
+	public void setShipSel(AbstractShip shipSel) {
+		this.shipSel = shipSel;
+	}
+
+	public int getGw() {
+		return gw;
+	}
+
+	public void setGw(int gw) {
+		this.gw = gw;
+	}
+
+	public int getGh() {
+		return gh;
+	}
+
+	public void setGh(int gh) {
+		this.gh = gh;
+	}
+
+	public int getPw() {
+		return pw;
+	}
+
+	public void setPw(int pw) {
+		this.pw = pw;
+	}
+
+	public int getPh() {
+		return ph;
+	}
+
+	public void setPh(int ph) {
+		this.ph = ph;
+	}
+
+	public int getWpc() {
+		return wpc;
+	}
+
+	public void setWpc(int wpc) {
+		this.wpc = wpc;
+	}
+
+	public int getHpc() {
+		return hpc;
+	}
+
+	public void setHpc(int hpc) {
+		this.hpc = hpc;
+	}
+
+	public int getCs() {
+		return cs;
+	}
+
+	public void setCs(int cs) {
+		this.cs = cs;
+	}
+
+	public int getDw() {
+		return dw;
+	}
+
+	public void setDw(int dw) {
+		this.dw = dw;
+	}
+
+	public int getDh() {
+		return dh;
+	}
+
+	public void setDh(int dh) {
+		this.dh = dh;
+	}
 
 	private List<Pair> shots = Collections.synchronizedList(new ArrayList<Pair>());
 

@@ -19,12 +19,13 @@ public class Serialization_Game implements DAO<Game>  {
 	         FileInputStream fileIn = new FileInputStream(filepath);
 	         ObjectInputStream in = new ObjectInputStream(fileIn);
 	         g = (Game) in.readObject();
+	         
 	         in.close();
 	         fileIn.close();
-	      }catch(IOException i)
+	      } catch(IOException i)
 	      {
 	         i.printStackTrace();
-	      }catch(ClassNotFoundException c)
+	      } catch(ClassNotFoundException c)
 	      {
 	         System.out.println("Sauvegarde corrompue");
 	         c.printStackTrace();

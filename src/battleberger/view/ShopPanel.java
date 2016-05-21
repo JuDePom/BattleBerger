@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,10 +26,55 @@ import battleberger.model.player.Human;
 import battleberger.model.player.Player;
 
 @SuppressWarnings("serial")
-public class ShopPanel extends JPanel{
+public class ShopPanel extends JPanel implements Serializable{
 	public enum Picture{Shop,Closeshop,Buyshop,Power,Armor,MovSpeed,ReloadSpeed}
 	AbstractShip currentship;
 	Game battle;
+	
+	
+	
+	public AbstractShip getCurrentship() {
+		return currentship;
+	}
+	public void setCurrentship(AbstractShip currentship) {
+		this.currentship = currentship;
+	}
+	public Game getBattle() {
+		return battle;
+	}
+	public void setBattle(Game battle) {
+		this.battle = battle;
+	}
+	public Armory getArmory() {
+		return armory;
+	}
+	public void setArmory(Armory armory) {
+		this.armory = armory;
+	}
+	public JLabel[] getCost() {
+		return cost;
+	}
+	public void setCost(JLabel[] cost) {
+		this.cost = cost;
+	}
+	public JButton[] getBuy() {
+		return buy;
+	}
+	public void setBuy(JButton[] buy) {
+		this.buy = buy;
+	}
+	public JLabel getMoney() {
+		return money;
+	}
+	public void setMoney(JLabel money) {
+		this.money = money;
+	}
+	public Map<Picture, ImageIcon> getImageshop() {
+		return imageshop;
+	}
+	public void setImageshop(Map<Picture, ImageIcon> imageshop) {
+		this.imageshop = imageshop;
+	}
 	Armory armory;
 	JLabel[] cost=new JLabel[4];
 	JButton[] buy=new JButton[4];

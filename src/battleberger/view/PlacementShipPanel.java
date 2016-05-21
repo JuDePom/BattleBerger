@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,7 +19,7 @@ import battleberger.model.Ship.TypeShip;
 import battleberger.model.ShipyardDefault;
 
 @SuppressWarnings("serial")
-public class PlacementShipPanel extends JPanel{
+public class PlacementShipPanel extends JPanel implements Serializable{
 	Map<TypeShip, AbstractShip> ships = new HashMap<TypeShip, AbstractShip>();
 	
 	int credits;
@@ -112,6 +113,42 @@ public class PlacementShipPanel extends JPanel{
 			
 			x += 2;
 		}
+	}
+
+	public Map<TypeShip, AbstractShip> getShips() {
+		return ships;
+	}
+
+	public void setShips(Map<TypeShip, AbstractShip> ships) {
+		this.ships = ships;
+	}
+
+	public int getCredits() {
+		return credits;
+	}
+
+	public void setCredits(int credits) {
+		this.credits = credits;
+	}
+
+	public boolean isBuyable() {
+		return buyable;
+	}
+
+	public void setBuyable(boolean buyable) {
+		this.buyable = buyable;
+	}
+
+	public int getCs() {
+		return cs;
+	}
+
+	public void setCs(int cs) {
+		this.cs = cs;
+	}
+
+	public void setChoosen(AbstractShip choosen) {
+		this.choosen = choosen;
 	}
 
 	public void setBuyable(int maxShipValue) {

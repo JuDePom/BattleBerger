@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,14 +19,68 @@ import battleberger.model.AbstractShipyard;
 import battleberger.model.Game;
 import battleberger.model.Ship.StatType;
 import battleberger.model.Ship.TypeShip;
-import battleberger.view.ShopPanel.Picture;
 
 @SuppressWarnings("serial")
-public class StatusPanel extends JPanel{
+public class StatusPanel extends JPanel implements Serializable{
 	AbstractShip currentship;
 	Map<TypeShip,ImageIcon> pictureship=new HashMap<TypeShip,ImageIcon>();
 	JLabel[] stat=new JLabel[4];
 	JLabel[] info=new JLabel[2];
+	public AbstractShip getCurrentship() {
+		return currentship;
+	}
+
+	public void setCurrentship(AbstractShip currentship) {
+		this.currentship = currentship;
+	}
+
+	public Map<TypeShip, ImageIcon> getPictureship() {
+		return pictureship;
+	}
+
+	public void setPictureship(Map<TypeShip, ImageIcon> pictureship) {
+		this.pictureship = pictureship;
+	}
+
+	public JLabel[] getStat() {
+		return stat;
+	}
+
+	public void setStat(JLabel[] stat) {
+		this.stat = stat;
+	}
+
+	public JLabel[] getInfo() {
+		return info;
+	}
+
+	public void setInfo(JLabel[] info) {
+		this.info = info;
+	}
+
+	public JLabel[] getStatmax() {
+		return statmax;
+	}
+
+	public void setStatmax(JLabel[] statmax) {
+		this.statmax = statmax;
+	}
+
+	public JLabel[] getCurrentstat() {
+		return currentstat;
+	}
+
+	public void setCurrentstat(JLabel[] currentstat) {
+		this.currentstat = currentstat;
+	}
+
+	public JLabel[] getNbmaxupgrade() {
+		return nbmaxupgrade;
+	}
+
+	public void setNbmaxupgrade(JLabel[] nbmaxupgrade) {
+		this.nbmaxupgrade = nbmaxupgrade;
+	}
 	JLabel[] statmax=new JLabel[4];
 	JLabel[] currentstat=new JLabel[4];
 	JLabel[] nbmaxupgrade=new JLabel[6];

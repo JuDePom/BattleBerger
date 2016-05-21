@@ -9,7 +9,7 @@ import java.util.Observable;
 import battleberger.model.player.Computer;
 import battleberger.model.player.Player;
 import battleberger.model.player.Shot;
-import battleberger.model.player.strategy.IStrategy;
+import battleberger.model.player.strategy.Strategy;
 import battleberger.model.player.strategy.StrategyDiagonal;
 import battleberger.model.player.strategy.StrategyWithMemory;
 import battleberger.model.player.strategy.StrategyYolo;
@@ -30,7 +30,8 @@ public class Game extends Observable implements Serializable {
 
 	public Player currentPlayer;
 
-	private static List<IStrategy> strategies;
+	private static List<Strategy> strategies;
+	
 	static {
 		strategies = new ArrayList<>();
 		strategies.add(new StrategyYolo());
@@ -46,58 +47,6 @@ public class Game extends Observable implements Serializable {
 		setDisplay(disp);
 		
 	}
-
-
-	public void play(){
-
-		display.selectGridDimension();
-
-		for(IStrategy strat : strategies){
-			strat.setDim(width, height);
-		}
-		
-		
-		for(Player p : players){
-			if(p instanceof Computer){
-				((Computer)p).setStrat(strategies.get(2));
-			}
-			p.selectShips(display);
-		}
-		
-		long start;
-		while( ! isEndOfGame() ){
-			start = System.currentTimeMillis();
-			for(Player p : players){
-				currentPlayer = p;
-				Shot s = null;
-				if(p.getShipsReady().size() > 0){
-					do{
-						s = p.play(this);
-						
-					}while(s != null &&  s.getShip().getTimereload() > 0);
-					//si le joueur ne passe pas son tour
-					if(s != null){
-						display.fire(p, s);
-						p.setState(s, fire(p, s));
-						s.getShip().setTimereload(s.getShip().getCooldown());
-					}
-				}
-				
-				if(isEndOfGame()) break;
-
-				p.endOfTurnProcessing();
-			}
-			currentPlayer = null;
-			
-
-			display.updateGameGrid();
-			
-			waitfps(start);
-		}
-		
-		end=true;
-		
-	}
 	
 	
 	public void setStrategy(Strategies strat){
@@ -108,7 +57,7 @@ public class Game extends Observable implements Serializable {
 			}
 		}
 		
-		IStrategy strategy = null;
+		Strategy strategy = null;
 		switch(strat){
 		case Yolo:
 			strategy = strategies.get(0);
@@ -150,7 +99,7 @@ public class Game extends Observable implements Serializable {
 		return ret;
 	}
 	
-	private void waitfps(long start){
+	public void waitfps(long start){
 		try {
 			Thread.sleep((long) Math.max( 100./6 - (System.currentTimeMillis() - start), 0)); //on fait du 60 fps
 		} catch (InterruptedException e) {
@@ -159,7 +108,7 @@ public class Game extends Observable implements Serializable {
 	}
 
 	
-	private boolean isEndOfGame(){
+	public boolean isEndOfGame(){
 		int count = 0 ;
 		for(Player p : players){
 			if(p.nbShips() > 0){
@@ -170,7 +119,16 @@ public class Game extends Observable implements Serializable {
 	}
 
 	
-
+	public void loadGame(Game g){
+		players = g.players;
+		width = g.width;
+		height = g.height;
+		end= g.end;
+		currentPlayer = g.currentPlayer;
+		
+		
+		display.load(g.display);
+	}
 
 
 	public List<Player> getPlayers() {
@@ -212,12 +170,12 @@ public class Game extends Observable implements Serializable {
 	}
 
 
-	public static List<IStrategy> getStrategies() {
+	public static List<Strategy> getStrategies() {
 		return strategies;
 	}
 
 
-	public static void setStrategies(List<IStrategy> strategies) {
+	public static void setStrategies(List<Strategy> strategies) {
 		Game.strategies = strategies;
 	}
 

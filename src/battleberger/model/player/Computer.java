@@ -1,12 +1,12 @@
 package battleberger.model.player;
 
 import battleberger.model.Game;
-import battleberger.model.player.strategy.IStrategy;
+import battleberger.model.player.strategy.Strategy;
 import battleberger.view.IDisplay;
 
 public class Computer extends Player {
 	
-	protected IStrategy strat;
+	protected Strategy strat;
 	
 	public Computer(){
 		super(20);
@@ -28,11 +28,11 @@ public class Computer extends Player {
 		ships = strat.selectShips(getMaxShipValue());
 	}
 
-	public void setStrat(IStrategy s){
+	public void setStrat(Strategy s){
 		strat = s;
 	}
 	
-	public IStrategy getStrat(){
+	public Strategy getStrat(){
 		return strat;
 	}
 }

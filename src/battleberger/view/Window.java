@@ -3,6 +3,7 @@ package battleberger.view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Point;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -16,7 +17,9 @@ import battleberger.model.player.Player;
 import battleberger.model.player.Shot;
 
 @SuppressWarnings("serial")
-public class Window extends JFrame implements Observer, IDisplay {
+public class Window extends JFrame implements Serializable,  Observer, IDisplay {
+	
+
 	private PlacementShipPanel shippan;
 	private ShopPanel shoppan;
 	private GamePanel gamepan;
@@ -25,6 +28,18 @@ public class Window extends JFrame implements Observer, IDisplay {
 	private MenuBar menubar; 
 	Game game;
 
+	@Override
+	public void load(IDisplay d) {
+		Window w = (Window) d;
+
+		setMenubar(w.menubar);
+		setShoppan(w.shoppan);
+		setGamepan(w.gamepan);
+		setStatspan(w.statspan);
+		setStartpan(w.startpan);
+		game = w.getGame();
+	}
+	
 	public Window() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 		this.setPreferredSize(new Dimension(1000, 600));
@@ -38,6 +53,58 @@ public class Window extends JFrame implements Observer, IDisplay {
 		} else {
 			this.add(statspan, BorderLayout.NORTH);
 		}*/
+	}
+
+	public PlacementShipPanel getShippan() {
+		return shippan;
+	}
+
+	public void setShippan(PlacementShipPanel shippan) {
+		this.shippan = shippan;
+	}
+
+	public ShopPanel getShoppan() {
+		return shoppan;
+	}
+
+	public void setShoppan(ShopPanel shoppan) {
+		this.shoppan = shoppan;
+	}
+
+	public GamePanel getGamepan() {
+		return gamepan;
+	}
+
+	public void setGamepan(GamePanel gamepan) {
+		this.gamepan = gamepan;
+	}
+
+	public StatusPanel getStatspan() {
+		return statspan;
+	}
+
+	public void setStatspan(StatusPanel statspan) {
+		this.statspan = statspan;
+	}
+
+	public StartPanel getStartpan() {
+		return startpan;
+	}
+
+	public void setStartpan(StartPanel startpan) {
+		this.startpan = startpan;
+	}
+
+	public MenuBar getMenubar() {
+		return menubar;
+	}
+
+	public void setMenubar(MenuBar menubar) {
+		this.menubar = menubar;
+	}
+
+	public Game getGame() {
+		return game;
 	}
 
 	@Override
@@ -106,7 +173,7 @@ public class Window extends JFrame implements Observer, IDisplay {
 		return choosen;
 	}
 
-	private boolean overlay(List<AbstractShip> ships) {
+	private boolean overlap(List<AbstractShip> ships) {
 		for (AbstractShip ship : ships){
 			boolean[][] shape = ship.getShape();
 			int x = ship.getPositionX();
@@ -136,7 +203,7 @@ public class Window extends JFrame implements Observer, IDisplay {
 		this.add(startpan, BorderLayout.NORTH);
 		
 		while ( !startpan.start() ) {
-			if ( overlay(ships) )
+			if ( overlap(ships) )
 				startpan.setDisable();
 			else
 				startpan.setEnable();

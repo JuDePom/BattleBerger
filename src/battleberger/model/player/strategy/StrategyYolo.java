@@ -8,7 +8,7 @@ import battleberger.model.Game;
 import battleberger.model.player.Computer;
 import battleberger.model.player.Shot;
 
-public class StrategyYolo extends IStrategy {
+public class StrategyYolo extends Strategy {
 
 	
 	

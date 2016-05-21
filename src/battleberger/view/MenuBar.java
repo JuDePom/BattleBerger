@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,9 +19,33 @@ import battleberger.backup.ExportType;
 import battleberger.model.Game;
 import battleberger.model.Strategies;
 
-public class MenuBar extends JMenuBar {
+public class MenuBar extends JMenuBar implements Serializable {
 	List<JButton> button = new ArrayList<JButton>();
 	Game game;
+	public List<JButton> getButton() {
+		return button;
+	}
+
+	public void setButton(List<JButton> button) {
+		this.button = button;
+	}
+
+	public Game getGame() {
+		return game;
+	}
+
+	public void setGame(Game game) {
+		this.game = game;
+	}
+
+	public JComboBox<String> getJcb() {
+		return jcb;
+	}
+
+	public void setJcb(JComboBox<String> jcb) {
+		this.jcb = jcb;
+	}
+
 	JComboBox<String> jcb=new JComboBox<String>();
 	public MenuBar(Game g){
 		game=g;
@@ -75,14 +100,14 @@ public class MenuBar extends JMenuBar {
 			public void actionPerformed(ActionEvent arg0) {
 				JFileChooser chooser=new JFileChooser();
 				chooser.setCurrentDirectory(new File("."));
-				chooser.setDialogTitle("Choisir un dossier");
+				chooser.setDialogTitle("Choisir un fichier");
 				chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 				chooser.setAcceptAllFileFilterUsed(false);
 				if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 					if (chooser.getSelectedFile().isFile()) {
 						File file =chooser.getSelectedFile();
 						DAO<Game> load = AbstractDAOFactory.getAbstractDAOFactory(ExportType.Serialize).getGameDAO();
-						load.load(file.getAbsolutePath());
+						game.loadGame(load.load(file.getAbsolutePath()));
 					}
 				}
 					

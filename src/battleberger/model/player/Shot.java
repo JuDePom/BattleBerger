@@ -20,6 +20,11 @@ public class Shot {
 	}
 
 
+	public void setSquares(Map<Square, Integer> squares) {
+		this.squares = squares;
+	}
+
+
 	private Map<Square,Integer> squares;
 	private AbstractShip ship;
 

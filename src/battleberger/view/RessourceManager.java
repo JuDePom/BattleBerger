@@ -3,12 +3,31 @@ package battleberger.view;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
 
-public class RessourceManager {
+public class RessourceManager implements Serializable{
+	
+	
+	public static Map<String, BufferedImage> getImages() {
+		return images;
+	}
+
+	public static void setImages(Map<String, BufferedImage> images) {
+		RessourceManager.images = images;
+	}
+
+	public static String getImg_extension() {
+		return img_extension;
+	}
+
+	public static void setImg_extension(String img_extension) {
+		RessourceManager.img_extension = img_extension;
+	}
+
 	private static Map<String, BufferedImage> images = new HashMap<String, BufferedImage>();
 	private static String img_extension = ".png";
 	

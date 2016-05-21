@@ -29,6 +29,21 @@ public abstract class Player implements Serializable{
 	public abstract Shot play(Game g);
 
 	
+	public Game getGame() {
+		return game;
+	}
+
+
+	public void setShips(List<AbstractShip> ships) {
+		this.ships = ships;
+	}
+
+
+	public void setMoney(int money) {
+		this.money = money;
+	}
+
+
 	public void setState(Shot s, State st){}
 	
 	
