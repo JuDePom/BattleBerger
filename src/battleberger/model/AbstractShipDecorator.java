@@ -22,15 +22,7 @@ public abstract class AbstractShipDecorator extends AbstractShip {
 		return stat;
 	}
 	
-	@Override
-	public int isReadyToFireIn() {
-		return next.isReadyToFireIn();
-	}
-
-	@Override
-	public void setReadyToFireIn(int i) {
-		next.setReadyToFireIn(i);
-	}
+	
 
 	@Override
 	public int shipValue() {

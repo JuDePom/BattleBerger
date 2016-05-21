@@ -241,17 +241,7 @@ public abstract class Ship extends AbstractShip{
 			this.timereload=0;
 	}
 	
-	
-	@Override
-	public int isReadyToFireIn() {
-		return readyToFireIn;
-	}
 
-
-	@Override
-	public void setReadyToFireIn(int i) {
-		readyToFireIn = i;
-	}
 
 	@Override
 	public int getPower() {
