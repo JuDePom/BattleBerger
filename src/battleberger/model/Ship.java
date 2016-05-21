@@ -22,6 +22,7 @@ public abstract class Ship extends AbstractShip{
 	protected int positionY;
 	protected int[][] fireshape;
 	protected int nbEquipementmax;
+	protected int nbEquipement=0;
 	protected Map<StatType,Integer> statmax;
 	protected int timereload=0;
 	protected boolean mouv;
@@ -131,9 +132,9 @@ public abstract class Ship extends AbstractShip{
 			shape = tmpS;
 			
 		}	
-		else if(	(orient == Orientation.North && this.orient == Orientation.West)
-				||	(orient == Orientation.East && this.orient == Orientation.North)
-				||	(orient == Orientation.South && this.orient == Orientation.East)
+		else if(	
+					(orient == Orientation.East && this.orient == Orientation.North)
+				
 				||	(orient == Orientation.West && this.orient == Orientation.South)){
 			//rotation -90°
 			tmpL = new int[lives[0].length][lives.length];
@@ -142,6 +143,20 @@ public abstract class Ship extends AbstractShip{
 				for(int j = 0 ; j < lives.length ; j++){
 					tmpL[i][j] = lives[lives.length - 1 - j ][lives[0].length - 1 - i];
 					tmpS[i][j] = shape[lives.length - 1 - j][lives[0].length - 1 - i];
+				}
+			}
+			lives = tmpL;	
+			shape = tmpS;		
+			
+		}else if(	(orient == Orientation.South && this.orient == Orientation.East)
+				|| (orient == Orientation.North && this.orient == Orientation.West)
+				){
+			tmpL = new int[lives[0].length][lives.length];
+			tmpS = new boolean[shape[0].length][shape.length];
+			for(int i = 0 ; i < lives[0].length ; i++){
+				for(int j = 0 ; j < lives.length ; j++){
+					tmpL[i][j] = lives[j ][lives[0].length - 1 - i];
+					tmpS[i][j] = shape[ j][lives[0].length - 1 - i];
 				}
 			}
 			lives = tmpL;	
@@ -220,7 +235,10 @@ public abstract class Ship extends AbstractShip{
 	}
 	@Override
 	public void setTimereload(int timereload) {
-		this.timereload = timereload;
+		if(timereload>0)
+			this.timereload = timereload;
+		else
+			this.timereload=0;
 	}
 	
 	
@@ -336,6 +354,14 @@ public abstract class Ship extends AbstractShip{
 	@Override
 	public void setName(String s){
 		name=s;
+	}
+	@Override
+	public int getNbEquipement(){
+		return nbEquipement;
+	}
+	@Override
+	public void setNbEquipement(int nbupgrade){
+		nbEquipement=nbupgrade;
 	}
 	//savoir si il est vivant ou non sera calculer avec lives 
 	//potentiellement si une case brule ou non => tableau de boolean  

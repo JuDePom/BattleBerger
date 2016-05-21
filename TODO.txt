@@ -3,7 +3,7 @@ sauvegarde/load
 ecran de fin
 reset le cooldown, il est déjà réduit
 faire le dossier
-(si on a le temps (mdr non): faire le status du bateau sélectionné)
+(si on a le temps (mdr non): faire le status du bateau sélectionné)// fait 
 panneau stratégies // fait 
 afficher les tirs des deux côtés
 (souris disparait à droite)

@@ -48,6 +48,10 @@ public abstract class AbstractShip {
 	public abstract Map<StatType, Integer> upgrade();
 	public abstract String getName();
 	public abstract void setName(String s);
+	public abstract int getNbEquipement();
+	public abstract void setNbEquipement(int nbupgrade);
+		
+
 	/**
 	 * function a utiliser juste pour les decorateurs
 	 */

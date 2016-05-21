@@ -27,7 +27,7 @@ import battleberger.model.player.Shot;
 public class GamePanel extends JPanel{
 	private Game game;
 	private BufferedImage ocean;
-	
+
 	private List<Pair> shots = Collections.synchronizedList(new ArrayList<Pair>());
 
 	private Point cmouse = new Point();
@@ -36,7 +36,7 @@ public class GamePanel extends JPanel{
 	boolean lock = false;
 	boolean drag = false;
 	boolean play = false;
-	
+
 	AbstractShip shipSel = null;
 
 	int gw, gh, pw, ph, wpc, hpc, cs, dw, dh;
@@ -138,7 +138,7 @@ public class GamePanel extends JPanel{
 		Player me = players.get(0);
 
 		for (AbstractShip ship : me.getShips()){	
-			if ( ship.overlap(mouse.x, mouse.y) )
+			if ( ship.overlap(cmouse.x, cmouse.y) )
 				shipSel = ship;
 		}
 
@@ -158,11 +158,13 @@ public class GamePanel extends JPanel{
 			if (!chg)
 				shipSel.setOrient(ors[0]);
 		}
-		
+
 		if (lock) { // SHOT
 			cmouse.x = mouse.x - pw - dw; cmouse.y = mouse.y - dh;
 			cmouse.x /= cs; cmouse.y /= cs;
-			shot = cmouse;
+
+			if (cmouse.x >= 0 && cmouse.x <= gw && cmouse.y >= 0 && cmouse.y <= gw)
+				shot = cmouse;
 		}
 
 		this.updateUI();
@@ -202,19 +204,15 @@ public class GamePanel extends JPanel{
 
 		drawMouse(g);
 	}
-	
+
 	public void drawMyField(Graphics g){
-		g.setColor(new Color(255, 0, 0, 100));
-		for (Pair sh : shots){
-				for ( Square sq : sh.shot.getSquares().keySet() ){
-					if (sq.getX() >= 0 && sq.getX() <= gw
-							&& sq.getY() >= 0 && sq.getY() <= gh)
-						
-					g.fillRect(dw + sq.getX()* cs, dh + sq.getY() * cs, cs, cs);
-				}
-			
-		}
-		
+		g.setColor(new Color(255, 0, 0, 50));
+		for (Pair sh : shots)
+			if (sh.player == game.getPlayers().get(1))
+				for ( Square sq : sh.shot.getSquares().keySet() )
+					if (sq.getX() >= 0 && sq.getX() <= gw && sq.getY() >= 0 && sq.getY() <= gh)
+						g.fillRect(dw + sq.getX()* cs, dh + sq.getY() * cs, cs, cs);
+
 		g.setColor(Color.CYAN);
 		for (int x = 1; x<gw; x++){
 			g.drawLine(dw + x*cs, dh, dw + x*cs, dh + 5);
@@ -228,6 +226,13 @@ public class GamePanel extends JPanel{
 	}
 
 	public void drawEnemyField(Graphics g){
+		g.setColor(new Color(255, 0, 0, 50));
+		for (Pair sh : shots)
+			if (sh.player == game.getPlayers().get(0))
+				for ( Square sq : sh.shot.getSquares().keySet() )
+					if (sq.getX() >= 0 && sq.getX() <= gw && sq.getY() >= 0 && sq.getY() <= gh)
+						g.fillRect(pw + sq.getX()* cs, dh + sq.getY() * cs, cs, cs);
+		
 		g.setColor(Color.RED);
 		for (int x = 1; x<gw; x++){
 			g.drawLine(pw + x*cs, dh, pw + x*cs, dh + 5);
@@ -354,7 +359,7 @@ public class GamePanel extends JPanel{
 			} else {
 				g.setColor(enemyColour);
 
-				if ( cmouse.x >= 0 && cmouse.x < gw && cmouse.y >= 0 && cmouse.y < gh)
+				if ( cmouse.x >= gw && cmouse.x < gw*2 && cmouse.y >= 0 && cmouse.y < gh)
 					g.fillRect(pw + cmouse.x*cs, dh + cmouse.y*cs, cs, cs);
 			}
 		}
@@ -384,7 +389,7 @@ public class GamePanel extends JPanel{
 	public void fire(Player p, Shot s) {
 		shots.add(new Pair(p, s));
 	}
-	
+
 	class Pair{
 		public Pair(Player p, Shot s) {
 			shot = s;
