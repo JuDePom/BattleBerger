@@ -28,6 +28,7 @@ public class MenuBar extends JMenuBar implements Serializable {
 		public LoadListener(Window p ) {
 			parent = p;
 		}
+		
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			JFileChooser chooser=new JFileChooser();
@@ -92,6 +93,7 @@ public class MenuBar extends JMenuBar implements Serializable {
 		});
 		quit.setFocusable(false);
 		button.add(quit);
+		
 		JButton save = new JButton("Save");
 		save.addActionListener(new ActionListener(){
 
@@ -104,11 +106,9 @@ public class MenuBar extends JMenuBar implements Serializable {
 				chooser.setAcceptAllFileFilterUsed(false);
 
 				if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-					if (chooser.getSelectedFile().isFile()) {
-						File file =chooser.getSelectedFile();
-						DAO<Game> save = AbstractDAOFactory.getAbstractDAOFactory(ExportType.Serialize).getGameDAO();
-						save.save(game, file.getAbsolutePath());
-					}
+					File file =chooser.getSelectedFile();
+					DAO<Game> save = AbstractDAOFactory.getAbstractDAOFactory(ExportType.Serialize).getGameDAO();
+					save.save(game, file.getAbsolutePath());
 				}
 			}
 			
