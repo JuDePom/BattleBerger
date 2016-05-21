@@ -83,7 +83,7 @@ public class StatusPanel extends JPanel implements Serializable{
 	}
 	JLabel[] statmax=new JLabel[4];
 	JLabel[] currentstat=new JLabel[4];
-	JLabel[] nbmaxupgrade=new JLabel[6];
+	JLabel[] nbmaxupgrade=new JLabel[4];
 	public StatusPanel(Game game) {
 		initPicture();
 		this.setPreferredSize(new Dimension(0, 150));
@@ -147,7 +147,7 @@ public class StatusPanel extends JPanel implements Serializable{
 			
 		}
 		information.add(pan);
-		for(int i=0;i<6;i++){
+		for(int i=0;i<4;i++){
 			JPanel tmp=new JPanel();
 			nbmaxupgrade[i]=new JLabel();
 			//tmp.setLayout(new BoxLayout(tmp,BoxLayout.Y_AXIS));
@@ -162,8 +162,9 @@ public class StatusPanel extends JPanel implements Serializable{
 		
 		add(info[0],BorderLayout.WEST);
 		add(information);
+		pan2.add(info[1]);
 		add(pan2);
-		add(info[1]);
+		
 	
 	
 		refresh(currentship);
@@ -188,12 +189,12 @@ public class StatusPanel extends JPanel implements Serializable{
 			currentstat[1].setText("Nombre d'amelioration courante : "+ currentship.getUpgrade(StatType.Armor));
 			currentstat[2].setText("Nombre d'amelioration courante : "+ currentship.getUpgrade(StatType.MovSpeed));
 			currentstat[3].setText("Nombre d'amelioration courante : "+ currentship.getUpgrade(StatType.ReloadSpeed));
-			nbmaxupgrade[0].setText("Nombre");
-			nbmaxupgrade[1].setText("d'amelioration");
-			nbmaxupgrade[2].setText("possede : "+ currentship.calculeNbEquipement());
-			nbmaxupgrade[3].setText("Nombre");
-			nbmaxupgrade[4].setText("maximal d'amelioration");
-			nbmaxupgrade[5].setText("possible : "+ currentship.getNbEquipementmax());
+			nbmaxupgrade[0].setText("Nombre d'amelioration");
+			
+			nbmaxupgrade[1].setText("possede : "+ currentship.calculeNbEquipement());
+			nbmaxupgrade[2].setText("Nombre maximal ");
+			
+			nbmaxupgrade[3].setText("d'amelioration possible : "+ currentship.getNbEquipementmax());
 			info[1].setText("Temps avant de pouvoir retirer : "+currentship.getTimereload());
 			}
 		

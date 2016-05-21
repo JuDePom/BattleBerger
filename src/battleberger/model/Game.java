@@ -145,6 +145,7 @@ public class Game extends Observable implements Serializable {
 							if( ! ship.isAlive()){
 								toRemove.add(ship);
 								state[sq.getKey().getX()][sq.getKey().getY()]=State.sinked;
+								p.setMoney(25*ship.shipValue());
 							}
 						}
 					}

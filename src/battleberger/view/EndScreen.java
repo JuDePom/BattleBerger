@@ -26,7 +26,7 @@ public class EndScreen extends JPanel{
 	public enum Status{Gagner,Gameover};
 	public EndScreen(Game g){
 		this.setBackground(Color.black);
-		this.setVisible(false);
+		
 		initImage();
 		game=g;
 		screen[0]=new JButton("Rejouer");
@@ -51,7 +51,7 @@ public class EndScreen extends JPanel{
 	}
 	public void refresh(){
 		if(game.end()){
-			this.setVisible(true);
+			
 			Player player=game.getPlayers().get(0);
 			if(player instanceof Human){
 				if(player.nbShips()>0)
