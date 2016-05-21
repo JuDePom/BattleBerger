@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Observable;
 
-import battleberger.model.Game.State;
 import battleberger.model.player.Computer;
+import battleberger.model.player.Human;
 import battleberger.model.player.Player;
 import battleberger.model.player.Shot;
 import battleberger.model.player.strategy.Strategy;
@@ -32,6 +32,7 @@ public class Game extends Observable implements Serializable {
 	private IDisplay display;
 	private State[][] state;
 	public Player currentPlayer;
+	public GameState gameState;
 
 	private static List<Strategy> strategies;
 	
@@ -55,6 +56,8 @@ public class Game extends Observable implements Serializable {
 	
 	
 	public Game(Player p1, Player p2, IDisplay disp){
+
+		gameState = GameState.Preparing;
 		this.initState(width, height);
 		players = new ArrayList<>();
 		addPlayer(p1);
@@ -67,51 +70,60 @@ public class Game extends Observable implements Serializable {
 
 	public void play(){
 
-		display.selectGridDimension();
-
-		for(Strategy strat : strategies){
-			strat.setDim(width, height);
-		}
-		
-		
-		for(Player p : players){
-			if(p instanceof Computer){
-				((Computer)p).setStrat(strategies.get(2));
+		switch (gameState){
+		case Preparing:
+			display.selectGridDimension();
+	
+			for(Strategy strat : strategies){
+				strat.setDim(width, height);
 			}
-			p.selectShips(display);
-		}
-		
-		long start;
-		while( ! isEndOfGame() ){
-			start = System.currentTimeMillis();
+			
+			
 			for(Player p : players){
-				currentPlayer = p;
-				Shot s = null;
-				if(p.getShipsReady().size() > 0){
-					do{
-						s = p.play(this);
-						
-					}while(s != null &&  s.getShip().getTimereload() > 0);
-					//si le joueur ne passe pas son tour
-					if(s != null){
-						display.fire(p, s);
-						p.setState(s, fire(p, s));
-						s.getShip().setTimereload(s.getShip().getCooldown());
-					}
+				if(p instanceof Computer){
+					((Computer)p).setStrat(strategies.get(2));
 				}
-				
-				if(isEndOfGame()) break;
-
-				p.endOfTurnProcessing();
+				p.selectShips(display);
 			}
-			currentPlayer = null;
 			
-
-			display.updateGameGrid();
-			
-			waitfps(start);
+			long start;
+			gameState = GameState.Playing;
+		case Playing:
+			while( ! isEndOfGame() ){
+				start = System.currentTimeMillis();
+				for(Player p : players){
+					currentPlayer = p;
+					Shot s = null;
+					if(p.getShipsReady().size() > 0){
+						do{
+							s = p.play(this);
+							
+						}while(s != null &&  s.getShip().getTimereload() > 0);
+						//si le joueur ne passe pas son tour
+						if(s != null){
+							display.fire(p, s);
+							if(p instanceof Human){
+								p.setState(s, fire(p, s));
+							}
+							s.getShip().setTimereload(s.getShip().getCooldown());
+						}
+					}
+					
+					if(isEndOfGame()) break;
+	
+					p.endOfTurnProcessing();
+				}
+				currentPlayer = null;
+				
+	
+				display.updateGameGrid();
+				
+				waitfps(start);
+			}
+			gameState = GameState.EndScreen;
+		case EndScreen:
+			display.endOfGame();
 		}
-		display.endOfGame();
 	}
 	
 	
@@ -154,7 +166,7 @@ public class Game extends Observable implements Serializable {
 							if( ! ship.isAlive()){
 								toRemove.add(ship);
 								state[sq.getKey().getX()][sq.getKey().getY()]=State.sinked;
-								p.setMoney(25*ship.shipValue());
+								p.gainMoney(25*ship.shipValue());
 							}
 						}
 					}
@@ -267,9 +279,7 @@ public class Game extends Observable implements Serializable {
 		return getWidth() * getHeight();
 	}
 	
-	public boolean end(){
-		return end;
-	}
+	
 	public void initState(int width, int height){
 		state=new State[width][height];
 		for(int i=0;i<state.length;i++){

@@ -1,5 +1,6 @@
 package battleberger.model.player;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -8,7 +9,7 @@ import battleberger.model.AbstractShip;
 import battleberger.model.Game;
 import battleberger.model.Square;
 
-public class Shot {
+public class Shot implements Serializable{
 	
 	public AbstractShip getShip() {
 		return ship;

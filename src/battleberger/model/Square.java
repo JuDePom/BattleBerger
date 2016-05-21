@@ -1,6 +1,8 @@
 package battleberger.model;
 
-public class Square {
+import java.io.Serializable;
+
+public class Square implements Serializable{
 	
 	private int x, y;
 

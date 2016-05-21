@@ -93,4 +93,5 @@ public class Console implements IDisplay{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 }

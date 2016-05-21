@@ -446,7 +446,7 @@ public class GamePanel extends JPanel implements Serializable{
 		shots.add(new Pair(p, s));
 	}
 
-	class Pair{
+	class  Pair implements Serializable{
 		public Pair(Player p, Shot s) {
 			shot = s;
 			player = p;

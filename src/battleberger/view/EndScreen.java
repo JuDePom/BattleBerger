@@ -2,6 +2,7 @@ package battleberger.view;
 
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -22,19 +23,19 @@ public class EndScreen extends JPanel{
 	JLabel status=new JLabel();
 	JButton[] screen = new JButton[2];
 	Map<Status,ImageIcon> image=new HashMap<Status,ImageIcon>();
-	private JPanel myself=this;
+	
 	public enum Status{Gagner,Gameover};
 	public EndScreen(Game g){
 		this.setBackground(Color.black);
-		
+		this.setPreferredSize(new Dimension(1000,600));
 		initImage();
 		game=g;
 		screen[0]=new JButton("Rejouer");
 		screen[0].addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//game.replay();
-				myself.setVisible(false);
+				game.replay();
+				
 			}
 				
 		});
@@ -46,11 +47,11 @@ public class EndScreen extends JPanel{
 			}
 		});
 		add(status);
+		add(screen[0]);
 		add(screen[1]);
-		add(screen[2]);
 	}
 	public void refresh(){
-		if(game.end()){
+		if(game.isEnd()){
 			
 			Player player=game.getPlayers().get(0);
 			if(player instanceof Human){

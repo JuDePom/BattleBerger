@@ -16,6 +16,7 @@ import javax.swing.JMenuBar;
 import battleberger.backup.AbstractDAOFactory;
 import battleberger.backup.DAO;
 import battleberger.backup.ExportType;
+import battleberger.model.AbstractShip;
 import battleberger.model.Game;
 import battleberger.model.Strategies;
 
@@ -39,7 +40,9 @@ public class MenuBar extends JMenuBar implements Serializable {
 					File file =chooser.getSelectedFile();
 					DAO<Game> load = AbstractDAOFactory.getAbstractDAOFactory(ExportType.Serialize).getGameDAO();
 					Game g = load.load(file.getAbsolutePath());
-					game.setEnd(true);
+					
+					game.getPlayers().get(0).setShips(new ArrayList<AbstractShip>()); //Termine le jeu de départ
+					
 					g.setDisplay(parent);
 					Thread t = new Thread(){
 
@@ -73,7 +76,7 @@ public class MenuBar extends JMenuBar implements Serializable {
 			jcb.addItem(s.name());
 		}
 		jcb.setPreferredSize(new Dimension(100,10));
-		jcb.setSelectedItem(jcb.getItemAt(0));
+		jcb.setSelectedItem(jcb.getItemAt(2));
 		jcb.addActionListener(new ActionListener () {
 			 public void actionPerformed(ActionEvent e) {
 				 game.setStrategy(getSelectStrat());

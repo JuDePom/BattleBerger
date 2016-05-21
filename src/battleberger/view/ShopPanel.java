@@ -17,12 +17,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import battleberger.model.AbstractShip;
-import battleberger.model.AbstractShipyard;
 import battleberger.model.Game;
 import battleberger.model.Ship.StatType;
-import battleberger.model.Ship.TypeShip;
 import battleberger.model.decorateur.Armory;
-import battleberger.model.player.Human;
 import battleberger.model.player.Player;
 
 @SuppressWarnings("serial")
@@ -188,7 +185,6 @@ public class ShopPanel extends JPanel implements Serializable{
 		Player p=battle.getCurrentPlayer();
 
 
-		//p=new Human();
 		StatType[] type=StatType.values();
 		int money=Integer.MAX_VALUE;
 		for(int i=0;i<StatType.values().length;i++){

@@ -26,6 +26,7 @@ public class Window extends JFrame implements Serializable,  Observer, IDisplay 
 	private GamePanel gamepan;
 	private StatusPanel statspan;
 	private StartPanel startpan;
+	private EndScreen endpan;
 	private MenuBar menubar; 
 	Game game;
 
@@ -53,6 +54,7 @@ public class Window extends JFrame implements Serializable,  Observer, IDisplay 
 		statspan.repaint();
 		shippan.repaint();
 		shoppan.repaint();
+		endpan.repaint();
 	}
 
 	@Override
@@ -74,13 +76,29 @@ public class Window extends JFrame implements Serializable,  Observer, IDisplay 
 		shoppan = new ShopPanel(game);
 		statspan = new StatusPanel(game);
 		startpan = new StartPanel(game);
-		
+		endpan = new EndScreen(game);
 		menubar = new MenuBar(game, this);
 		
 		
-		this.add(gamepan, BorderLayout.CENTER);
-		this.add(shoppan, BorderLayout.EAST);
-		this.setJMenuBar(menubar);
+		
+		switch(game.gameState){
+		case Preparing:
+			this.add(gamepan, BorderLayout.CENTER);
+			this.add(shoppan, BorderLayout.EAST);
+			setJMenuBar(menubar);
+			break;
+		case Playing:
+
+			this.add(gamepan, BorderLayout.CENTER);
+			this.add(shoppan, BorderLayout.EAST);
+			add(statspan, BorderLayout.NORTH);
+			break;
+		case EndScreen:
+			add(endpan);
+			endpan.refresh();
+			break;			
+		}
+		
 		
 		this.pack();
 		this.setVisible(true);
@@ -144,7 +162,9 @@ public class Window extends JFrame implements Serializable,  Observer, IDisplay 
 
 	@Override
 	public void endOfGame() {
-		// TODO Auto-generated method stub
+		clean();
+		this.add(endpan);
+		endpan.refresh();
 		
 	}
 
@@ -258,6 +278,13 @@ public class Window extends JFrame implements Serializable,  Observer, IDisplay 
 
 	public Game getGame() {
 		return game;
+	}
+
+	
+	public void clean() {
+		remove(shoppan);
+		remove(gamepan);
+		remove(statspan);
 	}
 
 
