@@ -219,7 +219,18 @@ public abstract class AbstractShipDecorator extends AbstractShip {
 		return next.getNbEquipement()+1;
 	}
 	@Override
+	public int getNbEquipementTotal(){
+		return next.getNbEquipement();
+	}
+	@Override
 	public void setNbEquipement(int nbupgrade){
 		next.setNbEquipement(nbupgrade);
+	}
+	@Override
+	public String toString(){
+		StringBuilder sb=new StringBuilder("");
+		sb.append(this.name+"->");
+		sb.append(next.toString());
+		return sb.toString();
 	}
 }

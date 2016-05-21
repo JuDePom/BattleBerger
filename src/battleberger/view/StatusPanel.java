@@ -32,7 +32,7 @@ public class StatusPanel extends JPanel{
 		this.setPreferredSize(new Dimension(0, 150));
 		StatType[] type=StatType.values();
 		JPanel pan=new JPanel();
-		pan.setPreferredSize(new Dimension(100,150));
+		pan.setPreferredSize(new Dimension(110,150));
 		pan.setBorder(BorderFactory.createLineBorder(Color.black));
 		pan.setLayout(new BoxLayout(pan,BoxLayout.Y_AXIS));
 		JPanel pan2=new JPanel();
@@ -40,11 +40,12 @@ public class StatusPanel extends JPanel{
 		this.setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
 		for(int i=0;i<type.length;i++){
 			stat[i]=new JLabel();
-			stat[i].setPreferredSize(new Dimension(100,20));
+			stat[i].setPreferredSize(new Dimension(110,20));
 			//stat[i].setBorder(BorderFactory.createLineBorder(Color.black));
 			JPanel tmp=new JPanel();
 			tmp.setBorder(BorderFactory.createLineBorder(Color.black));
 			tmp.setLayout(new GridLayout());
+			
 			tmp.add(stat[i]);
 			switch(i){
 			case 0:

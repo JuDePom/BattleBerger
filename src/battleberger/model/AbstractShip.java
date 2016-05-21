@@ -48,9 +48,18 @@ public abstract class AbstractShip {
 	public abstract Map<StatType, Integer> upgrade();
 	public abstract String getName();
 	public abstract void setName(String s);
+	/**
+	 * calcule le nombre d'équipement
+	 * @return
+	 */
 	public abstract int getNbEquipement();
+	/**
+	 * retourne la variable du ship
+	 * @return
+	 */
+	public abstract int getNbEquipementTotal();
 	public abstract void setNbEquipement(int nbupgrade);
-		
+	public abstract String toString();
 
 	/**
 	 * function a utiliser juste pour les decorateurs
