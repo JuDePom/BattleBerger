@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import battleberger.model.AbstractShip;
+import battleberger.model.AbstractShip.TimeSpace;
 import battleberger.model.AbstractShipyard;
 import battleberger.model.Game;
 import battleberger.model.Ship.StatType;
@@ -202,7 +203,8 @@ public class StatusPanel extends JPanel implements Serializable{
 	public void initPicture(){
 		TypeShip[] pictur=TypeShip.values();
 		for(TypeShip p : pictur){
-			if(p==TypeShip.Spy)
+			System.out.println(p.name());
+			if(p==TypeShip.Spy && AbstractShipyard.getTimeSpace() != TimeSpace.Default)
 				pictureship.put(p,new ImageIcon(RessourceManager.getImage("/images/"+AbstractShipyard.getTimeSpace().name()+"/"+p.name()+"2")));
 			else
 				pictureship.put(p,new ImageIcon(RessourceManager.getImage("/images/"+AbstractShipyard.getTimeSpace().name()+"/"+p.name())));
