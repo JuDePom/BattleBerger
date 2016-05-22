@@ -12,7 +12,7 @@ public class Human extends Player {
 	}
 	
 	public Human(){
-		super(30);
+		super(25);
 	}
 
 	@Override

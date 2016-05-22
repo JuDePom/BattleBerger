@@ -9,7 +9,7 @@ public class Computer extends Player {
 	protected Strategy strat;
 	
 	public Computer(){
-		super(30);
+		super(25);
 	}
 
 	@Override
