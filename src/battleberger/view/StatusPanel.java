@@ -24,7 +24,6 @@ import battleberger.model.Ship.TypeShip;
 @SuppressWarnings("serial")
 public class StatusPanel extends JPanel implements Serializable{
 	AbstractShip currentship;
-	Map<TypeShip,ImageIcon> pictureship=new HashMap<TypeShip,ImageIcon>();
 	JLabel[] stat=new JLabel[4];
 	JLabel[] info=new JLabel[2];
 	public AbstractShip getCurrentship() {
@@ -33,14 +32,6 @@ public class StatusPanel extends JPanel implements Serializable{
 
 	public void setCurrentship(AbstractShip currentship) {
 		this.currentship = currentship;
-	}
-
-	public Map<TypeShip, ImageIcon> getPictureship() {
-		return pictureship;
-	}
-
-	public void setPictureship(Map<TypeShip, ImageIcon> pictureship) {
-		this.pictureship = pictureship;
 	}
 
 	public JLabel[] getStat() {
@@ -86,7 +77,6 @@ public class StatusPanel extends JPanel implements Serializable{
 	JLabel[] currentstat=new JLabel[4];
 	JLabel[] nbmaxupgrade=new JLabel[4];
 	public StatusPanel(Game game) {
-		initPicture();
 		this.setPreferredSize(new Dimension(0, 150));
 		StatType[] type=StatType.values();
 		JPanel pan=new JPanel();
@@ -175,8 +165,7 @@ public class StatusPanel extends JPanel implements Serializable{
 		if(ship!=null){
 			currentship=ship;
 			info[0].setText(currentship.getName());
-			TypeShip type=currentship.getType();
-			info[0].setIcon(pictureship.get(type));
+			info[0].setIcon(new ImageIcon(RessourceManager.getImage(ship.getImagepath())));
 			StatType[] st=StatType.values();
 			stat[0].setText(""+st[0].name()+" : " + currentship.getPower());
 			stat[1].setText(""+st[1].name()+" : " + currentship.getArmor());
@@ -200,14 +189,6 @@ public class StatusPanel extends JPanel implements Serializable{
 			}
 		
 	}
-	public void initPicture(){
-		TypeShip[] pictur=TypeShip.values();
-		for(TypeShip p : pictur){
-			System.out.println(p.name());
-			if(p==TypeShip.Spy && AbstractShipyard.getTimeSpace() != TimeSpace.Default)
-				pictureship.put(p,new ImageIcon(RessourceManager.getImage("/images/"+AbstractShipyard.getTimeSpace().name()+"/"+p.name()+"2")));
-			else
-				pictureship.put(p,new ImageIcon(RessourceManager.getImage("/images/"+AbstractShipyard.getTimeSpace().name()+"/"+p.name())));
-		}
-	}
+
+	
 }
