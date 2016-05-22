@@ -11,7 +11,7 @@ Compilation/démarrage
 pour compiler: ant build
 pour lancer le logiciel: ant Main
 
-il est aussi possible de lancer le logiciel à partir du jar: java -jar BattleBerger.jar
+il est aussi possible de lancer le logiciel à partir du jar: "java -jar BattleBerger.jar" il ne faudra pas oublier de bouger le dossier assets à côté du jar si vous le déplacez.
 
 Autre
 ===========
