@@ -9,6 +9,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JFrame;
+import javax.swing.border.Border;
 
 import battleberger.model.AbstractShip;
 import battleberger.model.AbstractShip.TimeSpace;
@@ -66,6 +67,7 @@ public class Window extends JFrame implements Serializable, IDisplay {
 		if(shoppan != null) remove(shoppan);
 		if(statspan != null) remove(statspan);
 		if(startpan != null) remove(startpan);
+		if(menubar != null) remove(menubar);
 
 		shippan = new PlacementShipPanel(game);
 		gamepan = new GamePanel(game);
@@ -78,13 +80,13 @@ public class Window extends JFrame implements Serializable, IDisplay {
 		eraPanel = new EraPanel();
 		
 		
+		
 		loadWindow();
 	}
 
 	
 	private void loadWindow(){
 		this.remove(eraPanel);
-		
 		switch(game.gameState){
 		case EraSelection:
 			add(eraPanel, BorderLayout.CENTER);
@@ -92,9 +94,11 @@ public class Window extends JFrame implements Serializable, IDisplay {
 		case Preparing:
 			this.add(gamepan, BorderLayout.CENTER);
 			this.add(shoppan, BorderLayout.EAST);
+			this.add(shippan, BorderLayout.NORTH);
 			setJMenuBar(menubar);
 			break;
 		case Playing:
+			setJMenuBar(menubar);
 			this.add(gamepan, BorderLayout.CENTER);
 			this.add(shoppan, BorderLayout.EAST);
 			add(statspan, BorderLayout.NORTH);

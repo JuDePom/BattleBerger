@@ -5,8 +5,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -15,8 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import battleberger.model.AbstractShip;
-import battleberger.model.AbstractShip.TimeSpace;
-import battleberger.model.AbstractShipyard;
 import battleberger.model.Game;
 import battleberger.model.Ship.StatType;
 import battleberger.model.Ship.TypeShip;
