@@ -31,10 +31,6 @@ public class PlacementShipPanel extends JPanel implements Serializable{
 	public PlacementShipPanel(Game game) {
 		this.setPreferredSize(new Dimension(0, 150));
 		
-		for (TypeShip type : Ship.TypeShip.values()){
-			ships.put(type, AbstractShipyard.orderShip(type));
-		}
-		
 		this.addMouseListener(new MouseListener() {
 			
 			@Override
@@ -153,6 +149,10 @@ public class PlacementShipPanel extends JPanel implements Serializable{
 	}
 
 	public void setBuyable(int maxShipValue) {
+		for (TypeShip type : Ship.TypeShip.values()){
+			ships.put(type, AbstractShipyard.orderShip(type));
+		}
+		
 		credits = maxShipValue;
 		buyable = true;
 		repaint();
