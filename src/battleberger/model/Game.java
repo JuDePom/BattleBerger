@@ -170,8 +170,16 @@ public class Game extends Observable implements Serializable {
 								state[sq.getKey().getX()][sq.getKey().getY()]=State.touched;
 							if( ! ship.isAlive()){
 								toRemove.add(ship);
-								if(p instanceof Human)
-									state[sq.getKey().getX()][sq.getKey().getY()]=State.sinked;
+								if(p instanceof Human){
+									for(int i = 0 ; i < ship.getWidth() ; i++){
+										for(int j = 0 ; j < ship.getHeight() ; j++){
+											if(ship.getShape()[i][j]){
+												state[ship.getPositionX() + i ][ ship.getPositionY() + j] = State.sinked;
+											}
+										}
+									}
+									
+								}
 								p.gainMoney(25*ship.shipValue());
 							}
 						}

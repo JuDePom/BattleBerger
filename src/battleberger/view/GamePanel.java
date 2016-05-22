@@ -51,7 +51,6 @@ public class GamePanel extends JPanel implements Serializable{
 		fail=RessourceManager.getImage("/images/Fail");
 		hit=RessourceManager.getImage("/images/Hit");
 		sinked=RessourceManager.getImage("/images/Sinked");
-		
 		this.setBackground(Color.BLACK);
 		this.ocean = RessourceManager.getImage("/images/Ocean");
 
