@@ -165,7 +165,12 @@ public class StatusPanel extends JPanel implements Serializable{
 		if(ship!=null){
 			currentship=ship;
 			info[0].setText(currentship.getName());
-			info[0].setIcon(new ImageIcon(RessourceManager.getImage(ship.getImagepath())));
+			
+			if(ship.getType()==TypeShip.Spy) // Spy trick
+				info[0].setIcon(new ImageIcon(RessourceManager.getImage(ship.getImagepath()+"2")));
+			else
+				info[0].setIcon(new ImageIcon(RessourceManager.getImage(ship.getImagepath())));
+			
 			StatType[] st=StatType.values();
 			stat[0].setText(""+st[0].name()+" : " + currentship.getPower());
 			stat[1].setText(""+st[1].name()+" : " + currentship.getArmor());
