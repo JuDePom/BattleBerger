@@ -12,7 +12,7 @@ faire le dossier
 couleur selon si on touche ou pas // fait 
 générer les diagrammes de classe// fait 
  
-menu principal
+menu principal // osef
 
 
 mail du horatiu sur le projet 	

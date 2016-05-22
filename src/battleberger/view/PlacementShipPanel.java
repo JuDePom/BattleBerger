@@ -18,11 +18,13 @@ import battleberger.model.Game;
 import battleberger.model.Ship;
 import battleberger.model.Ship.TypeShip;
 import battleberger.model.ShipyardDefault;
+import battleberger.model.player.Human;
+import battleberger.model.player.Player;
 
 @SuppressWarnings("serial")
 public class PlacementShipPanel extends JPanel implements Serializable{
 	Map<TypeShip, AbstractShip> ships = new HashMap<TypeShip, AbstractShip>();
-	
+	Game game;
 	int credits;
 	boolean buyable = false;
 	int cs = 0; // pour me simplifier la vie
@@ -30,7 +32,7 @@ public class PlacementShipPanel extends JPanel implements Serializable{
 	
 	public PlacementShipPanel(Game game) {
 		this.setPreferredSize(new Dimension(0, 150));
-		
+		this.game=game;
 		this.addMouseListener(new MouseListener() {
 			
 			@Override
@@ -110,6 +112,11 @@ public class PlacementShipPanel extends JPanel implements Serializable{
 			
 			x += 2;
 		}
+		for(Player p : game.getPlayers()){
+			if(p instanceof Human)
+				g.drawString("Point restant : "+p.getMaxShipValue(), getWidth()/2-270,getHeight()-30 );
+		}
+			
 	}
 
 	public Map<TypeShip, AbstractShip> getShips() {
