@@ -119,7 +119,7 @@ public class GamePanel extends JPanel implements Serializable{
 		List<Player> players = game.getPlayers();
 		Player me = players.get(0);
 
-		if (!drag){
+		if (!drag && mouse.x < pw){
 			for (AbstractShip ship : me.getShips()){	
 				if ( ship.overlap(cmouse.x, cmouse.y) )
 					shipSel = ship;
@@ -142,9 +142,11 @@ public class GamePanel extends JPanel implements Serializable{
 		List<Player> players = game.getPlayers();
 		Player me = players.get(0);
 
-		for (AbstractShip ship : me.getShips()){	
-			if ( ship.overlap(cmouse.x, cmouse.y) )
-				shipSel = ship;
+		if (mouse.x < pw ) {
+			for (AbstractShip ship : me.getShips()){	
+				if ( ship.overlap(cmouse.x, cmouse.y) )
+					shipSel = ship;
+			}
 		}
 
 		if(!lock && shipSel != null){ // rotation car placement
@@ -402,8 +404,8 @@ public class GamePanel extends JPanel implements Serializable{
 		Color enemyColour = new Color(255, 0, 0, 100);
 
 
-		if ( cmouse != null){
-			if (cmouse.x < pw){
+		if ( cmouse != null && mouse != null){
+			if (mouse.x < pw){
 				g.setColor(myColour);
 				if ( cmouse.x >= 0 && cmouse.x < gw && cmouse.y >= 0 && cmouse.y < gh)
 					g.fillRect(dw + cmouse.x*cs, dh + cmouse.y*cs, cs, cs);
